@@ -32,5 +32,3 @@ export const projectData = {
     css: "CSS",
     html: "HTML"
 }
-
-export const gitUsername: string = "syconn"
