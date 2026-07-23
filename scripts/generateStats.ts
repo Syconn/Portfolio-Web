@@ -8,8 +8,7 @@ const headers = {
 };
 
 type quickStats = {
-    public_repos: number, // Total Projects
-    completed_projects: string,
+    public_repos: number,
     years_of_experience: string,
     total_languages: number;
 }
@@ -47,7 +46,6 @@ async function generateStats(): Promise<quickStats> {
 
     return {
         public_repos: user.public_repos,
-        completed_projects: `${user.public_repos}+`,
         years_of_experience: `${Math.floor((Date.now() - new Date(user.created_at).getTime()) / (1000 * 60 * 60 * 24 * 365.25))}+`,
         total_languages:  Object.keys(langs).length
     }

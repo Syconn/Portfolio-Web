@@ -9,8 +9,7 @@ export type project = {
 }
 
 export type quickStats = {
-    public_repos: number, // Total Projects
-    completed_projects: string,
+    public_repos: number,
     years_of_experience: string,
     total_languages: number;
 }

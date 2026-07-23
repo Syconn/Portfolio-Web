@@ -4,13 +4,15 @@ import { SiCodeberg } from 'react-icons/si';
 import styles from './App.module.css';
 import { links } from './util/data';
 import type { quickStats } from './util/types';
-import { generateStats } from './util/githubAPI';
 import me from "./assets/me.png";
 import resume from "./assets/resume.pdf";
+import quickstats from "./assets/github-stats.json"
+import projectData from "./assets/projects.json"
 
 function App() {
 	const [discordCopied, setDiscordCopied] = useState(false)
-	const [gitStats, setGitStats] = useState<quickStats>()
+	const [gitStats] = useState<quickStats>(quickstats as quickStats)
+	const [projects] = useState(projectData) // TODO: DECLARE TYPE
 
 	const copyDiscord = async () => {
 		await navigator.clipboard.writeText(links.discord)
@@ -29,12 +31,6 @@ function App() {
 		const timer = window.setTimeout(() => { setDiscordCopied(false) }, 1800)
 		return () => window.clearTimeout(timer)
 	}, [discordCopied])
-
-	useEffect(() => {
-		if (gitStats !== undefined) return
-		const loadStats = async () => setGitStats(await generateStats());
-		loadStats()
-	}, [])
 
 	return (
 		// TODO TAKE UP LEFT THIRD
@@ -98,7 +94,7 @@ function App() {
 
 						<div className={styles.sectionDivider} role="separator" aria-hidden="true" />
 
-						{/* TODO: Stats */}
+						{/* Stats */}
 						{gitStats !== undefined && (
 								<div className={styles.statsRow}>
 									<div className={styles.statsItem}>
@@ -106,7 +102,7 @@ function App() {
 										<p>Years of Experience</p>
 									</div>
 									<div className={styles.statsItem}>
-										<h3 className={styles.nonOffset}>{gitStats.completed_projects}</h3>
+										<h3 className={styles.nonOffset}>{projects.length}+</h3>
 										<p>Completed Projects</p>
 									</div>
 									<div className={styles.statsItem}>
