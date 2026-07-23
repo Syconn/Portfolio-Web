@@ -28,31 +28,31 @@ const fakeLang = {
 }
 
 // TODO THIS SHOULD PREVENT OVER USAGE DURING DEV
-async function getUserData(): Promise<gitUserData> { 
-    const raw = await fetch(`https://api.github.com/users/${username}`).then(r => r.json());
-    return {
-        public_repos: raw.public_repos,
-        created_at: raw.created_at,
-    };
-}
+// async function getUserData(): Promise<gitUserData> { 
+//     const raw = await fetch(`https://api.github.com/users/${username}`).then(r => r.json());
+//     return {
+//         public_repos: raw.public_repos,
+//         created_at: raw.created_at,
+//     };
+// }
 
-async function getLanguageStats() {
-    const raw = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`).then(r => r.json());
-    const totals: Record<string, number> = {};
+// async function getLanguageStats() {
+//     const raw = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`).then(r => r.json());
+//     const totals: Record<string, number> = {};
 
-    await Promise.all(
-        raw.map(async (repo: any) => {
-            const langs = await fetch(repo.languages_url).then(r => r.json());
-            for (const [language, bytes] of Object.entries(langs)) totals[language] = (totals[language] ?? 0) + (bytes as number);
-        })
-    );
+//     await Promise.all(
+//         raw.map(async (repo: any) => {
+//             const langs = await fetch(repo.languages_url).then(r => r.json());
+//             for (const [language, bytes] of Object.entries(langs)) totals[language] = (totals[language] ?? 0) + (bytes as number);
+//         })
+//     );
 
-    return totals;
-}
+//     return totals;
+// }
 
 export async function generateStats(): Promise<quickStats> {
-    const user: gitUserData = await getUserData();
-    const langs = await getLanguageStats();
+    const user: gitUserData = fakeUser;
+    const langs = fakeLang;
 
     return {
         public_repos: user.public_repos,
