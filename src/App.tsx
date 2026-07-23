@@ -2,17 +2,18 @@ import { useEffect, useState } from 'react';
 import { FaDiscord, FaFileDownload, FaGithub, FaLinkedin } from 'react-icons/fa';
 import { SiCodeberg } from 'react-icons/si';
 import styles from './App.module.css';
-import { links } from './util/data';
-import type { quickStats } from './util/types';
+import { links, pages } from './util/data';
+import type { project, quickStats } from './util/types';
 import me from "./assets/me.png";
 import resume from "./assets/resume.pdf";
 import quickstats from "./assets/github-stats.json"
 import projectData from "./assets/projects.json"
 
 function App() {
+	const [activePage, setActivePage] = useState(pages[0])
 	const [discordCopied, setDiscordCopied] = useState(false)
 	const [gitStats] = useState<quickStats>(quickstats as quickStats)
-	const [projects] = useState(projectData) // TODO: DECLARE TYPE
+	const [projects] = useState<project[]>(projectData)
 
 	const copyDiscord = async () => {
 		await navigator.clipboard.writeText(links.discord)
@@ -42,9 +43,19 @@ function App() {
 						<span className={`${styles.light} ${styles.lightMinimize}`} />
 						<span className={`${styles.light} ${styles.lightFullscreen}`} />
 					</div>
-					<div className={styles.windowTitleGroup}>
-						<p className={styles.windowKicker}>Portfolio</p>
-					</div>
+					<nav className={styles.pageTabs} aria-label="Page sections">
+						{pages.map((page) => (
+							<button
+								key={page}
+								type="button"
+								className={`${styles.pageTab} ${activePage === page ? styles.pageTabActive : ''}`}
+								onClick={() => setActivePage(page)}
+								aria-pressed={activePage === page}
+							>
+								{page}
+							</button>
+						))}
+					</nav>
 					<div className={styles.windowPill}>Online</div>
 				</header>
 

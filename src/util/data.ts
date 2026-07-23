@@ -1,18 +1,11 @@
+export const pages: string[] = ["Overview", "Project Showcase", "Skills and Talents", "Work Experience", "Homelab Stats", "Contact Me"]
+
 export const links = {
     github: "https://github.com/Syconn",
     codeberg: "https://codeberg.org/Syconn",
     linkedin: "https://www.linkedin.com/in/aidan-haack/",
     email: "Aidanh@udel.edu",
     discord: "syconn"
-}
-
-export const pages = {
-    profile: "Overview",
-    projects: "Project Showcase", // SHOULD HAVE CATEGORIES TO BASED
-    skills: "Skills and Talents",
-    experience: "Work Experience",
-    homelab: "Homelab Stats",
-    contact: "Contact Me"
 }
 
 export const projectCategory = {
