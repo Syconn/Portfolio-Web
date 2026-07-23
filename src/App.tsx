@@ -5,6 +5,8 @@ import styles from './App.module.css';
 import { links } from './util/data';
 import type { quickStats } from './util/types';
 import { generateStats } from './util/githubAPI';
+import me from "./assets/me.png";
+import resume from "./assets/resume.pdf";
 
 function App() {
 	const [discordCopied, setDiscordCopied] = useState(false)
@@ -17,7 +19,7 @@ function App() {
 
 	const downloadResume = async () => {
 		const link = document.createElement("a");
-		link.href = "/resume.pdf";
+		link.href = resume;
 		link.download = "Aidans_Resume.pdf";
 		link.click();
 	}
@@ -56,7 +58,7 @@ function App() {
 						<h2>Aidan Haack</h2>
 
 						{/* Image */}
-						<img src="/me.png" alt="Me" />
+						<img src={me} alt="Me" />
 
 						{/* TODO: Cycling Skills */}
 
