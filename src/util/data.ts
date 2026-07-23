@@ -7,12 +7,12 @@ export const links = {
 }
 
 export const pages = {
-    profile: "profile",
-    projects: "projects", // SHOULD HAVE CATEGORIES TO BASED
-    skills: "skills",
-    experience: "experience",
-    homelab: "homelab",
-    contact: "contact"
+    profile: "Overview",
+    projects: "Project Showcase", // SHOULD HAVE CATEGORIES TO BASED
+    skills: "Skills and Talents",
+    experience: "Work Experience",
+    homelab: "Homelab Stats",
+    contact: "Contact Me"
 }
 
 export const projectCategory = {
@@ -32,3 +32,5 @@ export const projectData = {
     css: "CSS",
     html: "HTML"
 }
+
+export const gitUsername: string = "syconn"
