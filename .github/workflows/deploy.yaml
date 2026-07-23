@@ -32,7 +32,7 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist   # change to build if using CRA
+          path: ./dist
 
   deploy:
     environment:
