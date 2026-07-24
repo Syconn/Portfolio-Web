@@ -1,18 +1,11 @@
 :root {
 	--color-white: #fff;
-	--color-white-100: rgba(255, 255, 255, 0.1);
 	--color-white-200: rgba(255, 255, 255, 0.2);
 	--color-white-400: rgba(255, 255, 255, 0.4);
-	--color-white-800: rgba(255, 255, 255, 0.8);
 	--color-white-900: rgba(255, 255, 255, 0.9);
 	--color-black: #1e1e1e;
 	--color-black-100: rgba(0, 0, 0, 0.1);
-	--color-black-50: rgba(211, 197, 197, 0.39);
-	--color-black-200: rgba(0, 0, 0, 0.2);
-	--color-black-500: rgba(0, 0, 0, 0.5);
-	--color-black-600: rgba(0, 0, 0, 0.6);
 	--color-blue-800: #007ff7;
-	--app-color-white: rgb(252, 255, 251);
 	--color-red: rgba(255, 2, 2, 0.788);
 	--color-green: #11dd4e;
 }
@@ -39,12 +32,16 @@ input {
 	-webkit-tap-highlight-color: transparent;
 }
 
-body {
+.screen {
 	height: 100vh;
 	user-select: none;
-	font-family: "Lexend", sans-serif;
-	background: url("../assets/background/wallpaper2.png") center/cover no-repeat;
+	font-family: sans-serif;
+	background: url("../assets/background/wallpaper2.png");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
 	overflow: hidden;
+	transition: background-image 0.5s ease;
 }
 
 .navbar {
@@ -455,23 +452,14 @@ li>ul>li>button:active {
 	}
 }
 
-#shutdownScreen {
-    position: fixed;
-    inset: 0;
-    background: black;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 999999;
-}
-
+#shutdownScreen,
 #restartScreen {
     position: fixed;
     inset: 0;
-    background: black;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
+    background: black;
     z-index: 999999;
 }
 
@@ -479,4 +467,14 @@ li>ul>li>button:active {
     width: 300px;
 	transform: scale(4);
     transform-origin: center;
+}
+
+.desktop {
+    transition: opacity 0.5s;
+    opacity: 1;
+}
+
+.desktop-hidden {
+    opacity: 0;
+    pointer-events: none;
 }
