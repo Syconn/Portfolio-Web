@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Rnd } from "react-rnd";
 import "./css/Desktop.css"
 import wallpaper0 from "./assets/background/wallpaper0.jpg";
 import wallpaper1 from "./assets/background/wallpaper1.png";
@@ -6,7 +7,6 @@ import wallpaper2 from "./assets/background/wallpaper2.png";
 import wallpaper3 from "./assets/background/wallpaper3.png";
 import wallpaper4 from "./assets/background/wallpaper4.jpg";
 import Window from "./components/Window";
-import { Rnd } from "react-rnd";
 
 function Desktop() {
     const [wallpaperId, setWallpaperId] = useState(() => {
@@ -22,8 +22,13 @@ function Desktop() {
     const [bouncingIcon, setBouncingIcon] = useState<number | null>(null);
     const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
     const [windowSize, setWindowSize] = useState({ width: 1000, height: 700 });
+    const [maximized, setMaximized] = useState(false);
+    const [minimized, setMinimized] = useState(false);
 
     const desktopRef = useRef<HTMLDivElement>(null);
+    const previousWindow = useRef({ width: 900, height: 600, x: 100, y: 100 });
+
+    const wallpapers = [wallpaper0, wallpaper1, wallpaper2, wallpaper3, wallpaper4];
 
     useEffect(() => {
         wallpapers.forEach((src) => {
@@ -88,103 +93,36 @@ function Desktop() {
         setTimeout(() => setShutdown(true), 500);
     };
 
-    const bounceIcon = (index: number) => {
-        setBouncingIcon(index);
-        setTimeout(() => setBouncingIcon(null), 800);
-    };
-
-    const wallpapers = [wallpaper0, wallpaper1, wallpaper2, wallpaper3, wallpaper4];
-
-    const animateValue = (from: number, to: number, duration: number, setter: (value: number) => void) => {
-        const start = performance.now();
-        const animate = (time: number) => {
-            const elapsed = time - start;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 4);
-            setter(from + (to - from) * eased);
-            if (progress < 1) requestAnimationFrame(animate);
-        };
-
-        requestAnimationFrame(animate);
-    };
-
-    const [maximized, setMaximized] = useState(false);
-
-    const savedWindow = useRef({
-        width: 800,
-        height: 600,
-        x: 0,
-        y: 0,
-    });
-
     const handleMaximize = () => {
-        if (!desktopRef.current) return;
-
-        const desktop = desktopRef.current.getBoundingClientRect();
         if (!maximized) {
-            savedWindow.current = {
+            previousWindow.current = {
                 width: windowSize.width,
                 height: windowSize.height,
                 x: windowPosition.x,
-                y: windowPosition.y,
+                y: windowPosition.y
             };
+        } else {
+            setWindowSize({
+                width: previousWindow.current.width,
+                height: previousWindow.current.height
+            });
 
-            // Animate to fullscreen
-            animateValue(windowPosition.x, 0, 350, (v) => setWindowPosition(prev => ({ ...prev, x: v })));
-
-            animateValue(
-                windowPosition.y,
-                0,
-                350,
-                (v) => setWindowPosition(prev => ({ ...prev, y: v }))
-            );
-
-            animateValue(
-                windowSize.width,
-                desktop.width,
-                350,
-                (v) => setWindowSize(prev => ({ ...prev, width: v }))
-            );
-
-            animateValue(
-                windowSize.height,
-                desktop.height,
-                350,
-                (v) => setWindowSize(prev => ({ ...prev, height: v }))
-            );
-        }
-        else {
-            // Restore previous size
-            animateValue(
-                windowPosition.x,
-                savedWindow.current.x,
-                350,
-                (v) => setWindowPosition(prev => ({ ...prev, x: v }))
-            );
-
-            animateValue(
-                windowPosition.y,
-                savedWindow.current.y,
-                350,
-                (v) => setWindowPosition(prev => ({ ...prev, y: v }))
-            );
-
-            animateValue(
-                windowSize.width,
-                savedWindow.current.width,
-                350,
-                (v) => setWindowSize(prev => ({ ...prev, width: v }))
-            );
-
-            animateValue(
-                windowSize.height,
-                savedWindow.current.height,
-                350,
-                (v) => setWindowSize(prev => ({ ...prev, height: v }))
-            );
+            setWindowPosition({
+                x: previousWindow.current.x,
+                y: previousWindow.current.y
+            });
         }
 
         setMaximized(!maximized);
+    };
+
+    const handleMinimize = () => {
+        setMinimized(true);
+    };
+
+    const bounceIcon = (index: number) => {
+        setBouncingIcon(index);
+        setTimeout(() => setBouncingIcon(null), 800);
     };
 
     return (
@@ -264,16 +202,9 @@ function Desktop() {
 
                 <div className="desktop-area" ref={desktopRef}>
                     <Rnd
-                        // size={maximized ? {
-                        //     width: "100%",
-                        //     height: "100%"
-                        // } : windowSize}
-                        // position={maximized ? {
-                        //     x: 0,
-                        //     y: 0
-                        // } : windowPosition}
-                        size={windowSize}
-                        position={windowPosition}
+                        size={maximized ? { width: desktopRef.current?.clientWidth ?? 900, height: desktopRef.current?.clientHeight ?? 600 } : windowSize}
+                        position={maximized ? { x: 0, y: 0 } : windowPosition}
+                        disableDragging={maximized}
                         minWidth={600}
                         minHeight={400}
                         onDragStop={(_e, data) => setWindowPosition({ x: data.x, y: data.y, })}
@@ -292,12 +223,7 @@ function Desktop() {
                             bottomRight: "resize-handle corner",
                             bottomLeft: "resize-handle corner",
                         }}>
-                        <Window
-                            title="Safari"
-                            onClose={() => { }}
-                            onMaximize={handleMaximize}>
-
-                        </Window>
+                        <Window title="Safari" minimized={minimized} maximized={maximized}  onMinimize={handleMinimize} onMaximize={handleMaximize} onClose={() => {}} />
                     </Rnd>
                 </div>
 
