@@ -200,32 +200,34 @@ function Desktop() {
                     </ul>
                 </div>
 
-                <div className="desktop-area" ref={desktopRef}>
-                    <Rnd
-                        size={maximized ? { width: desktopRef.current?.clientWidth ?? 900, height: desktopRef.current?.clientHeight ?? 600 } : windowSize}
-                        position={maximized ? { x: 0, y: 0 } : windowPosition}
-                        disableDragging={maximized}
-                        minWidth={600}
-                        minHeight={400}
-                        onDragStop={(_e, data) => setWindowPosition({ x: data.x, y: data.y, })}
-                        onResizeStop={(_e, _dir, ref, _d, position) => {
-                            setWindowSize({ width: ref.offsetWidth, height: ref.offsetHeight })
-                            setWindowPosition({ x: position.x, y: position.y, })
-                        }}
-                        bounds=".desktop-area"
-                        resizeHandleClasses={{
-                            top: "resize-handle top",
-                            right: "resize-handle right",
-                            bottom: "resize-handle bottom",
-                            left: "resize-handle left",
-                            topRight: "resize-handle corner",
-                            topLeft: "resize-handle corner",
-                            bottomRight: "resize-handle corner",
-                            bottomLeft: "resize-handle corner",
-                        }}>
-                        <Window title="Safari" minimized={minimized} maximized={maximized}  onMinimize={handleMinimize} onMaximize={handleMaximize} onClose={() => {}} />
-                    </Rnd>
-                </div>
+                {!minimized && (
+                    <div className="desktop-area" ref={desktopRef}>
+                        <Rnd
+                            size={maximized ? { width: desktopRef.current?.clientWidth ?? 900, height: desktopRef.current?.clientHeight ?? 600 } : windowSize}
+                            position={maximized ? { x: 0, y: 0 } : windowPosition}
+                            disableDragging={maximized}
+                            minWidth={600}
+                            minHeight={400}
+                            onDragStop={(_e, data) => setWindowPosition({ x: data.x, y: data.y, })}
+                            onResizeStop={(_e, _dir, ref, _d, position) => {
+                                setWindowSize({ width: ref.offsetWidth, height: ref.offsetHeight })
+                                setWindowPosition({ x: position.x, y: position.y, })
+                            }}
+                            bounds=".desktop-area"
+                            resizeHandleClasses={{
+                                top: "resize-handle top",
+                                right: "resize-handle right",
+                                bottom: "resize-handle bottom",
+                                left: "resize-handle left",
+                                topRight: "resize-handle corner",
+                                topLeft: "resize-handle corner",
+                                bottomRight: "resize-handle corner",
+                                bottomLeft: "resize-handle corner",
+                            }}>
+                            <Window minimized={minimized} maximized={maximized} onMinimize={handleMinimize} onMaximize={handleMaximize} onClose={() => { }} />
+                        </Rnd>
+                    </div>
+                )}
 
                 {/* Docker */}
                 <div className="dock">
