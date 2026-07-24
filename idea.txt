@@ -4,6 +4,14 @@ Go full webbrowser where:
     3. Mac enviorment?
     4. Search Location
     5. if ip not my web take them to it
+    6. Contact me support - https://www.youtube.com/watch?v=Ib8C3aTNHB4&t=7
 
+General Look
 https://rjpeg.com/assets/front/img/blogs/68102e10a1801.jpg
-https://cdn.mos.cms.futurecdn.net/83WQUUYKfZFcR5mtcD9dCC-650-80.jpg.webp
+
+Safari
+https://media.idownloadblog.com/wp-content/uploads/2022/07/Safari-Homepage-Mac.jpg
+https://www.macworld.com/wp-content/uploads/2023/01/safari-tips-how-to.jpg?quality=50&strip=all
+
+
+Add some functionality back later lol - calc, cal, timezone change, notepad

@@ -3,7 +3,7 @@ import { SiCodeberg } from 'react-icons/si';
 import quickstats from "../assets/github-stats.json";
 import me from "../assets/me.png";
 import resume from "../assets/resume.pdf"
-import styles from '../App.module.css';
+import styles from '../css/App.module.css';
 import { useEffect, useState } from 'react';
 import type { quickStats } from '../util/types';
 import { links } from '../util/data';
