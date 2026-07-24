@@ -43,7 +43,7 @@ body {
 	height: 100vh;
 	user-select: none;
 	font-family: "Lexend", sans-serif;
-	background: url("../../background/wallpaper2.png") center/cover no-repeat;
+	background: url("../assets/background/wallpaper2.png") center/cover no-repeat;
 	overflow: hidden;
 }
 
@@ -456,6 +456,16 @@ li>ul>li>button:active {
 }
 
 #shutdownScreen {
+    position: fixed;
+    inset: 0;
+    background: black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+#restartScreen {
     position: fixed;
     inset: 0;
     background: black;

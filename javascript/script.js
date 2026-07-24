@@ -44,6 +44,28 @@ function digi() {
 	}
 }
 
+function restart() {
+    const screen = document.getElementById("restartScreen");
+
+    desktop.style.transition = "opacity 0.5s";
+    desktop.style.opacity = "0";
+
+    setTimeout(() => {
+        // Show black screen
+        screen.style.display = "block";
+
+        setTimeout(() => {
+            screen.style.opacity = "1";
+        }, 10);
+
+        // Reload after restart animation
+        setTimeout(() => {
+            window.location.reload();
+        }, 500);
+
+    }, 500);
+}
+
 function shutdown() {
     const desktop = document.getElementById("desktop");
 
@@ -56,7 +78,7 @@ function shutdown() {
         const screen = document.getElementById("shutdownScreen");
         const gif = document.getElementById("lockGif");
 
-        gif.src = "./background/lock.gif?" + Date.now();
+        gif.src = "./src/assets/background/lock.gif?" + Date.now();
         screen.style.display = "flex";
     }, 500);
 }

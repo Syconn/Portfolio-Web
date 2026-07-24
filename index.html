@@ -4,21 +4,19 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	<!-- ios support -->
 	<link rel="apple-touch-icon" href="./icon/manifest/192x192.png" />
 	<meta name="apple-mobile-web-app-status-bar" content="#DCE9E9" />
 	<meta name="theme-color" content="#d1d1d1" />
 
-	<title>Aidan's Portfolio</title>
-
 	<link rel="shortcut icon" type="image/png" href="./icon/manifest/512x512.png" />
-	<link rel="stylesheet" href="./src/css/Mac.css" />
+	<link rel="stylesheet" href="./src/css/Desktop.css" />
 </head>
 
 <body onload="digi(), calculateBattery()">
 	<div id="shutdownScreen">
-		<img id="lockGif" src="./background/lock.gif" alt="Shutting down">
+		<img id="lockGif" src="./src/assets/background/lock.gif" alt="Shutting down">
 	</div>
+	<div id="restartScreen"></div>
 	<div id="desktop">
 		<div class="navbar">
 			<ul>
@@ -32,7 +30,7 @@
 							<button>Change Background</button>
 						</li>
 						<li>
-							<button onClick="window.location.reload();">Restart</button>
+							<button onClick="restart()">Restart</button>
 							<button onclick="shutdown()">Shut Down</button>
 						</li>
 					</ul>
