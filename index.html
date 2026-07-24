@@ -1,12 +1,133 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- ios support -->
+	<link rel="apple-touch-icon" href="./icon/manifest/192x192.png" />
+	<meta name="apple-mobile-web-app-status-bar" content="#DCE9E9" />
+	<meta name="theme-color" content="#d1d1d1" />
+
+	<title>Aidan's Portfolio</title>
+
+	<link rel="shortcut icon" type="image/png" href="./icon/manifest/512x512.png" />
+	<link rel="stylesheet" href="./src/css/Mac.css" />
+</head>
+
+<body onload="digi(), calculateBattery()">
+	<div id="shutdownScreen">
+		<img id="lockGif" src="./background/lock.gif" alt="Shutting down">
+	</div>
+	<div id="desktop">
+		<div class="navbar">
+			<ul>
+				<li class="leftLi logo">
+					<img src="./icon/apple-white.png" alt="Apple logo" />
+					<ul>
+						<li>
+							<button><a href="https://github.com/Syconn/Portfolio-Web" target="_blank">About This Portfolio</a></button>
+						</li>
+						<li>
+							<button>Change Background</button> <!-- TODO Add background functions -->
+						</li>
+						<li>
+							<button onClick="window.location.reload();">Restart</button>
+							<button onclick="shutdown()">Shut Down</button>
+						</li>
+					</ul>
+				</li>
+				<li class="leftLi">File</li>
+				<li class="leftLi hidden">Edit</li>
+				<li class="leftLi hidden">View</li>
+				<li class="leftLi hidden">Go</li>
+				<li class="leftLi hidden">Window</li>
+				<li class="leftLi">Help</li>
+			</ul>
+
+			<ul class="navbar__right">
+				<li class="battery">
+					<span class="battery__text"></span>
+					<div class="battery__container">
+						<div class="battery__progress">
+							<img class="is-charging" src="./icon/charging.png" alt="Battery is charging">
+						</div>
+					</div>
+
+					<div class="battery__popup">
+						<header>
+							<h3>Battery</h3>
+							<span></span>
+						</header>
+						<p>Power Source: <span class="power-source">Battery</span></p>
+					</div>
+				</li>
+				<li class="wifi">
+					<svg width="24" height="24">
+						<path
+							d="M12 6c3.537 0 6.837 1.353 9.293 3.809l1.414-1.414C19.874 5.561 16.071 4 12 4 7.929 4.001 4.126 5.561 1.293 8.395l1.414 1.414C5.163 7.353 8.463 6 12 6zM17.671 14.307c-3.074-3.074-8.268-3.074-11.342 0l1.414 1.414c2.307-2.307 6.207-2.307 8.514 0L17.671 14.307z">
+						</path>
+						<path
+							d="M20.437,11.293c-4.572-4.574-12.301-4.574-16.873,0l1.414,1.414c3.807-3.807,10.238-3.807,14.045,0L20.437,11.293z">
+						</path>
+						<circle cx="12" cy="18" r="2"></circle>
+					</svg>
+				</li>
+				<li class="open_Search">
+					<svg width="20" height="20">
+						<path
+							d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z">
+						</path>
+					</svg>
+				</li>
+				<li class="open_control">
+					<img src="./icon/control_center.gif" class="control-center" alt="controlCenter" />
+				</li>
+				<li class="clock">
+					<span id="date" class="hidden"></span>
+					<span id="clock"></span>
+				</li>
+			</ul>
+		</div>
+
+		<!--Dock start-->
+		<div class="dock">
+			<button class="icon">
+				<img src="./icon/dock/finder.png" alt="Finder Logo" class="hidden" />
+			</button>
+			<button class="icon open-vscode">
+				<img src="./icon/dock/safari.png" alt="Safari Logo" class="hidden" />
+				<hr class="point hidden" /> <!-- TODO show dot -->
+			</button>
+			<button class="icon">
+				<img src="./icon/dock/appstore.png" alt="App Store Logo" />
+			</button>
+			<button class="icon">
+				<img src="./icon/dock/music.png" alt="Music Logo" />
+			</button>
+			<button class="icon open-vscode">
+				<img src="./icon/dock/vscode.svg" alt="Vscode apps" class="hidden" />
+				<hr class="point hidden" id="point-vscode" />
+			</button>
+			<button class="icon">
+				<img src="./icon/dock/photos.png" alt="Photos Logo" class="hidden" />
+			</button>
+			<button accesskey="t" class="icon open-terminal">
+				<img src="./icon/dock/terminal.png" alt="Terminal Logo" class="hidden" />
+				<hr class="point" id="point-terminal" />
+			</button>
+			<button class="icon">
+				<img src="./icon/dock/preferences.png" alt="Preferences Logo" class="hidden" />
+			</button>
+			<hr class="column hidden" />
+			<button class="icon">
+				<img src="./icon/dock/bin.png" alt="Trash Bin Logo" class="hidden Trash" />
+			</button>
+		</div>
+		<!--DOCK end-->
+	</div>
+
+	<script src="./javascript/script.js"></script>
+</body>
+
 </html>

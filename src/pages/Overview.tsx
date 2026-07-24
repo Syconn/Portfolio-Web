@@ -29,6 +29,8 @@ export function Overview({ length }: { length:number }) {
 		const timer = window.setTimeout(() => { setDiscordCopied(false) }, 1800)
 		return () => window.clearTimeout(timer)
 	}, [discordCopied])
+
+    // TODO: ADD A RANDOM PROJECT TO SHOW OFF, Lines of Code instead of completed projects
     
     return (
         <section className={styles.legacyContent}>

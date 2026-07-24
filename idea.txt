@@ -1,0 +1,9 @@
+Go full webbrowser where:
+    1. Boot up animation like click on desktop background browser
+    2. Dark Mode Light Mode
+    3. Mac enviorment?
+    4. Search Location
+    5. if ip not my web take them to it
+
+https://rjpeg.com/assets/front/img/blogs/68102e10a1801.jpg
+https://cdn.mos.cms.futurecdn.net/83WQUUYKfZFcR5mtcD9dCC-650-80.jpg.webp
