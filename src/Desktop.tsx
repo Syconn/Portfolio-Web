@@ -4,7 +4,7 @@ import wallpaper1 from "./assets/background/wallpaper1.png";
 import wallpaper2 from "./assets/background/wallpaper2.png";
 import wallpaper3 from "./assets/background/wallpaper3.png";
 import wallpaper4 from "./assets/background/wallpaper4.jpg";
-import WindowManager, { type registryKey } from "./components/WindowManager";
+import WindowManager from "./components/WindowManager";
 import "./css/Desktop.css";
 
 function Desktop() {
@@ -18,8 +18,6 @@ function Desktop() {
     const [time, setTime] = useState("");
     const [date, setDate] = useState("");
     const [battery] = useState(Math.floor(Math.random() * (100 - 20 + 1)) + 20);
-    const [bouncingIcon, setBouncingIcon] = useState<number | null>(null);
-    const [windowsToOpen, setWindowsToOpen] = useState<registryKey[]>([]);
 
     const wallpapers = [wallpaper0, wallpaper1, wallpaper2, wallpaper3, wallpaper4];
 
@@ -71,16 +69,6 @@ function Desktop() {
         setDesktopHidden(true);
         setTimeout(() => setShutdown(true), 500);
     };
-
-    const bounceIcon = (index: number, window?: registryKey) => {
-        setBouncingIcon(index);
-        setTimeout(() => {
-            setBouncingIcon(null)
-            if (window) openWindow(window)
-        }, 800);
-    };
-
-    const openWindow = (window: registryKey) => setWindowsToOpen(prev => prev.includes(window) ? prev : [...prev, window]);
 
     return (
         <div className="screen" style={{ backgroundImage: `url(${wallpapers[wallpaperId]})` }}>
@@ -157,40 +145,7 @@ function Desktop() {
                     </ul>
                 </div>
 
-                <WindowManager windowsToOpen={windowsToOpen} clearWindows={() => setWindowsToOpen([])} />
-
-                {/* Docker */}
-                <div className="dock">
-                    <button className={`icon hidden ${bouncingIcon === 0 ? "bounce" : ""}`} onClick={() => bounceIcon(0, "test")}>
-                        <img src="./src/assets/icon/dock/finder.png" alt="Finder Logo" className="hidden" />
-                    </button>
-                    <button className={`icon ${bouncingIcon === 1 ? "bounce" : ""}`} onClick={() => bounceIcon(1, "safari")}>
-                        <img src="./src/assets/icon/dock/safari.png" alt="Safari Logo" />
-                        <hr className="point" /> {/* TODO show dot */}
-                    </button>
-                    <button className={`icon hidden ${bouncingIcon === 2 ? "bounce" : ""}`} onClick={() => bounceIcon(2)}>
-                        <img src="./src/assets/icon/dock/appstore.png" alt="App Store Logo" />
-                    </button>
-                    <button className={`icon hidden ${bouncingIcon === 3 ? "bounce" : ""}`} onClick={() => bounceIcon(3)}>
-                        <img src="./src/assets/icon/dock/music.png" alt="Music Logo" />
-                    </button>
-                    <button className={`icon hidden open-vscode ${bouncingIcon === 4 ? "bounce" : ""}`} onClick={() => bounceIcon(4)}>
-                        <img src="./src/assets/icon/dock/vscode.svg" alt="Vscode apps" className="hidden" />
-                    </button>
-                    <button className={`icon ${bouncingIcon === 5 ? "bounce" : ""}`} onClick={() => bounceIcon(5)}>
-                        <img src="./src/assets/icon/dock/photos.png" alt="Photos Logo" className="hidden" />
-                    </button>
-                    <button className={`icon hidden ${bouncingIcon === 6 ? "bounce" : ""}`} onClick={() => bounceIcon(6)}>
-                        <img src="./src/assets/icon/dock/terminal.png" alt="Terminal Logo" className="hidden" />
-                    </button>
-                    <button className={`icon ${bouncingIcon === 7 ? "bounce" : ""}`} onClick={() => bounceIcon(7)}>
-                        <img src="./src/assets/icon/dock/preferences.png" alt="Preferences Logo" className="hidden" />
-                    </button>
-                    <hr className="column hidden" />
-                    <button className={`icon ${bouncingIcon === 8 ? "bounce" : ""}`} onClick={() => bounceIcon(8)}>
-                        <img src="./src/assets/icon/dock/bin.png" alt="Trash Bin Logo" className="hidden Trash" />
-                    </button>
-                </div>
+                <WindowManager />
             </div>
         </div>
     )

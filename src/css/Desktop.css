@@ -375,10 +375,9 @@ li>ul>li>button:active {
 .dock .point {
 	width: 6px;
 	height: 6px;
-	margin: 0;
+	margin-bottom: 5px;
 	background: #f08080;
 	border-radius: 50%;
-	display: none;
 	animation: top-to-bottom 0.3s;
 	transition: 0.3s;
 }
