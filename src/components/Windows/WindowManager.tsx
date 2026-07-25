@@ -68,9 +68,9 @@ function WindowManager() {
                         </div>
                     )
                 })}
-            </div>
 
-            <Dock openOrShowWindow={openOrShowWindow} openWindows={windowInstances} />
+                <Dock openOrShowWindow={openOrShowWindow} openWindows={windowInstances} />
+            </div>
         </div>
     )
 }
