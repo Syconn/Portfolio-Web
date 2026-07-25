@@ -1,11 +1,14 @@
 import { useRef, useState } from "react";
-import DesktopFileManager from "./DesktopFileManager";
-import Dock from "./Dock";
+import DesktopFileManager from "../DesktopFileManager";
+import Dock from "../Dock";
 import SafariWindow from "./SafariWindow";
 import type { WindowBounds, WindowInstance } from "./Window";
+import PDFWindow from "./PDFWindow";
+import type { windowData } from "../../util/types";
 
 const windowRegistry = {
     safari: SafariWindow,
+    pdf: PDFWindow
 }
 
 export type registryKey = keyof typeof windowRegistry
@@ -29,27 +32,29 @@ function WindowManager() {
         return { ...prev, [id]: { ...prev[id]!, zIndex: highestZ + 1, } };
     });
 
-    const openOrShowWindow = (id: registryKey) => setWindowInstances(prev => {
+    const openOrShowWindow = (id: registryKey, data?: windowData) => setWindowInstances(prev => {
         const next = { ...prev }
-        let highestZ = Math.max(...Object.values(prev).map(window => window.zIndex), 0);
+        const highestZ = Math.max(...Object.values(prev).map(window => window.zIndex), 0) + 1;
 
         if (!next[id]) {
-            highestZ++;
             const bounds: WindowBounds = { x: 100, y: 100, width: 1000, height: 700 }
-            next[id] = { id: id, bounds: bounds, previousBounds: bounds, minimized: false, maximized: false, zIndex: highestZ }
+            next[id] = { id: id, bounds: bounds, previousBounds: bounds, minimized: false, maximized: false, zIndex: highestZ, data }
         } else {
-            highestZ++;
-            next[id].minimized = false;
-            next[id].zIndex = highestZ;
+            next[id] = {
+                ...next[id]!,
+                minimized: false,
+                zIndex: highestZ,
+                data: data ?? next[id]!.data,
+            };
         }
 
         return next
     })
 
     return (
-        <>
+        <div>
             <div className="desktop-area" ref={desktopRef}>
-                <DesktopFileManager />
+                <DesktopFileManager openOrShowWindow={openOrShowWindow} />
 
                 {Object.entries(windowInstances).map(([id, instance]) => {
                     const Component = windowRegistry[id as registryKey];
@@ -64,7 +69,7 @@ function WindowManager() {
             </div>
 
             <Dock openOrShowWindow={openOrShowWindow} openWindows={windowInstances} />
-        </>
+        </div>
     )
 }
 

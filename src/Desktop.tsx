@@ -4,7 +4,7 @@ import wallpaper1 from "./assets/background/wallpaper1.png";
 import wallpaper2 from "./assets/background/wallpaper2.png";
 import wallpaper3 from "./assets/background/wallpaper3.png";
 import wallpaper4 from "./assets/background/wallpaper4.jpg";
-import WindowManager from "./components/WindowManager";
+import WindowManager from "./components/Windows/WindowManager";
 import "./css/Desktop.css";
 
 function Desktop() {

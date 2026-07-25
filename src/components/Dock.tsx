@@ -1,6 +1,6 @@
 import { useState } from "react";
-import type { registryKey } from "./WindowManager";
-import type { WindowInstance } from "./Window";
+import type { registryKey } from "./Windows/WindowManager";
+import type { WindowInstance } from "./Windows/Window";
 
 function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: registryKey) => void, openWindows: Partial<Record<"safari", WindowInstance>> }) {
 

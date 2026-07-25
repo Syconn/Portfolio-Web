@@ -18,3 +18,7 @@ export type gitUserData = {
     public_repos: number,
     created_at: string;
 }
+
+export type windowData = {
+    filePath?: string
+}
