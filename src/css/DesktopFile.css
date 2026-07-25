@@ -1,15 +1,20 @@
 .desktop-files {
     position: absolute;
-    top: 20px;
-    left: 20px;
-    height: calc(100vh - 120px);
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    gap: 15px;
+    inset: 0;
     overflow: hidden;
     pointer-events: auto;
+}
+
+.desktop-file-wrapper {
+    cursor: grab;
+    position: absolute;
+    transition: transform .1s;
+}
+
+.desktop-file-wrapper.dragging {
+    cursor: grabbing;
+    transform: scale(1.05);
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,.4));
 }
 
 .desktop-icon {
@@ -55,6 +60,10 @@
 
 .image {
     color: #4caf50;
+}
+
+.mail {
+    color: #4c93af;
 }
 
 .desktop-icon:hover .file-icon {

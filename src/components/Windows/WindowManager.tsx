@@ -5,10 +5,12 @@ import SafariWindow from "./SafariWindow";
 import type { WindowBounds, WindowInstance } from "./Window";
 import PDFWindow from "./PDFWindow";
 import type { windowData } from "../../util/types";
+import ContactWindow from "./ContactWindow";
 
 const windowRegistry = {
     safari: SafariWindow,
-    pdf: PDFWindow
+    pdf: PDFWindow,
+    contact: ContactWindow
 }
 
 export type registryKey = keyof typeof windowRegistry

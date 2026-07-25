@@ -1,4 +1,4 @@
-import { FaFilePdf, FaFileAlt, FaFileArchive, FaFileImage } from "react-icons/fa";
+import { FaFilePdf, FaFileAlt, FaFileArchive, FaFileImage, FaEnvelope } from "react-icons/fa";
 
 function DesktopFile({ name, type }: { name: string, type: iconKey }) {
     return (
@@ -9,14 +9,11 @@ function DesktopFile({ name, type }: { name: string, type: iconKey }) {
     )
 }
 
-export type iconKey = "pdf" | "txt" | "zip" | "png"
+export type iconKey = "pdf" | "txt" | "zip" | "png" | "mail"
 function FileIcon({ type }: { type: iconKey }) {
     switch (type) {
         case "pdf":
             return <FaFilePdf className="file-icon pdf" />;
-
-        case "txt":
-            return <FaFileAlt className="file-icon txt" />;
 
         case "zip":
             return <FaFileArchive className="file-icon zip" />;
@@ -24,8 +21,11 @@ function FileIcon({ type }: { type: iconKey }) {
         case "png":
             return <FaFileImage className="file-icon image" />;
 
+        case "mail":
+            return <FaEnvelope className="file-icon mail" />
+
         default:
-            return <FaFileAlt className="file-icon" />;
+            return <FaFileAlt className="file-icon txt" />;
     }
 }
 
