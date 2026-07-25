@@ -402,7 +402,7 @@ li>ul>li>button:active {
 
 .dock .icon img {
 	width: 3.6rem;
-	transition: 0.2s;
+	transition: transform 0.2s ease, width 0.2s ease;
 	transform: translateY(-2.5px);
 }
 
@@ -411,18 +411,13 @@ li>ul>li>button:active {
 	width: 7.1rem;
 }
 
-.dock .icon:hover+* img {
-	width: 5.6rem;
-	margin: 0 0 25px 0;
-}
-
-.dock .icon:has(+ *:hover) img {
-	width: 5.6rem;
-	margin: 0 0 25px 0;
-}
-
 .dock .icon img:active {
 	filter: brightness(0.6) drop-shadow(0 0 10px #2c2c2c);
+}
+
+.dock .icon:hover .point {
+	scale: 1.5;
+    transform: translateY(-32px);
 }
 
 #shutdownScreen,
