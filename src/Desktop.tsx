@@ -1,12 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { Rnd } from "react-rnd";
-import "./css/Desktop.css"
+import { useEffect, useState } from "react";
 import wallpaper0 from "./assets/background/wallpaper0.jpg";
 import wallpaper1 from "./assets/background/wallpaper1.png";
 import wallpaper2 from "./assets/background/wallpaper2.png";
 import wallpaper3 from "./assets/background/wallpaper3.png";
 import wallpaper4 from "./assets/background/wallpaper4.jpg";
-import Window from "./components/Window";
+import WindowManager, { type registryKey } from "./components/WindowManager";
+import "./css/Desktop.css";
 
 function Desktop() {
     const [wallpaperId, setWallpaperId] = useState(() => {
@@ -20,13 +19,7 @@ function Desktop() {
     const [date, setDate] = useState("");
     const [battery] = useState(Math.floor(Math.random() * (100 - 20 + 1)) + 20);
     const [bouncingIcon, setBouncingIcon] = useState<number | null>(null);
-    const [windowPosition, setWindowPosition] = useState({ x: 0, y: 0 });
-    const [windowSize, setWindowSize] = useState({ width: 1000, height: 700 });
-    const [maximized, setMaximized] = useState(false);
-    const [minimized, setMinimized] = useState(false);
-
-    const desktopRef = useRef<HTMLDivElement>(null);
-    const previousWindow = useRef({ width: 900, height: 600, x: 100, y: 100 });
+    const [windowsToOpen, setWindowsToOpen] = useState<registryKey[]>([]);
 
     const wallpapers = [wallpaper0, wallpaper1, wallpaper2, wallpaper3, wallpaper4];
 
@@ -35,20 +28,6 @@ function Desktop() {
             const img = new Image();
             img.src = src;
         });
-
-        const centerWindow = () => {
-            if (!desktopRef.current) return;
-
-            const rect = desktopRef.current.getBoundingClientRect();
-            const width = rect.width * 0.9;
-            const height = rect.height * 0.85;
-            setWindowSize({ width, height })
-            setWindowPosition({ x: (rect.width - width) / 2, y: (rect.height - height) / 2 });
-        };
-
-        centerWindow();
-        window.addEventListener("resize", centerWindow);
-        return () => window.removeEventListener("resize", centerWindow);
     }, []);
 
     useEffect(() => {
@@ -93,37 +72,15 @@ function Desktop() {
         setTimeout(() => setShutdown(true), 500);
     };
 
-    const handleMaximize = () => {
-        if (!maximized) {
-            previousWindow.current = {
-                width: windowSize.width,
-                height: windowSize.height,
-                x: windowPosition.x,
-                y: windowPosition.y
-            };
-        } else {
-            setWindowSize({
-                width: previousWindow.current.width,
-                height: previousWindow.current.height
-            });
-
-            setWindowPosition({
-                x: previousWindow.current.x,
-                y: previousWindow.current.y
-            });
-        }
-
-        setMaximized(!maximized);
-    };
-
-    const handleMinimize = () => {
-        setMinimized(true);
-    };
-
-    const bounceIcon = (index: number) => {
+    const bounceIcon = (index: number, window?: registryKey) => {
         setBouncingIcon(index);
-        setTimeout(() => setBouncingIcon(null), 800);
+        setTimeout(() => {
+            setBouncingIcon(null)
+            if (window) openWindow(window)
+        }, 800);
     };
+
+    const openWindow = (window: registryKey) => setWindowsToOpen(prev => prev.includes(window) ? prev : [...prev, window]);
 
     return (
         <div className="screen" style={{ backgroundImage: `url(${wallpapers[wallpaperId]})` }}>
@@ -200,41 +157,14 @@ function Desktop() {
                     </ul>
                 </div>
 
-                {!minimized && (
-                    <div className="desktop-area" ref={desktopRef}>
-                        <Rnd
-                            size={maximized ? { width: desktopRef.current?.clientWidth ?? 900, height: desktopRef.current?.clientHeight ?? 600 } : windowSize}
-                            position={maximized ? { x: 0, y: 0 } : windowPosition}
-                            disableDragging={maximized}
-                            minWidth={600}
-                            minHeight={400}
-                            onDragStop={(_e, data) => setWindowPosition({ x: data.x, y: data.y, })}
-                            onResizeStop={(_e, _dir, ref, _d, position) => {
-                                setWindowSize({ width: ref.offsetWidth, height: ref.offsetHeight })
-                                setWindowPosition({ x: position.x, y: position.y, })
-                            }}
-                            bounds=".desktop-area"
-                            resizeHandleClasses={{
-                                top: "resize-handle top",
-                                right: "resize-handle right",
-                                bottom: "resize-handle bottom",
-                                left: "resize-handle left",
-                                topRight: "resize-handle corner",
-                                topLeft: "resize-handle corner",
-                                bottomRight: "resize-handle corner",
-                                bottomLeft: "resize-handle corner",
-                            }}>
-                            <Window minimized={minimized} maximized={maximized} onMinimize={handleMinimize} onMaximize={handleMaximize} onClose={() => { }} />
-                        </Rnd>
-                    </div>
-                )}
+                <WindowManager windowsToOpen={windowsToOpen} clearWindows={() => setWindowsToOpen([])} />
 
                 {/* Docker */}
                 <div className="dock">
-                    <button className={`icon hidden ${bouncingIcon === 0 ? "bounce" : ""}`} onClick={() => bounceIcon(0)}>
+                    <button className={`icon hidden ${bouncingIcon === 0 ? "bounce" : ""}`} onClick={() => bounceIcon(0, "test")}>
                         <img src="./src/assets/icon/dock/finder.png" alt="Finder Logo" className="hidden" />
                     </button>
-                    <button className={`icon ${bouncingIcon === 1 ? "bounce" : ""}`} onClick={() => bounceIcon(1)}>
+                    <button className={`icon ${bouncingIcon === 1 ? "bounce" : ""}`} onClick={() => bounceIcon(1, "safari")}>
                         <img src="./src/assets/icon/dock/safari.png" alt="Safari Logo" />
                         <hr className="point" /> {/* TODO show dot */}
                     </button>
