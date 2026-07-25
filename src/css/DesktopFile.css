@@ -1,0 +1,103 @@
+.desktop-files {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 15px;
+    overflow: hidden;
+    pointer-events: auto;
+}
+
+.desktop-icon {
+    width: 90px;
+    padding: 8px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.15s ease;
+}
+
+.desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(6px);
+}
+
+.desktop-files .desktop-icon {
+    flex-shrink: 0;
+}
+
+/* .file-icon {
+    position: relative;
+    width: 60px;
+    height: 75px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+    overflow: hidden;
+    transition: transform .2s ease;
+} */
+
+.file-icon {
+    width: 60px;
+    height: 60px;
+}
+
+.pdf {
+    color: #e53935;
+}
+
+.txt {
+    color: #777;
+}
+
+.zip {
+    color: #e6a700;
+}
+
+.image {
+    color: #4caf50;
+}
+
+/* .file-fold {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: #ddd;
+    clip-path: polygon(0 0, 100% 100%, 0 100%);
+} */
+
+/* .pdf-text {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: 800;
+    color: #e53935;
+    letter-spacing: .5px;
+} */
+
+.desktop-icon:hover .file-icon {
+    transform: scale(1.1);
+}
+
+.file-name {
+    max-width: 90px;
+    text-align: center;
+    font-size: 13px;
+    color: white;
+    text-shadow: 0 1px 3px black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

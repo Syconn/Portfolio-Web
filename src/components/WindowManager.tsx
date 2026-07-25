@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import DesktopFileManager from "./DesktopFileManager";
 import Dock from "./Dock";
 import SafariWindow from "./SafariWindow";
 import type { WindowBounds, WindowInstance } from "./Window";
@@ -48,6 +49,8 @@ function WindowManager() {
     return (
         <>
             <div className="desktop-area" ref={desktopRef}>
+                <DesktopFileManager />
+
                 {Object.entries(windowInstances).map(([id, instance]) => {
                     const Component = windowRegistry[id as registryKey];
 
