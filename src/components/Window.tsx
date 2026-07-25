@@ -23,9 +23,10 @@ export type WindowInstance = {
 export type WindowManager = {
     desktopRef: RefObject<HTMLDivElement | null>
     updateWindow: ( id: registryKey, updates: Partial<WindowInstance>) => void
+    closeWindow: ( id: registryKey ) => void
 }
 
-function Window({ id, bounds, previousBounds, minimized, maximized, desktopRef, updateWindow }: WindowInstance & WindowManager) {
+function Window({ id, bounds, previousBounds, minimized, maximized, desktopRef, updateWindow, closeWindow }: WindowInstance & WindowManager) {
     useEffect(() => {
         const centerWindow = () => {
             if (!desktopRef.current) return;
@@ -49,8 +50,6 @@ function Window({ id, bounds, previousBounds, minimized, maximized, desktopRef, 
 
         updateWindow(id, { maximized: !maximized });
     };
-
-    const handleMinimize = () => updateWindow(id, { minimized: true });
 
     return (
         <>
@@ -80,8 +79,8 @@ function Window({ id, bounds, previousBounds, minimized, maximized, desktopRef, 
                         transition={{ type: "spring", stiffness: 300, damping: 25 }}>
                         <div className="window-header">
                             <div className="traffic-lights">
-                                <button className="close" />
-                                <button className="minimize" onClick={handleMinimize} />
+                                <button className="close" onClick={() => closeWindow(id)}/>
+                                <button className="minimize" onClick={() => updateWindow(id, { minimized: true })} />
                                 <button className="maximize" onClick={handleMaximize} />
                             </div>
 
