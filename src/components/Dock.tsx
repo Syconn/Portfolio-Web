@@ -21,7 +21,11 @@ function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: regist
             </button>
             <button className={`icon ${bouncingIcon === 1 ? "bounce" : ""}`} onClick={() => bounceIcon(1, "safari")}>
                 <img src="./src/assets/icon/dock/safari.png" alt="Safari Logo" />
-                {"safari" in openWindows && <hr className="point" /> }
+                {"safari" in openWindows && <hr className="point" />}
+            </button>
+            <button className={`icon ${bouncingIcon === 4 ? "bounce" : ""}`} onClick={() => bounceIcon(4, "contact")}>
+                <img src="./src/assets/icon/dock/mail.png" alt="Mail Logo" />
+                {"contact" in openWindows && <hr className="point" />}
             </button>
             <button className={`icon hidden ${bouncingIcon === 2 ? "bounce" : ""}`} onClick={() => bounceIcon(2)}>
                 <img src="./src/assets/icon/dock/appstore.png" alt="App Store Logo" />
@@ -29,9 +33,9 @@ function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: regist
             <button className={`icon hidden ${bouncingIcon === 3 ? "bounce" : ""}`} onClick={() => bounceIcon(3)}>
                 <img src="./src/assets/icon/dock/music.png" alt="Music Logo" />
             </button>
-            <button className={`icon hidden open-vscode ${bouncingIcon === 4 ? "bounce" : ""}`} onClick={() => bounceIcon(4)}>
+            {/* <button className={`icon hidden open-vscode ${bouncingIcon === 4 ? "bounce" : ""}`} onClick={() => bounceIcon(4)}> TODO: MAYBE LATER
                 <img src="./src/assets/icon/dock/vscode.svg" alt="Vscode apps" className="hidden" />
-            </button>
+            </button> */}
             <button className={`icon ${bouncingIcon === 5 ? "bounce" : ""}`} onClick={() => bounceIcon(5)}>
                 <img src="./src/assets/icon/dock/photos.png" alt="Photos Logo" className="hidden" />
             </button>
