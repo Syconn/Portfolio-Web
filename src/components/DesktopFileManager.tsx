@@ -3,10 +3,7 @@ import DesktopFile, { type iconKey } from "./DesktopFile";
 
 function DesktopFileManager() {
     const files: { name: string, type: iconKey}[] = [
-        { name: "Resume.pdf", type: "pdf" },
-        { name: "Notes.txt", type: "txt" },
-        { name: "Mods.zip", type: "zip" },
-        { name: "Picture.png", type: "png" },
+        { name: "Resume.pdf", type: "pdf" }
     ];
 
     return (
