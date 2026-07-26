@@ -22,7 +22,8 @@ export type gitUserData = {
 export type MacSettings = {
     timezone: string,
     darkMode: boolean,
-    openInWebApp: boolean
+    openInWebApp: boolean,
+    wallpaper: number
 }
 
 export type windowData = {

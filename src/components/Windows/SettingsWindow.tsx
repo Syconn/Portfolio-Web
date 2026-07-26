@@ -1,5 +1,7 @@
-import { FaCog, FaGlobeAmericas, FaMoon, FaSafari } from "react-icons/fa";
+import { FaCog, FaGlobeAmericas, FaImage, FaMoon, FaSafari } from "react-icons/fa";
 import Window, { type WindowInstance, type WindowManager } from "./Window";
+import { wallpapers } from "../../Desktop";
+import { useEffect } from "react";
 
 type SettingRowProps = {
     icon: React.ReactNode;
@@ -12,6 +14,13 @@ type SettingRowProps = {
 function SettingsWindow(instance: WindowInstance & WindowManager) {
     const settings = instance.data?.settings
     const changeSetting = instance.data?.changeSetting
+
+    useEffect(() => {
+        wallpapers.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+        });
+    }, []);
 
     return (
         <Window {...instance} header={<span className="settings-header-title">System Settings</span>}>
@@ -93,6 +102,20 @@ function SettingsWindow(instance: WindowInstance & WindowManager) {
 
                             <SettingRow icon={<FaSafari />} title="Browser" subtitle="Open links in Web App">
                                 <Toggle checked={settings.openInWebApp} setChecked={(checked) => changeSetting("openInWebApp", checked)} />
+                            </SettingRow>
+
+                            <SettingRow icon={<FaImage />} title="Desktop" subtitle="Wallpaper">
+                                <div className="wallpaper-picker">
+                                    {wallpapers.map((wallpaper, index) => (
+                                        <button key={index} className={`wallpaper-option ${settings.wallpaper === index ? "selected" : ""}`} onClick={() => changeSetting("wallpaper", index)}>
+                                            <img
+                                                src={wallpaper}
+                                                alt={`Wallpaper ${index + 1}`}
+                                                loading="lazy"
+                                            />
+                                        </button>
+                                    ))}
+                                </div>
                             </SettingRow>
                         </div>
                     )}

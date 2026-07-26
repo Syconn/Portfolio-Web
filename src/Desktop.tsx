@@ -1,19 +1,18 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import wallpaper0 from "./assets/background/wallpaper0.jpg";
 import wallpaper1 from "./assets/background/wallpaper1.png";
 import wallpaper2 from "./assets/background/wallpaper2.png";
 import wallpaper3 from "./assets/background/wallpaper3.png";
 import wallpaper4 from "./assets/background/wallpaper4.jpg";
-import WindowManager from "./components/Windows/WindowManager";
+import WindowManager, { type registryKey } from "./components/Windows/WindowManager";
 import "./css/Desktop.css";
 import { defaultSettings } from "./util/data";
-import type { MacSettings } from "./util/types";
+import type { MacSettings, windowData } from "./util/types";
+
+export const wallpapers = [wallpaper0, wallpaper1, wallpaper2, wallpaper3, wallpaper4];
 
 function Desktop() {
-    const [wallpaperId, setWallpaperId] = useState(() => {
-        const saved = localStorage.getItem("wallpaper");
-        return saved ? Number(saved) : 0;
-    });
+    const [requestedWindow, setRequestedWindow] = useState<{window: registryKey, data?: windowData}[]>([])
     const [shutdown, setShutdown] = useState(false);
     const [restart, setRestart] = useState(false);
     const [desktopHidden, setDesktopHidden] = useState(false);
@@ -24,8 +23,6 @@ function Desktop() {
         const saved = localStorage.getItem("settings");
         return saved ? JSON.parse(saved) : defaultSettings
     })
-
-    const wallpapers = [wallpaper0, wallpaper1, wallpaper2, wallpaper3, wallpaper4];
 
     const updateClock = (timezone: string) => {
         const now = new Date();
@@ -49,12 +46,8 @@ function Desktop() {
         setDate(date);
     }
 
-    // Toggle Dark Mode for All
     useEffect(() => {
-        document.documentElement.classList.toggle(
-            "dark-mode",
-            settings.darkMode
-        );
+        document.documentElement.classList.toggle("dark-mode", settings.darkMode);
     }, [settings.darkMode]);
 
     useEffect(() => {
@@ -69,14 +62,6 @@ function Desktop() {
         const interval = setInterval(() => updateClock(settings.timezone), 1000);
         return () => clearInterval(interval);
     }, [settings.timezone]);
-
-    const nextWallpaper = () => {
-        setWallpaperId((prev) => {
-            const next = (prev + 1) % wallpapers.length;
-            localStorage.setItem("wallpaper", String(next));
-            return next;
-        });
-    };
 
     const handleRestart = () => {
         setDesktopHidden(true);
@@ -102,7 +87,7 @@ function Desktop() {
     });
 
     return (
-        <div className="screen" style={{ backgroundImage: `url(${wallpapers[wallpaperId]})` }}>
+        <div className="screen" style={{ backgroundImage: `url(${wallpapers[settings.wallpaper]})` }}>
             {shutdown && (
                 <div id="shutdownScreen">
                     <img id="lockGif" src="./src/assets/background/lock.gif" alt="Shutting down" />
@@ -121,7 +106,7 @@ function Desktop() {
                                     <button><a href="https://github.com/Syconn/Portfolio-Web" target="_blank">About This Portfolio</a></button>
                                 </li>
                                 <li>
-                                    <button onClick={nextWallpaper}>Change Background</button>
+                                    <button onClick={() => setRequestedWindow(prev => [...prev, { window: "settings" }])}>Change Background</button>
                                 </li>
                                 <li>
                                     <button onClick={handleRestart}>Restart</button>
@@ -176,7 +161,7 @@ function Desktop() {
                     </ul>
                 </div>
 
-                <WindowManager settings={settings} changeSettings={changeSetting} />
+                <WindowManager requestedWindows={requestedWindow} clearCache={setRequestedWindow} settings={settings} changeSettings={changeSetting} />
             </div>
         </div>
     )

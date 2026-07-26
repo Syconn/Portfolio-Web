@@ -18,6 +18,7 @@ type DesktopIcon = {
 const fileDefaults: DesktopIcon[] = [
     { id: 0, name: "Resume.pdf", type: "pdf", window: "pdf", x: 20, y: 20, data: { filePath: resumePDF } },
     { id: 1, name: "Contact Me", type: "mail", x: 20, y: 130, window: "contact" },
+    { id: 2, name: "Portfolio", type: "safari", x: 130, y: 20, window: "safari" }
 ]
 
 function DesktopFileManager({ openOrShowWindow }: { openOrShowWindow: (id: registryKey, data?: windowData) => void }) {

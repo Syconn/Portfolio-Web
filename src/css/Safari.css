@@ -1,0 +1,140 @@
+:root {
+    --app-bg: rgba(255,255,255,.5);
+    --window-header-bg: rgba(240,240,240,.8);
+    --text-primary:#1d1d1f;
+    --text-secondary:rgba(0,0,0,.55);
+    --soft-border:rgba(0,0,0,.1);
+}
+
+.dark-mode {
+    --app-bg:rgba(25,25,28,.7);
+    --window-header-bg:rgba(45,45,48,.85);
+    --text-primary:#f5f5f7;
+    --text-secondary:rgba(255,255,255,.6);
+    --soft-border:rgba(255,255,255,.12);
+}
+
+.safari {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--app-bg);
+    color: var(--text-primary);
+}
+
+/* Tabs */
+.safari-tabs {
+    height: 38px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 10px;
+    background: var(--window-header-bg);
+    gap: 6px;
+}
+
+.safari-tab {
+    height: 30px;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+    border-radius: 10px 10px 0 0;
+    background: rgba(255,255,255,.25);
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.dark-mode .safari-tab {
+    background: rgba(255,255,255,.08);
+}
+
+.safari-tab svg {
+    font-size: 12px;
+}
+
+.safari-tab button {
+    margin-left: auto;
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+
+.new-tab {
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    height: 30px;
+    cursor: pointer;
+}
+
+/* Toolbar */
+.safari-toolbar {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 14px;
+    background: var(--window-header-bg);
+    border-bottom: 1px solid var(--soft-border);
+}
+
+.navigation-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.navigation-buttons button,
+.toolbar-button {
+    width: 32px;
+    height: 32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:none;
+    border-radius:50%;
+    background: transparent;
+    color:var(--text-primary);
+    cursor:pointer;
+}
+
+.navigation-buttons button:hover,
+.toolbar-button:hover {
+    background: rgba(0,0,0,.08);
+}
+
+.dark-mode .navigation-buttons button:hover,
+.dark-mode .toolbar-button:hover {
+    background: rgba(255,255,255,.1);
+}
+
+/* URL */
+.address-bar {
+    flex:1;
+    height:34px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    border-radius:10px;
+    background:rgba(0,0,0,.06);
+    color:var(--text-secondary);
+    font-size:14px;
+}
+
+.dark-mode .address-bar {
+    background:rgba(255,255,255,.08);
+}
+
+.address-bar svg {
+    font-size:12px;
+}
+
+/* Page */
+.safari-page {
+    flex:1;
+    background:var(--app-bg);
+}
+

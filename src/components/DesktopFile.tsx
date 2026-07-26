@@ -1,4 +1,6 @@
-import { FaFilePdf, FaFileAlt, FaFileArchive, FaFileImage, FaEnvelope } from "react-icons/fa";
+import { BsBrowserChrome } from "react-icons/bs";
+import { FaEnvelope, FaFileAlt, FaFileArchive, FaFileImage, FaFilePdf } from "react-icons/fa";
+import { IoMdBrowsers } from "react-icons/io";
 
 function DesktopFile({ name, type }: { name: string, type: iconKey }) {
     return (
@@ -9,7 +11,7 @@ function DesktopFile({ name, type }: { name: string, type: iconKey }) {
     )
 }
 
-export type iconKey = "pdf" | "txt" | "zip" | "png" | "mail"
+export type iconKey = "pdf" | "txt" | "zip" | "png" | "mail" | "safari"
 function FileIcon({ type }: { type: iconKey }) {
     switch (type) {
         case "pdf":
@@ -23,6 +25,9 @@ function FileIcon({ type }: { type: iconKey }) {
 
         case "mail":
             return <FaEnvelope className="file-icon mail" />
+            
+        case "safari":
+            return <BsBrowserChrome className="file-icon portfolio" /> //portfolio
 
         default:
             return <FaFileAlt className="file-icon txt" />;

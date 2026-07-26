@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DesktopFileManager from "../DesktopFileManager";
 import Dock from "../Dock";
 import SafariWindow from "./SafariWindow";
@@ -12,13 +12,20 @@ const windowRegistry = {
     safari: SafariWindow,
     pdf: PDFWindow,
     contact: ContactWindow,
-    settings: SettingsWindow
+    settings: SettingsWindow,
 }
 
 export type registryKey = keyof typeof windowRegistry
 
-function WindowManager({ settings, changeSettings }: { settings: MacSettings, changeSettings: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void }) {
+function WindowManager({ requestedWindows, clearCache, settings, changeSettings }: 
+    { requestedWindows: {window: registryKey, data?: windowData }[], clearCache: (data: {window: registryKey, data?: windowData }[]) => void, settings: MacSettings, changeSettings: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void }) {
     const [windowInstances, setWindowInstances] = useState<Partial<Record<registryKey, WindowInstance>>>({})
+
+    useEffect(() => {
+        if (!requestedWindows.length) return
+        requestedWindows.forEach(v => openOrShowWindow(v.window, v.data))
+        clearCache([])
+    }, [requestedWindows])
 
     const desktopRef = useRef<HTMLDivElement>(null)
 

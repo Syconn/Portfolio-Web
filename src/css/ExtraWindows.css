@@ -170,6 +170,7 @@
     height: 100%;
     box-sizing: border-box;
     background: radial-gradient(circle at top left, rgba(0,122,255,.08), transparent 35%), radial-gradient(circle at bottom right, rgba(120,80,255,.08), transparent 40%), var(--app-bg);
+    overflow-y: auto;
 }
 
 .settings-title {
@@ -227,6 +228,7 @@
     overflow: hidden;
     border-radius: 16px;
     backdrop-filter: blur(20px);
+    backdrop-filter: none;
     background: var(--card-bg);
     border: 1px solid var(--border)
 }
@@ -321,4 +323,37 @@
 
 .switch input:checked + .slider::before {
     transform: translateX(20px);
+}
+
+.wallpaper-picker {
+    display: flex;
+    gap: 10px;
+}
+
+.wallpaper-option {
+    width: 72px;
+    height: 44px;
+    padding: 3px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background: transparent;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.wallpaper-option:hover {
+    transform: translateY(-2px);
+}
+
+.wallpaper-option.selected {
+    border-color: #0A84FF;
+    box-shadow: 0 0 0 2px rgba(10,132,255,.25);
+}
+
+.wallpaper-option img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+    display: block;
 }

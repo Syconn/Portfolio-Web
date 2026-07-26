@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useEffect, type RefObject } from "react";
 import { Rnd } from "react-rnd";
 import "../../css/Window.css";
@@ -59,48 +58,41 @@ function Window({ id, bounds, previousBounds, minimized, maximized, desktopRef, 
     };
 
     return (
-        <>
-            {!minimized && (
-                <Rnd
-                    size={{ width: bounds.width, height: bounds.height }}
-                    position={{ x: bounds.x, y: bounds.y }}
-                    disableDragging={maximized}
-                    minWidth={600}
-                    minHeight={400}
-                    onDragStop={(_e, data) => updateWindow(id, { bounds: { ...bounds, x: data.x, y: data.y } })}
-                    onResizeStop={(_e, _dir, ref, _d, position) => updateWindow(id, { bounds: { x: position.x, y: position.y, width: ref.offsetWidth, height: ref.offsetHeight } })}
-                    bounds=".desktop-area"
-                    resizeHandleClasses={{
-                        top: "resize-handle top",
-                        right: "resize-handle right",
-                        bottom: "resize-handle bottom",
-                        left: "resize-handle left",
-                        topRight: "resize-handle corner",
-                        topLeft: "resize-handle corner",
-                        bottomRight: "resize-handle corner",
-                        bottomLeft: "resize-handle corner",
-                    }}>
-                    <motion.div
-                        className="window"
-                        animate={{ scale: minimized ? 0.1 : 1, opacity: minimized ? 0 : 1, y: minimized ? 400 : 0, borderRadius: maximized ? 0 : 12 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 25 }}>
-                        <div className="window-header">
-                            <div className="traffic-lights">
-                                <button className="close" onClick={() => closeWindow(id)} />
-                                <button className="minimize" onClick={() => updateWindow(id, { minimized: true })} />
-                                <button className="maximize" onClick={handleMaximize} />
-                            </div>
+        <Rnd
+            size={{ width: bounds.width, height: bounds.height }}
+            position={{ x: bounds.x, y: bounds.y }}
+            disableDragging={maximized}
+            minWidth={600}
+            minHeight={400}
+            onDragStop={(_e, data) => updateWindow(id, { bounds: { ...bounds, x: data.x, y: data.y } })}
+            onResizeStop={(_e, _dir, ref, _d, position) => updateWindow(id, { bounds: { x: position.x, y: position.y, width: ref.offsetWidth, height: ref.offsetHeight } })}
+            bounds=".desktop-area"
+            resizeHandleClasses={{
+                top: "resize-handle top",
+                right: "resize-handle right",
+                bottom: "resize-handle bottom",
+                left: "resize-handle left",
+                topRight: "resize-handle corner",
+                topLeft: "resize-handle corner",
+                bottomRight: "resize-handle corner",
+                bottomLeft: "resize-handle corner",
+            }}>
+            <div className={`window ${maximized ? "maximized" : ""} ${minimized ? "minimized" : ""}`}>
+                <div className="window-header">
+                    <div className="traffic-lights">
+                        <button className="close" onClick={() => closeWindow(id)} />
+                        <button className="minimize" onClick={() => updateWindow(id, { minimized: true })} />
+                        <button className="maximize" onClick={handleMaximize} />
+                    </div>
 
-                            {header}
-                        </div>
+                    {header}
+                </div>
 
-                        <div className="window-content">
-                            {children}
-                        </div>
-                    </motion.div>
-                </Rnd>
-            )}
-        </>
+                <div className="window-content">
+                    {children}
+                </div>
+            </div>
+        </Rnd>
     );
 }
 
