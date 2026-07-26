@@ -4,18 +4,20 @@ import Dock from "../Dock";
 import SafariWindow from "./SafariWindow";
 import type { WindowBounds, WindowInstance } from "./Window";
 import PDFWindow from "./PDFWindow";
-import type { windowData } from "../../util/types";
+import type { MacSettings, windowData } from "../../util/types";
 import ContactWindow from "./ContactWindow";
+import SettingsWindow from "./SettingsWindow";
 
 const windowRegistry = {
     safari: SafariWindow,
     pdf: PDFWindow,
-    contact: ContactWindow
+    contact: ContactWindow,
+    settings: SettingsWindow
 }
 
 export type registryKey = keyof typeof windowRegistry
 
-function WindowManager() {
+function WindowManager({ settings, changeSettings }: { settings: MacSettings, changeSettings: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void }) {
     const [windowInstances, setWindowInstances] = useState<Partial<Record<registryKey, WindowInstance>>>({})
 
     const desktopRef = useRef<HTMLDivElement>(null)
@@ -64,7 +66,7 @@ function WindowManager() {
                     if (!Component) return null;
                     return (
                         <div key={id} style={{ position: "absolute", zIndex: instance.zIndex, pointerEvents: "auto" }} onMouseDown={() => focusWindow(id as registryKey)}>
-                            <Component {...instance} desktopRef={desktopRef} updateWindow={updateWindow} closeWindow={closeWindow} />
+                            <Component {...instance} desktopRef={desktopRef} updateWindow={updateWindow} closeWindow={closeWindow} data={{ ...instance.data, settings: settings, changeSetting: changeSettings}}/>
                         </div>
                     )
                 })}

@@ -1,16 +1,16 @@
 import { useState } from "react";
-import type { registryKey } from "./Windows/WindowManager";
+import type { windowData } from "../util/types";
 import type { WindowInstance } from "./Windows/Window";
+import type { registryKey } from "./Windows/WindowManager";
 
-function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: registryKey) => void, openWindows: Partial<Record<"safari", WindowInstance>> }) {
-
+function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: registryKey, data?: windowData) => void, openWindows: Partial<Record<"safari", WindowInstance>> }) {
     const [bouncingIcon, setBouncingIcon] = useState<number | null>(null);
 
-    const bounceIcon = (index: number, window?: registryKey) => {
+    const bounceIcon = (index: number, window?: registryKey, data?: windowData) => {
         setBouncingIcon(index);
         setTimeout(() => {
             setBouncingIcon(null)
-            if (window) openOrShowWindow(window)
+            if (window) openOrShowWindow(window, data)
         }, 800);
     };
 
@@ -33,17 +33,15 @@ function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: regist
             <button className={`icon hidden ${bouncingIcon === 3 ? "bounce" : ""}`} onClick={() => bounceIcon(3)}>
                 <img src="./src/assets/icon/dock/music.png" alt="Music Logo" />
             </button>
-            {/* <button className={`icon hidden open-vscode ${bouncingIcon === 4 ? "bounce" : ""}`} onClick={() => bounceIcon(4)}> TODO: MAYBE LATER
-                <img src="./src/assets/icon/dock/vscode.svg" alt="Vscode apps" className="hidden" />
-            </button> */}
             <button className={`icon ${bouncingIcon === 5 ? "bounce" : ""}`} onClick={() => bounceIcon(5)}>
                 <img src="./src/assets/icon/dock/photos.png" alt="Photos Logo" className="hidden" />
             </button>
             <button className={`icon hidden ${bouncingIcon === 6 ? "bounce" : ""}`} onClick={() => bounceIcon(6)}>
                 <img src="./src/assets/icon/dock/terminal.png" alt="Terminal Logo" className="hidden" />
             </button>
-            <button className={`icon ${bouncingIcon === 7 ? "bounce" : ""}`} onClick={() => bounceIcon(7)}>
+            <button className={`icon ${bouncingIcon === 7 ? "bounce" : ""}`} onClick={() => bounceIcon(7, "settings")}>
                 <img src="./src/assets/icon/dock/preferences.png" alt="Preferences Logo" className="hidden" />
+                {"settings" in openWindows && <hr className="point" />}
             </button>
             <hr className="column hidden" />
             <button className={`icon ${bouncingIcon === 8 ? "bounce" : ""}`} onClick={() => bounceIcon(8)}>

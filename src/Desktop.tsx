@@ -6,6 +6,8 @@ import wallpaper3 from "./assets/background/wallpaper3.png";
 import wallpaper4 from "./assets/background/wallpaper4.jpg";
 import WindowManager from "./components/Windows/WindowManager";
 import "./css/Desktop.css";
+import { defaultSettings } from "./util/data";
+import type { MacSettings } from "./util/types";
 
 function Desktop() {
     const [wallpaperId, setWallpaperId] = useState(() => {
@@ -18,8 +20,42 @@ function Desktop() {
     const [time, setTime] = useState("");
     const [date, setDate] = useState("");
     const [battery] = useState(Math.floor(Math.random() * (100 - 20 + 1)) + 20);
+    const [settings, setSettings] = useState<MacSettings>(() => {
+        const saved = localStorage.getItem("settings");
+        return saved ? JSON.parse(saved) : defaultSettings
+    })
 
     const wallpapers = [wallpaper0, wallpaper1, wallpaper2, wallpaper3, wallpaper4];
+
+    const updateClock = (timezone: string) => {
+        const now = new Date();
+
+        const time = new Intl.DateTimeFormat("en-US", {
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true,
+            timeZone: timezone,
+        }).format(now);
+
+        const date = new Intl.DateTimeFormat("en-US", {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+            timeZone: timezone,
+        }).format(now);
+
+        setTime(time);
+        setDate(date);
+    }
+
+    // Toggle Dark Mode for All
+    useEffect(() => {
+        document.documentElement.classList.toggle(
+            "dark-mode",
+            settings.darkMode
+        );
+    }, [settings.darkMode]);
 
     useEffect(() => {
         wallpapers.forEach((src) => {
@@ -29,21 +65,10 @@ function Desktop() {
     }, []);
 
     useEffect(() => {
-        const updateClock = () => {
-            const now = new Date();
-            let hour = now.getHours();
-            const minute = String(now.getMinutes()).padStart(2, "0");
-            const ampm = hour >= 12 ? "PM" : "AM";
-            hour = hour % 12 || 12;
-
-            setTime(`${hour}:${minute} ${ampm}`);
-            setDate(now.toDateString());
-        };
-
-        updateClock();
-        const interval = setInterval(updateClock, 1000);
+        updateClock(settings.timezone);
+        const interval = setInterval(() => updateClock(settings.timezone), 1000);
         return () => clearInterval(interval);
-    }, []);
+    }, [settings.timezone]);
 
     const nextWallpaper = () => {
         setWallpaperId((prev) => {
@@ -69,6 +94,12 @@ function Desktop() {
         setDesktopHidden(true);
         setTimeout(() => setShutdown(true), 500);
     };
+
+    const changeSetting = <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => setSettings(prev => {
+        const next = { ...prev, [setting]: value };
+        localStorage.setItem("settings", JSON.stringify(next));
+        return next;
+    });
 
     return (
         <div className="screen" style={{ backgroundImage: `url(${wallpapers[wallpaperId]})` }}>
@@ -145,7 +176,7 @@ function Desktop() {
                     </ul>
                 </div>
 
-                <WindowManager />
+                <WindowManager settings={settings} changeSettings={changeSetting} />
             </div>
         </div>
     )

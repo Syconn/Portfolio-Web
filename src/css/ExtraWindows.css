@@ -1,3 +1,31 @@
+:root {
+    --app-bg: rgba(255,255,255,.45);
+    --card-bg: rgba(255,255,255,.45);
+    --input-bg: rgba(255,255,255,.65);
+    --input-focus-bg: white;
+
+    --text-primary: #1d1d1f;
+    --text-secondary: rgba(0,0,0,.58);
+    --text-label: #333;
+
+    --border: rgba(0,0,0,.12);
+    --soft-border: rgba(0,0,0,.08);
+}
+
+.dark-mode {
+    --app-bg: rgba(30,30,32,.65);
+    --card-bg: rgba(45,45,48,.65);
+    --input-bg: rgba(60,60,65,.75);
+    --input-focus-bg: rgba(70,70,75,.9);
+
+    --text-primary: #f5f5f7;
+    --text-secondary: rgba(255,255,255,.6);
+    --text-label: #e5e5e7;
+
+    --border: rgba(255,255,255,.15);
+    --soft-border: rgba(255,255,255,.1);
+}
+
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -6,7 +34,7 @@
     height: 100%;
     padding: 25px;
     box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.35);
+    background: var(--window-bg);
     backdrop-filter: blur(20px);
 }
 
@@ -19,7 +47,7 @@
 .form-group label {
     font-size: 14px;
     font-weight: 600;
-    color: #333;
+    color: var(--text-label);
 }
 
 .form-group input,
@@ -27,9 +55,10 @@
     font-family: inherit;
     font-size: 15px;
     padding: 10px 12px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text-primary);
     border-radius: 10px;
-    border: 1px solid rgba(0,0,0,.15);
-    background: rgba(255,255,255,.65);
     outline: none;
     box-shadow: inset 0 1px 2px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.1);
     transition:  border .15s ease, box-shadow .15s ease,  background .15s ease;
@@ -39,9 +68,14 @@
     resize: none;
 }
 
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-secondary);
+}
+
 .form-group input:focus,
 .form-group textarea:focus {
-    background: white;
+    background: var(--input-focus-bg);
     border-color: #007aff;
     box-shadow: 0 0 0 3px rgba(0,122,255,.25);
 }
@@ -72,7 +106,7 @@
 .contact-window {
     height: 100%;
     padding: 24px;
-    background: radial-gradient(circle at top left, rgba(0,122,255,.18), transparent 35% ), radial-gradient(circle at bottom right, rgba(120,80,255,.15), transparent 35%), rgba(255,255,255,.45);
+    background: radial-gradient(circle at top left, rgba(0,122,255,.18), transparent 35% ), radial-gradient(circle at bottom right, rgba(120,80,255,.15), transparent 35%), var(--app-bg);
     backdrop-filter: blur(25px);
     overflow-y: hidden;
 }
@@ -84,9 +118,13 @@
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 16px;
-    background: linear-gradient(135deg, rgba(255,255,255,.65), rgba(255,255,255,.3));
-    border: 1px solid rgba(255,255,255,.6);
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+.contact-header p {
+    color: var(--text-secondary);
 }
 
 .contact-icon {
@@ -109,11 +147,178 @@
 
 .contact-header p {
     margin: 0;
-    color: rgba(0,0,0,.65);
+    color: var(--text-primary);
     font-size: 14px;
 }
 
 .contact-header a {
     color: #007aff;
     text-decoration: none;
+}
+
+/* Settings */
+.settings-header-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.settings-content {
+    padding: 28px;
+    height: 100%;
+    box-sizing: border-box;
+    background: radial-gradient(circle at top left, rgba(0,122,255,.08), transparent 35%), radial-gradient(circle at bottom right, rgba(120,80,255,.08), transparent 40%), var(--app-bg);
+}
+
+.settings-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.settings-title-icon {
+    width: 68px;
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    color: white;
+    background: linear-gradient(135deg, #8e8e93, #636366);
+    box-shadow: 0 10px 24px rgba(0,0,0,.18), inset 0 1px 1px rgba(255,255,255,.25);
+}
+
+.settings-title-icon svg {
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.settings-content:hover .settings-title-icon svg {
+    animation: settingsSpin 2s linear infinite;
+}
+
+
+@keyframes settingsSpin {
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}
+
+.settings-title h2 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.settings-title span {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+.settings-card {
+    overflow: hidden;
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    background: var(--card-bg);
+    border: 1px solid var(--border)
+}
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--soft-border);
+}
+
+.setting-row:last-child {
+    border-bottom: none;
+}
+
+.setting-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.setting-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0A84FF, #5AC8FA);
+    color: white;
+    font-size: 18px;
+}
+
+.setting-title {
+    font-weight: 600;
+}
+
+.setting-subtitle {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.setting-row select {
+    width: 180px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text-primary);
+}
+
+.switch {
+    position: relative;
+    width: 48px;
+    height: 28px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
+    background: #C7C7CC;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.settings-header-title {
+    color: var(--text-primary);
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    left: 3px;
+    top: 3px;
+    border-radius: 50%;
+    background: white;
+    transition: .2s;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+}
+
+.switch input:checked + .slider {
+    background: #34C759;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(20px);
 }

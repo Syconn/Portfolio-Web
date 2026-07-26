@@ -19,6 +19,14 @@ export type gitUserData = {
     created_at: string;
 }
 
+export type MacSettings = {
+    timezone: string,
+    darkMode: boolean,
+    openInWebApp: boolean
+}
+
 export type windowData = {
-    filePath?: string
+    filePath?: string,
+    settings?: MacSettings
+    changeSetting?: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void
 }

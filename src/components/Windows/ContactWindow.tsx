@@ -7,9 +7,6 @@ import { FaCommentDots, FaEnvelope, FaUser } from "react-icons/fa"
 function ContactWindow(instance: WindowInstance & WindowManager) {
     return (
         <Window {...instance} header={<span>Contact Me</span>}>
-            {/* <h3>Connect With Me</h3>
-            <span>Want to get in touch? Fill out the contact form below or email me directly at {links.email}</span>
-            <ContactForm /> */}
             <div className="contact-window">
                 <div className="contact-header">
                     <div className="contact-icon">
