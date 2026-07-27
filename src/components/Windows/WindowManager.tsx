@@ -69,10 +69,11 @@ function WindowManager({ requestedWindows, clearCache, settings, changeSettings 
 
                 {Object.entries(windowInstances).map(([id, instance]) => {
                     const Component = windowRegistry[id as registryKey];
+                    const zIndex = instance.minimized ? -1000 : instance.zIndex
 
                     if (!Component) return null;
                     return (
-                        <div key={id} style={{ position: "absolute", zIndex: instance.zIndex, pointerEvents: "auto" }} onMouseDown={() => focusWindow(id as registryKey)}>
+                        <div key={id} style={{ position: "absolute", zIndex: zIndex, pointerEvents: "auto" }} onMouseDown={() => focusWindow(id as registryKey)}>
                             <Component {...instance} desktopRef={desktopRef} updateWindow={updateWindow} closeWindow={closeWindow} data={{ ...instance.data, settings: settings, changeSetting: changeSettings}}/>
                         </div>
                     )

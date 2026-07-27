@@ -1,6 +1,5 @@
 import { BsBrowserChrome } from "react-icons/bs";
 import { FaEnvelope, FaFileAlt, FaFileArchive, FaFileImage, FaFilePdf } from "react-icons/fa";
-import { IoMdBrowsers } from "react-icons/io";
 
 function DesktopFile({ name, type }: { name: string, type: iconKey }) {
     return (

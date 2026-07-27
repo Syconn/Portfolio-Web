@@ -29,5 +29,6 @@ export type MacSettings = {
 export type windowData = {
     filePath?: string,
     settings?: MacSettings
-    changeSetting?: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void
+    changeSetting?: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void,
+    urls?: string[]
 }
