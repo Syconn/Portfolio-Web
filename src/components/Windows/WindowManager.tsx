@@ -4,7 +4,7 @@ import Dock from "../Dock";
 import SafariWindow from "./SafariWindow";
 import type { WindowBounds, WindowInstance } from "./Window";
 import PDFWindow from "./PDFWindow";
-import type { MacSettings, windowData } from "../../util/types";
+import type { MacSettings, WindowData } from "../../util/types";
 import ContactWindow from "./ContactWindow";
 import SettingsWindow from "./SettingsWindow";
 
@@ -18,7 +18,7 @@ const windowRegistry = {
 export type registryKey = keyof typeof windowRegistry
 
 function WindowManager({ requestedWindows, clearCache, settings, changeSettings }: 
-    { requestedWindows: {window: registryKey, data?: windowData }[], clearCache: (data: {window: registryKey, data?: windowData }[]) => void, settings: MacSettings, changeSettings: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void }) {
+    { requestedWindows: {window: registryKey, data?: WindowData }[], clearCache: (data: {window: registryKey, data?: WindowData }[]) => void, settings: MacSettings, changeSettings: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void }) {
     const [windowInstances, setWindowInstances] = useState<Partial<Record<registryKey, WindowInstance>>>({})
 
     useEffect(() => {
@@ -43,7 +43,7 @@ function WindowManager({ requestedWindows, clearCache, settings, changeSettings 
         return { ...prev, [id]: { ...prev[id]!, zIndex: highestZ + 1, } };
     });
 
-    const openOrShowWindow = (id: registryKey, data?: windowData) => setWindowInstances(prev => {
+    const openOrShowWindow = (id: registryKey, data?: WindowData) => setWindowInstances(prev => {
         const next = { ...prev }
         const highestZ = Math.max(...Object.values(prev).map(window => window.zIndex), 0) + 1;
 

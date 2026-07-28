@@ -1,7 +1,7 @@
 import { useEffect, type RefObject } from "react";
 import { Rnd } from "react-rnd";
 import "../../css/Window.css";
-import type { windowData } from "../../util/types";
+import type { WindowData } from "../../util/types";
 import type { registryKey } from "./WindowManager";
 
 export type WindowBounds = {
@@ -23,7 +23,7 @@ export type WindowInstance = {
     minimized: boolean
     maximized: boolean
     zIndex: number
-    data?: windowData
+    data?: WindowData
 }
 
 export type WindowManager = {

@@ -8,13 +8,19 @@ export type project = {
     categories: string[],
 }
 
-export type quickStats = {
-    public_repos: number,
-    years_of_experience: string,
+export type QuickStats = {
+    public_repos: number;
+    years_of_experience: string;
     total_languages: number;
-}
+    lines_of_code: string;
+    top_languages: {
+        name: string;
+        lines: number;
+        percent: number;
+    }[];
+};
 
-export type gitUserData = {
+export type GitUserData = {
     public_repos: number,
     created_at: string;
 }
@@ -26,7 +32,7 @@ export type MacSettings = {
     wallpaper: number
 }
 
-export type windowData = {
+export type WindowData = {
     filePath?: string,
     settings?: MacSettings
     changeSetting?: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void,

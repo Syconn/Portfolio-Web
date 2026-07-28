@@ -4,6 +4,8 @@ Go full webbrowser where:
     5. if ip not my web take them to it
     6. Contact me support - https://www.youtube.com/watch?v=Ib8C3aTNHB4&t=7
 
+Posthog for analytics? - https://posthog.com/
+
 Awards somewhere
 
 Maximze animation

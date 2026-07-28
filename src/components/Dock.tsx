@@ -1,12 +1,12 @@
 import { useState } from "react";
-import type { windowData } from "../util/types";
+import type { WindowData } from "../util/types";
 import type { WindowInstance } from "./Windows/Window";
 import type { registryKey } from "./Windows/WindowManager";
 
-function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: registryKey, data?: windowData) => void, openWindows: Partial<Record<"safari", WindowInstance>> }) {
+function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: registryKey, data?: WindowData) => void, openWindows: Partial<Record<"safari", WindowInstance>> }) {
     const [bouncingIcon, setBouncingIcon] = useState<number | null>(null);
 
-    const bounceIcon = (index: number, window?: registryKey, data?: windowData) => {
+    const bounceIcon = (index: number, window?: registryKey, data?: WindowData) => {
         setBouncingIcon(index);
         setTimeout(() => {
             setBouncingIcon(null)

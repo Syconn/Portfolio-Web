@@ -1,5 +1,5 @@
 import "../css/DesktopFile.css";
-import type { windowData } from "../util/types";
+import type { WindowData } from "../util/types";
 import DesktopFile, { type iconKey } from "./DesktopFile";
 import type { registryKey } from "./Windows/WindowManager";
 import resumePDF from "../assets/resume.pdf";
@@ -12,7 +12,7 @@ type DesktopIcon = {
     window: registryKey,
     x: number,
     y: number,
-    data?: windowData
+    data?: WindowData
 }
 
 const fileDefaults: DesktopIcon[] = [
@@ -21,7 +21,7 @@ const fileDefaults: DesktopIcon[] = [
     { id: 2, name: "Portfolio", type: "safari", x: 130, y: 20, window: "safari" }
 ]
 
-function DesktopFileManager({ openOrShowWindow }: { openOrShowWindow: (id: registryKey, data?: windowData) => void }) {
+function DesktopFileManager({ openOrShowWindow }: { openOrShowWindow: (id: registryKey, data?: WindowData) => void }) {
     const [files, setFiles] = useState<DesktopIcon[]>(fileDefaults)
     const [dragging, setDragging] = useState<number | null>(null);
 
