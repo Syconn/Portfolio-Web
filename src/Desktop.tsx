@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import appleLogo from "./assets/icon/apple-white.png";
+import controls from "./assets/icon/control_center.gif"
 import wallpaper0 from "./assets/background/wallpaper0.jpg";
 import wallpaper1 from "./assets/background/wallpaper1.png";
 import wallpaper2 from "./assets/background/wallpaper2.png";
@@ -100,7 +102,7 @@ function Desktop() {
                 <div className="navbar">
                     <ul>
                         <li className="leftLi logo">
-                            <img src="./src/assets/icon/apple-white.png" alt="Apple logo" />
+                            <img src={appleLogo} alt="Apple logo" />
                             <ul>
                                 <li>
                                     <button><a href="https://github.com/Syconn/Portfolio-Web" target="_blank">About This Portfolio</a></button>
@@ -152,7 +154,7 @@ function Desktop() {
                             </svg>
                         </li>
                         <li className="open_control hidden">
-                            <img src="./src/assets/icon/control_center.gif" className="control-center" alt="controlCenter" />
+                            <img src={controls} className="control-center" alt="controlCenter" />
                         </li>
                         <li className="clock">
                             <span id="date" className="hidden">{date}</span>
