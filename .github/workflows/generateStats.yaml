@@ -1,15 +1,22 @@
-name: Update GitHub Stats
+name: Deploy React App
 
 on:
-  schedule:
-    - cron: "0 */12 * * *"
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+    workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,35 +25,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
-      - name: Install cloc
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y cloc
+      - run: npm ci
+      - run: npm run build
 
-      - name: Install dependencies
-        run: npm ci
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
-      - name: Generate GitHub Stats
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run generate-stats
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
-      - name: Commit changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    needs: build
 
-          git add src/assets/github-stats.json
+    runs-on: ubuntu-latest
 
-          # Only if these files exist
-          [ -f output/cloc-output.json ] && git add output/cloc-output.json
-          [ -f output/repos.json ] && git add output/repos.json
-
-          if git diff --cached --quiet; then
-            echo "Nothing changed."
-            exit 0
-          fi
-
-          git commit -m "Update GitHub stats"
-          git push
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
