@@ -37,7 +37,11 @@ function ContactWindow(instance: WindowInstance & WindowManager) {
 
 function ContactForm() {
     return (
-        <form className="contact-form" action={`https://formsubmit.co/aidanhaack05@verizon.net`} method="POST">
+        <form className="contact-form" action={`https://formsubmit.co/69d53e9231a6de2f744648835f725029`} method="POST">
+            <input type="text" name="_honey" style={{display: "none"}} />
+
+            <input type="hidden" name="_next" value="aidanhaack.me" />
+
             <div className="form-group">
                 <label><FaUser /> Name</label>
                 <input
