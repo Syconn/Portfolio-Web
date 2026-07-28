@@ -2,15 +2,15 @@ import { useState } from "react";
 import type { WindowData } from "../util/types";
 import type { WindowInstance } from "./Windows/Window";
 import type { registryKey } from "./Windows/WindowManager";
-import finder from "./src/assets/icon/dock/finder.png"
-import safari from "./src/assets/icon/dock/safari.png"
-import mail from "./src/assets/icon/dock/mail.png"
-import appStore from "./src/assets/icon/dock/appstore.png"
-import music from "./src/assets/icon/dock/music.png"
-import photos from "./src/assets/icon/dock/photos.png"
-import terminal from "./src/assets/icon/dock/terminal.png"
-import settings from "./src/assets/icon/dock/preferences.png"
-import bin from "./src/assets/icon/dock/bin.png"
+import finder from "../assets/icon/dock/finder.png"
+import safari from "../assets/icon/dock/safari.png"
+import mail from "../assets/icon/dock/mail.png"
+import appStore from "../assets/icon/dock/appstore.png"
+import music from "../assets/icon/dock/music.png"
+import photos from "../assets/icon/dock/photos.png"
+import terminal from "../assets/icon/dock/terminal.png"
+import settings from "../assets/icon/dock/preferences.png"
+import bin from "../assets/icon/dock/bin.png"
 
 function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: registryKey, data?: WindowData) => void, openWindows: Partial<Record<"safari", WindowInstance>> }) {
     const [bouncingIcon, setBouncingIcon] = useState<number | null>(null);
