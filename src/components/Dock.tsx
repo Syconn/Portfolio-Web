@@ -2,6 +2,15 @@ import { useState } from "react";
 import type { WindowData } from "../util/types";
 import type { WindowInstance } from "./Windows/Window";
 import type { registryKey } from "./Windows/WindowManager";
+import finder from "./src/assets/icon/dock/finder.png"
+import safari from "./src/assets/icon/dock/safari.png"
+import mail from "./src/assets/icon/dock/mail.png"
+import appStore from "./src/assets/icon/dock/appstore.png"
+import music from "./src/assets/icon/dock/music.png"
+import photos from "./src/assets/icon/dock/photos.png"
+import terminal from "./src/assets/icon/dock/terminal.png"
+import settings from "./src/assets/icon/dock/preferences.png"
+import bin from "./src/assets/icon/dock/bin.png"
 
 function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: registryKey, data?: WindowData) => void, openWindows: Partial<Record<"safari", WindowInstance>> }) {
     const [bouncingIcon, setBouncingIcon] = useState<number | null>(null);
@@ -17,35 +26,35 @@ function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: regist
     return (
         <div className="dock">
             <button className={`icon hidden ${bouncingIcon === 0 ? "bounce" : ""}`} onClick={() => bounceIcon(0)}>
-                <img src="./src/assets/icon/dock/finder.png" alt="Finder Logo" className="hidden" />
+                <img src={finder} alt="Finder Logo" className="hidden" />
             </button>
             <button className={`icon ${bouncingIcon === 1 ? "bounce" : ""}`} onClick={() => bounceIcon(1, "safari")}>
-                <img src="./src/assets/icon/dock/safari.png" alt="Safari Logo" />
+                <img src={safari} alt="Safari Logo" />
                 {"safari" in openWindows && <hr className="point" />}
             </button>
             <button className={`icon ${bouncingIcon === 4 ? "bounce" : ""}`} onClick={() => bounceIcon(4, "contact")}>
-                <img src="./src/assets/icon/dock/mail.png" alt="Mail Logo" />
+                <img src={mail} alt="Mail Logo" />
                 {"contact" in openWindows && <hr className="point" />}
             </button>
             <button className={`icon hidden ${bouncingIcon === 2 ? "bounce" : ""}`} onClick={() => bounceIcon(2)}>
-                <img src="./src/assets/icon/dock/appstore.png" alt="App Store Logo" />
+                <img src={appStore} alt="App Store Logo" />
             </button>
             <button className={`icon hidden ${bouncingIcon === 3 ? "bounce" : ""}`} onClick={() => bounceIcon(3)}>
-                <img src="./src/assets/icon/dock/music.png" alt="Music Logo" />
+                <img src={music} alt="Music Logo" />
             </button>
             <button className={`icon ${bouncingIcon === 5 ? "bounce" : ""}`} onClick={() => bounceIcon(5)}>
-                <img src="./src/assets/icon/dock/photos.png" alt="Photos Logo" className="hidden" />
+                <img src={photos} alt="Photos Logo" className="hidden" />
             </button>
             <button className={`icon hidden ${bouncingIcon === 6 ? "bounce" : ""}`} onClick={() => bounceIcon(6)}>
-                <img src="./src/assets/icon/dock/terminal.png" alt="Terminal Logo" className="hidden" />
+                <img src={terminal} alt="Terminal Logo" className="hidden" />
             </button>
             <button className={`icon ${bouncingIcon === 7 ? "bounce" : ""}`} onClick={() => bounceIcon(7, "settings")}>
-                <img src="./src/assets/icon/dock/preferences.png" alt="Preferences Logo" className="hidden" />
+                <img src={settings} alt="Preferences Logo" className="hidden" />
                 {"settings" in openWindows && <hr className="point" />}
             </button>
             <hr className="column hidden" />
             <button className={`icon ${bouncingIcon === 8 ? "bounce" : ""}`} onClick={() => bounceIcon(8)}>
-                <img src="./src/assets/icon/dock/bin.png" alt="Trash Bin Logo" className="hidden Trash" />
+                <img src={bin} alt="Trash Bin Logo" className="hidden Trash" />
             </button>
         </div>
     )
