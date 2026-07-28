@@ -1,6 +1,58 @@
 {
-  "public_repos": 54,
+  "public_repos": 55,
   "years_of_experience": "7+",
-  "total_languages": 19,
-  "lines_of_code": 0
+  "total_languages": 23,
+  "lines_of_code": "1495421+",
+  "top_languages": [
+    {
+      "name": "JavaScript",
+      "lines": 766695,
+      "percent": 51.27
+    },
+    {
+      "name": "C#",
+      "lines": 395289,
+      "percent": 26.43
+    },
+    {
+      "name": "TypeScript",
+      "lines": 121870,
+      "percent": 8.15
+    },
+    {
+      "name": "Java",
+      "lines": 66574,
+      "percent": 4.45
+    },
+    {
+      "name": "Python",
+      "lines": 25134,
+      "percent": 1.68
+    },
+    {
+      "name": "C/C++ Header",
+      "lines": 16981,
+      "percent": 1.14
+    },
+    {
+      "name": "CSS",
+      "lines": 5703,
+      "percent": 0.38
+    },
+    {
+      "name": "C++",
+      "lines": 3631,
+      "percent": 0.24
+    },
+    {
+      "name": "Gradle",
+      "lines": 2834,
+      "percent": 0.19
+    },
+    {
+      "name": "Bourne Shell",
+      "lines": 1632,
+      "percent": 0.11
+    }
+  ]
 }
