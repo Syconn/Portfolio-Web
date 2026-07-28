@@ -19,7 +19,11 @@ function ContactWindow(instance: WindowInstance & WindowManager) {
                             Want to get in touch? Fill out the form below
                             or email me directly at{" "}
                             <a href={`mailto:${links.email}`}>
-                                {links.email}
+                                {links.email} {" "}
+                            </a>
+                             or 
+                            <a href={`mailto:Aidanhaack05@verizon.net`}>
+                                {" "} Aidanhaack05@verizon.net
                             </a>
                         </p>
                     </div>
@@ -33,7 +37,7 @@ function ContactWindow(instance: WindowInstance & WindowManager) {
 
 function ContactForm() {
     return (
-        <form className="contact-form" action={`https://formsubmit.co/AidanHaack05@verizon.net`} method="POST">
+        <form className="contact-form" action={`https://formsubmit.co/${links.email}`} method="POST">
             <div className="form-group">
                 <label><FaUser /> Name</label>
                 <input
