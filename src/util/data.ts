@@ -1,4 +1,10 @@
-export const pages: string[] = ["Overview", "Project Showcase", "Skills and Talents", "Work Experience", "Homelab Stats", "Contact Me"]
+import type { MacSettings } from "./types"
+
+export const pages: string[] = ["Project Showcase", "Skills and Talents", "Work Experience", "Homelab Stats"]
+
+export const urls: string[] = ["",]
+
+export const defaultSettings: MacSettings = { timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, darkMode: false, openInWebApp: true, wallpaper: 0 }
 
 export const links = {
     github: "https://github.com/Syconn",
