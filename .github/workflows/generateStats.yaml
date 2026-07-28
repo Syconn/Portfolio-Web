@@ -1,22 +1,15 @@
-name: Deploy React App
+name: Update GitHub Stats
 
 on:
-  push:
-    branches:
-      - main
-    workflow_dispatch:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  contents: write
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,24 +18,24 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
       - run: npm ci
-      - run: npm run build
 
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
+      - run: npm run generate-stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-    needs: build
+          git add src/assets/github-stats.json
 
-    runs-on: ubuntu-latest
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
 
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          git commit -m "Update GitHub stats"
+          git push
