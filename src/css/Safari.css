@@ -319,3 +319,11 @@
     background: var(--app-bg);
     overflow-y: auto;
 }
+
+.safari-page {
+    scrollbar-width: none;
+}
+
+.safari-page::-webkit-scrollbar {
+    display: none;
+}

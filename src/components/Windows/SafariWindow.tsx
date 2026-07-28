@@ -5,6 +5,8 @@ import "../../css/Safari.css";
 import { HelpPage } from "./websites/HelpSite";
 import Window, { type WindowInstance, type WindowManager } from "./Window";
 import { AboutPage } from "./websites/AboutSite";
+import type { registryKey } from "./WindowManager";
+import type { WindowData } from "../../util/types";
 
 const definedPages: string[] = ["/", "/about"]
 
@@ -27,7 +29,8 @@ export type webPage = {
 export type PageProps = {
     page: pageData,
     modifyPage: (id: number, key: keyof webPage, val: webPage[keyof webPage]) => void,
-    openTab: (url: string) => void
+    openTab: (url: string) => void,
+    openExternalWindow: (id: registryKey, data?: WindowData) => void
 }
 
 function SafariWindow(instance: WindowInstance & WindowManager) {
@@ -111,7 +114,7 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
                 </div>
 
                 <div className="safari-page">
-                    {PageContent && <PageContent page={pageData[tab]} modifyPage={modifyPage} openTab={openTab} />}
+                    {PageContent && <PageContent page={pageData[tab]} modifyPage={modifyPage} openTab={openTab} openExternalWindow={instance.openExternalWindow} />}
                 </div>
             </div>
         </Window>

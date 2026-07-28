@@ -11,12 +11,23 @@ export type project = {
 export type QuickStats = {
     public_repos: number;
     years_of_experience: string;
+    languages: string[];
     total_languages: number;
     lines_of_code: string;
     top_languages: {
         name: string;
         lines: number;
         percent: number;
+    }[];
+    contributions: {
+        date: string;
+        count: number;
+        level: number;
+    }[];
+    total_contributions: number;
+    recent_repositories: {
+        name: string;
+        commits: number;
     }[];
 };
 

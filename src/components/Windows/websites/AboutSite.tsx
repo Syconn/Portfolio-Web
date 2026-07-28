@@ -1,13 +1,14 @@
-import { FaDiscord, FaFileDownload, FaGithub, FaLinkedin, FaRegUserCircle } from 'react-icons/fa';
-import { SiCodeberg } from 'react-icons/si';
+import { useEffect, useState } from 'react';
+import { FaCss3Alt, FaDiscord, FaFileDownload, FaGithub, FaJava, FaLinkedin, FaRegUserCircle } from 'react-icons/fa';
+import { SiC, SiCmake, SiCodeberg, SiCplusplus, SiHtml5, SiJavascript, SiKotlin, SiLua, SiPython, SiShell, SiTypescript } from 'react-icons/si';
 import quickstats from "../../../assets/github-stats.json";
 import me from "../../../assets/me.png";
-import resume from "../../../assets/resume.pdf"
-import { useEffect, useState } from 'react';
-import type { QuickStats } from '../../../util/types';
+import resume from "../../../assets/resume.pdf";
+import "../../../css/sites/AboutSite.css";
 import { links } from '../../../util/data';
-import "../../../css/sites/AboutSite.css"
+import type { QuickStats } from '../../../util/types';
 import type { PageProps, webPage } from '../SafariWindow';
+import { MdOutlineMailOutline } from 'react-icons/md';
 
 export const AboutPage: webPage = {
     icon: <FaRegUserCircle />,
@@ -15,9 +16,11 @@ export const AboutPage: webPage = {
     content: Overview
 }
 
-export function Overview({ page, modifyPage, openTab }: PageProps) {
+export function Overview({ openTab, openExternalWindow }: PageProps) {
     const [discordCopied, setDiscordCopied] = useState(false)
     const [gitStats] = useState<QuickStats>(quickstats)
+
+    const latestCommitData = [...gitStats.contributions].findLast(day => day.count > 0)?.date;
 
     const copyDiscord = async () => {
         await navigator.clipboard.writeText(links.discord)
@@ -85,6 +88,10 @@ export function Overview({ page, modifyPage, openTab }: PageProps) {
                         <button className="social-button" onClick={copyDiscord}>
                             <FaDiscord />
                         </button>
+
+                        <button className="social-button" onClick={() => openExternalWindow("contact")}>
+                            <MdOutlineMailOutline />
+                        </button>
                     </div>
 
                     {discordCopied && <span className="copied">Discord copied to clipboard.</span>}
@@ -123,33 +130,108 @@ export function Overview({ page, modifyPage, openTab }: PageProps) {
                         </div>
                     </div>
                 </div>
-                
-                {/* Recent Commits and Projects */}
-                <div className="stat-card">
+
+                <div className="stat-card repo-card">
                     <h2>{gitStats.public_repos}</h2>
                     <span>Public Git Repositories</span>
+
+                    <div className="repo-popup">
+                        <h3>{gitStats.total_contributions} Contributions</h3>
+                        <div className="contribution-grid">{gitStats.contributions.map((level, i) => <div key={i} className={`contribution-cell level-${level.level}`} />)}</div>
+
+                        <div className="repo-divider" />
+
+                        <h4>Recent Activity</h4>
+                        {gitStats.recent_repositories.map(repo => (
+                            <div className="repo-row" key={repo.name}>
+                                <span>{repo.name}</span>
+                                <span>{repo.commits} commits</span>
+                            </div>
+
+                        ))}
+
+                        <div className="repo-footer">
+                            Latest Commit • {latestCommitData ? new Date(`${latestCommitData}T12:00:00`).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric"
+                            }) : "No commits"}
+                        </div>
+                    </div>
                 </div>
 
-                {/* Language Icon Popup */}
-                <div className="stat-card">
+                <div className="stat-card language-card">
                     <h2>{gitStats.total_languages}</h2>
                     <span>Used Programming Languages</span>
+
+                    <div className="language-popup">
+                        <h3>Languages</h3>
+
+                        <div className="language-grid">
+                            {gitStats.languages.filter(v => languageIcons[v]?.color).map(language => {
+                                const lang = languageIcons[language];
+                                
+                                return (
+                                    <div className="language-icon" key={language}>
+                                        <div className="language-logo" style={{ color: lang?.color }}>{lang?.icon ?? language[0]}</div>
+                                        <span>{language}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
 
             </section>
 
             <section className="about-card">
-
                 <h2>About Me</h2>
-
                 <p>
                     I enjoy building polished desktop applications, websites, Minecraft mods, and experimenting with cybersecurity and
                     software engineering. In my free time I play game, and love to learn new techniques and frameworks.
                     I enjoy designing software that feels reliable, intuitive, performant, and visually polished.
                 </p>
-
             </section>
 
         </div>
     )
-} 
+}
+
+const languageIcons: Record<string, { icon: React.ReactNode; color: string }> = {
+    Java: {
+        icon: <FaJava />,
+        color: "#f89820"
+    },
+    TypeScript: {
+        icon: <SiTypescript />,
+        color: "#3178c6"
+    },
+    JavaScript: {
+        icon: <SiJavascript />,
+        color: "#f7df1e"
+    },
+    CSS: {
+        icon: <FaCss3Alt />,
+        color: "#1572b6"
+    },
+    HTML: {
+        icon: <SiHtml5 />,
+        color: "#e34f26"
+    },
+    "C++": {
+        icon: <SiCplusplus />,
+        color: "#00599c"
+    },
+    C: {
+        icon: <SiC />,
+        color: "#004594"
+    },
+    Python: {
+        icon: <SiPython />,
+        color: "#3776ab"
+    },
+    Kotlin: {
+        icon: <SiKotlin />,
+        color: "#7f52ff"
+    }
+};

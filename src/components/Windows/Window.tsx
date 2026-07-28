@@ -29,7 +29,8 @@ export type WindowInstance = {
 export type WindowManager = {
     desktopRef: RefObject<HTMLDivElement | null>
     updateWindow: (id: registryKey, updates: Partial<WindowInstance>) => void
-    closeWindow: (id: registryKey) => void
+    closeWindow: (id: registryKey) => void,
+    openExternalWindow: (id: registryKey, data?: WindowData) => void
 }
 
 function Window({ id, bounds, previousBounds, minimized, maximized, desktopRef, header, children, updateWindow, closeWindow }: WindowInstance & WindowManager & WindowRenders) {

@@ -17,8 +17,8 @@ const windowRegistry = {
 
 export type registryKey = keyof typeof windowRegistry
 
-function WindowManager({ requestedWindows, clearCache, settings, changeSettings }: 
-    { requestedWindows: {window: registryKey, data?: WindowData }[], clearCache: (data: {window: registryKey, data?: WindowData }[]) => void, settings: MacSettings, changeSettings: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void }) {
+function WindowManager({ requestedWindows, clearCache, settings, changeSettings }:
+    { requestedWindows: { window: registryKey, data?: WindowData }[], clearCache: (data: { window: registryKey, data?: WindowData }[]) => void, settings: MacSettings, changeSettings: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void }) {
     const [windowInstances, setWindowInstances] = useState<Partial<Record<registryKey, WindowInstance>>>({})
 
     useEffect(() => {
@@ -74,7 +74,14 @@ function WindowManager({ requestedWindows, clearCache, settings, changeSettings 
                     if (!Component) return null;
                     return (
                         <div key={id} style={{ position: "absolute", zIndex: zIndex, pointerEvents: "auto" }} onMouseDown={() => focusWindow(id as registryKey)}>
-                            <Component {...instance} desktopRef={desktopRef} updateWindow={updateWindow} closeWindow={closeWindow} data={{ ...instance.data, settings: settings, changeSetting: changeSettings}}/>
+                            <Component
+                                {...instance}
+                                desktopRef={desktopRef}
+                                updateWindow={updateWindow}
+                                closeWindow={closeWindow}
+                                openExternalWindow={openOrShowWindow}
+                                data={{ ...instance.data, settings: settings, changeSetting: changeSettings }}
+                            />
                         </div>
                     )
                 })}

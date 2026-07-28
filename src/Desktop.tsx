@@ -7,12 +7,12 @@ import wallpaper4 from "./assets/background/wallpaper4.jpg";
 import WindowManager, { type registryKey } from "./components/Windows/WindowManager";
 import "./css/Desktop.css";
 import { defaultSettings } from "./util/data";
-import type { MacSettings, windowData } from "./util/types";
+import type { MacSettings, WindowData } from "./util/types";
 
 export const wallpapers = [wallpaper0, wallpaper1, wallpaper2, wallpaper3, wallpaper4];
 
 function Desktop() {
-    const [requestedWindow, setRequestedWindow] = useState<{window: registryKey, data?: windowData}[]>([])
+    const [requestedWindow, setRequestedWindow] = useState<{window: registryKey, data?: WindowData}[]>([])
     const [shutdown, setShutdown] = useState(false);
     const [restart, setRestart] = useState(false);
     const [desktopHidden, setDesktopHidden] = useState(false);

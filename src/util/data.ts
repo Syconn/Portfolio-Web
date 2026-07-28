@@ -1,6 +1,6 @@
 import type { MacSettings } from "./types"
 
-export const pages: string[] = ["Overview", "Project Showcase", "Skills and Talents", "Work Experience", "Homelab Stats", "Contact Me"]
+export const pages: string[] = ["Project Showcase", "Skills and Talents", "Work Experience", "Homelab Stats"]
 
 export const urls: string[] = ["",]
 
