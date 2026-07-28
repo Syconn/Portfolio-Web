@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import "dotenv/config";
+import process from "node:process";
 
 const username: string = "syconn"
 
@@ -10,7 +11,8 @@ const headers = {
 type quickStats = {
     public_repos: number,
     years_of_experience: string,
-    total_languages: number;
+    total_languages: number,
+    lines_of_code: number
 }
 
 type gitUserData = {
