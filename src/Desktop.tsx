@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import wallpaper0 from "./assets/background/wallpaper0.jpg";
 import wallpaper1 from "./assets/background/wallpaper1.png";
 import wallpaper2 from "./assets/background/wallpaper2.png";
