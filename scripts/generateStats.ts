@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import os from "node:os";
 import process from "node:process";
 import path from "node:path";
 import { execFile } from "node:child_process";
@@ -81,7 +82,7 @@ async function getLanguageStats(repos: Repo[]) {
 }
 
 async function cloneRepos(repos: Repo[]) {
-    const repoDir = path.resolve("output/repos");
+    const repoDir = path.join(os.tmpdir(), "github-stats");
 
     await fs.rm(repoDir, {
         recursive: true,
