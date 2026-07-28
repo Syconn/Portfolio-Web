@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { FaCss3Alt, FaDiscord, FaFileDownload, FaGithub, FaJava, FaLinkedin, FaRegUserCircle } from 'react-icons/fa';
-import { SiC, SiCmake, SiCodeberg, SiCplusplus, SiHtml5, SiJavascript, SiKotlin, SiLua, SiPython, SiShell, SiTypescript } from 'react-icons/si';
+import { MdOutlineMailOutline } from 'react-icons/md';
+import { SiC, SiCodeberg, SiCplusplus, SiHtml5, SiJavascript, SiKotlin, SiPython, SiTypescript } from 'react-icons/si';
 import quickstats from "../../../assets/github-stats.json";
 import me from "../../../assets/me.png";
 import resume from "../../../assets/resume.pdf";
@@ -8,7 +9,6 @@ import "../../../css/sites/AboutSite.css";
 import { links } from '../../../util/data';
 import type { QuickStats } from '../../../util/types';
 import type { PageProps, webPage } from '../SafariWindow';
-import { MdOutlineMailOutline } from 'react-icons/md';
 
 export const AboutPage: webPage = {
     icon: <FaRegUserCircle />,
