@@ -2,29 +2,29 @@
   "public_repos": 55,
   "years_of_experience": "7+",
   "languages": [
-    "Python",
     "Java",
     "GLSL",
-    "mcfunction",
     "C++",
-    "CMake",
+    "C",
+    "Makefile",
+    "Python",
     "TypeScript",
     "CSS",
     "JavaScript",
     "HTML",
+    "CMake",
+    "Mathematica",
     "C#",
-    "C",
-    "Batchfile",
+    "Lua",
+    "Kotlin",
     "Shell",
-    "Makefile",
+    "mcfunction",
     "MoonScript",
+    "Batchfile",
     "Objective-C++",
     "GAP",
     "ShaderLab",
-    "HLSL",
-    "Mathematica",
-    "Lua",
-    "Kotlin"
+    "HLSL"
   ],
   "total_languages": 23,
   "lines_of_code": "1495421+",
@@ -1926,7 +1926,7 @@
   "recent_repositories": [
     {
       "name": "Portfolio-Web",
-      "commits": 74
+      "commits": 75
     },
     {
       "name": "StatsRepo",
