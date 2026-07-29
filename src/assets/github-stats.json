@@ -2,29 +2,29 @@
   "public_repos": 55,
   "years_of_experience": "7+",
   "languages": [
+    "Python",
     "Java",
     "GLSL",
+    "mcfunction",
+    "C++",
+    "CMake",
     "TypeScript",
     "CSS",
     "JavaScript",
     "HTML",
-    "C++",
-    "CMake",
+    "C#",
     "C",
     "Batchfile",
-    "Python",
-    "MoonScript",
-    "C#",
-    "Mathematica",
-    "Lua",
-    "Kotlin",
     "Shell",
     "Makefile",
-    "mcfunction",
+    "MoonScript",
     "Objective-C++",
     "GAP",
     "ShaderLab",
-    "HLSL"
+    "HLSL",
+    "Mathematica",
+    "Lua",
+    "Kotlin"
   ],
   "total_languages": 23,
   "lines_of_code": "1495421+",
@@ -80,7 +80,7 @@
       "percent": 0.11
     }
   ],
-  "total_contributions": 358,
+  "total_contributions": 404,
   "contributions": [
     {
       "date": "2025-07-27",
@@ -440,7 +440,7 @@
     {
       "date": "2025-10-06",
       "count": 5,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2025-10-07",
@@ -455,7 +455,7 @@
     {
       "date": "2025-10-09",
       "count": 9,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2025-10-10",
@@ -595,7 +595,7 @@
     {
       "date": "2025-11-06",
       "count": 11,
-      "level": 3
+      "level": 2
     },
     {
       "date": "2025-11-07",
@@ -740,7 +740,7 @@
     {
       "date": "2025-12-05",
       "count": 14,
-      "level": 3
+      "level": 2
     },
     {
       "date": "2025-12-06",
@@ -970,7 +970,7 @@
     {
       "date": "2026-01-20",
       "count": 7,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-01-21",
@@ -1210,7 +1210,7 @@
     {
       "date": "2026-03-09",
       "count": 25,
-      "level": 4
+      "level": 3
     },
     {
       "date": "2026-03-10",
@@ -1365,7 +1365,7 @@
     {
       "date": "2026-04-09",
       "count": 5,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-04-10",
@@ -1580,7 +1580,7 @@
     {
       "date": "2026-05-22",
       "count": 5,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-05-23",
@@ -1604,13 +1604,13 @@
     },
     {
       "date": "2026-05-27",
-      "count": 2,
+      "count": 1,
       "level": 1
     },
     {
       "date": "2026-05-28",
-      "count": 10,
-      "level": 3
+      "count": 11,
+      "level": 2
     },
     {
       "date": "2026-05-29",
@@ -1625,7 +1625,7 @@
     {
       "date": "2026-05-31",
       "count": 6,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-06-01",
@@ -1655,32 +1655,32 @@
     {
       "date": "2026-06-06",
       "count": 10,
-      "level": 3
+      "level": 2
     },
     {
       "date": "2026-06-07",
       "count": 6,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-06-08",
       "count": 11,
-      "level": 3
+      "level": 2
     },
     {
       "date": "2026-06-09",
       "count": 7,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-06-10",
       "count": 5,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-06-11",
       "count": 20,
-      "level": 4
+      "level": 3
     },
     {
       "date": "2026-06-12",
@@ -1720,17 +1720,17 @@
     {
       "date": "2026-06-19",
       "count": 5,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-06-20",
       "count": 11,
-      "level": 3
+      "level": 2
     },
     {
       "date": "2026-06-21",
       "count": 8,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-06-22",
@@ -1750,12 +1750,12 @@
     {
       "date": "2026-06-25",
       "count": 12,
-      "level": 3
+      "level": 2
     },
     {
       "date": "2026-06-26",
       "count": 6,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-06-27",
@@ -1855,7 +1855,7 @@
     {
       "date": "2026-07-16",
       "count": 6,
-      "level": 2
+      "level": 1
     },
     {
       "date": "2026-07-17",
@@ -1879,49 +1879,54 @@
     },
     {
       "date": "2026-07-21",
-      "count": 4,
+      "count": 3,
       "level": 1
     },
     {
       "date": "2026-07-22",
-      "count": 19,
-      "level": 4
+      "count": 20,
+      "level": 3
     },
     {
       "date": "2026-07-23",
-      "count": 0,
-      "level": 0
+      "count": 5,
+      "level": 1
     },
     {
       "date": "2026-07-24",
-      "count": 1,
+      "count": 6,
       "level": 1
     },
     {
       "date": "2026-07-25",
-      "count": 0,
-      "level": 0
+      "count": 11,
+      "level": 2
     },
     {
       "date": "2026-07-26",
-      "count": 0,
-      "level": 0
+      "count": 2,
+      "level": 1
     },
     {
       "date": "2026-07-27",
-      "count": 0,
-      "level": 0
+      "count": 1,
+      "level": 1
     },
     {
       "date": "2026-07-28",
-      "count": 14,
-      "level": 3
+      "count": 36,
+      "level": 4
+    },
+    {
+      "date": "2026-07-29",
+      "count": 0,
+      "level": 0
     }
   ],
   "recent_repositories": [
     {
       "name": "Portfolio-Web",
-      "commits": 31
+      "commits": 74
     },
     {
       "name": "StatsRepo",
