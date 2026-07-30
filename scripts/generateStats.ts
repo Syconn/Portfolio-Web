@@ -197,7 +197,7 @@ async function generateStats(): Promise<QuickStats> {
 const stats = await generateStats();
 await fs.writeFile(
     "src/assets/github-stats.json",
-    JSON.stringify(stats, null, 2)
+    JSON.stringify(stats, null, 4)
 );
 
 console.log("Updated github-stats.json");

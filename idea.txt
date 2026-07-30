@@ -31,9 +31,9 @@ Languages
     HTML
     CSS
     Bash
-    Shell (I'd rename this to PowerShell)
+    PowerShell
     Kotlin
-    
+
 Frameworks & Libraries
     React
     Node.js
@@ -45,24 +45,26 @@ Frameworks & Libraries
     Zod
     Lucide React
     React Icons
-    Databases
+
+Databases
     SQLite
     MySQL
     MongoDB
     Dexie.js
-    IndexedDB (currently named "IndexDB" in your code; the correct name is IndexedDB)
+    IndexedDB
 
 Tools
     Git
     GitHub
-    JetBrains IDEs (I'd rename "Jetbrains" to "JetBrains IDEs")
+    JetBrains IDEs
     VS Code
-    Microsoft Office (instead of "Microsoft Suite")
+    Microsoft Office
     Discord Webhooks
     Pandas
-    NumPy (instead of "Numpy")
-    ESLint (instead of "ES Lint")
-    Build Tools
+    NumPy
+    ESLint
+
+Build Tools
     npm
     pnpm
     Gradle
@@ -99,6 +101,6 @@ DevOps & Cloud
 
 Operating Systems
     Windows
-    macOS (instead of "MacOs")
+    MacOs
     Linux
     Ubuntu

@@ -1,1 +1,29 @@
-[]
+[
+    {
+        "title": "Drafter Website Builder",
+        "readme": "https://raw.githubusercontent.com/Syconn/Drafter-Website-Builder/refs/heads/main/README.md",
+        "demoLink": "https://syconn.github.io/Drafter-Website-Builder/",
+        "subline": "A website building tool that allows students to build python based drafter websites",
+        "imgs": ["src/assets/screenshots/drafter/drafter_home.png"],
+        "repo": "https://github.com/Syconn/Drafter-Website-Builder",
+        "startDate": "2026-04-07T04:00:00.000Z",
+        "lastUpdated": "2026-05-29T04:00:00.000Z", 
+        "skills": [
+            "TypeScript",
+            "JavaScript",
+            "CSS",
+            "HTML",
+            "React",
+            "React Router",
+            "Zod",
+            "Dexie.js",
+            "ESLint",
+            "Vite",
+            "npm",
+            "JSON",
+            "Jest",
+            "Cypress",
+            "Github Actions"
+        ]
+    }
+]

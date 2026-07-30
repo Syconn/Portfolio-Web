@@ -1,11 +1,13 @@
-export type project = {
-    desc: string,
-    img: string[],
-    subline: string,
+export type Project = {
     title: string,
+    readme?: string,
+    demoLink?: string,
+    imgs: string[],
+    subline: string,
     repo: string,
-    tags: string[],
-    categories: string[],
+    startDate: string,
+    lastUpdated: string,
+    skills: string[]
 }
 
 export type QuickStats = {

@@ -13,10 +13,9 @@ import type { PageProps, webPage } from "../SafariWindow";
 
 export const SkillsPage: webPage = {
     icon: <FaCodeFork />,
-    pageTitle: "Skills and Talents Page",
+    pageTitle: "My Skills",
     content: SkillsSite
 }
-
 
 // TODO ON CARD HOVER SHOW PROJECTS THAT USE THEM
 type SkillLevel = "Expert" | "Advanced" | "Intermediate" | "Familiar";
@@ -74,10 +73,10 @@ const categories: {
         { icon: <FaGithub />, name: "GitHub", confidence: "Expert" },
         { icon: <SiJetbrains />, name: "JetBrains IDEs", confidence: "Expert" },
         { icon: <VscVscode />, name: "VS Code", confidence: "Expert" },
-        { icon: <FaMicrosoft />, name: "Microsoft Suite", confidence: "Expert" },
+        { icon: <FaMicrosoft />, name: "Microsoft Office", confidence: "Expert" },
         { icon: <PiWebhooksLogo />, name: "Discord Webhooks", confidence: "Advanced" },
         { icon: <SiPandas />, name: "Pandas", confidence: "Advanced" },
-        { icon: <SiNumpy />, name: "Numpy", confidence: "Advanced" },
+        { icon: <SiNumpy />, name: "NumPy", confidence: "Advanced" },
         { icon: <SiEslint />, name: "ESLint", confidence: "Advanced" }
     ]
 }, {
@@ -134,7 +133,7 @@ const categories: {
     ]
 }];
 
-const iconColors: Record<string, string> = {
+export const iconColors: Record<string, string> = {
     // Languages
     TypeScript: "#3178C6",
     JavaScript: "#F7DF1E",
@@ -173,10 +172,10 @@ const iconColors: Record<string, string> = {
     GitHub: "#8B949E",
     "JetBrains IDEs": "#FC801D",
     "VS Code": "#007ACC",
-    "Microsoft Suite": "#D83B01",
+    "Microsoft Office": "#D83B01",
     "Discord Webhooks": "#5865F2",
     Pandas: "#150458",
-    Numpy: "#013243",
+    NumPy: "#013243",
     ESLint: "#4B32C3",
 
     // Build Tools

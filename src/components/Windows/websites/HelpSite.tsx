@@ -10,8 +10,6 @@ export const HelpPage: webPage = {
 }
 
 function HelpSite({ page, modifyPage, openTab }: PageProps) {
-    const modify = (key: keyof webPage, val: webPage[keyof webPage]) => modifyPage(page.id, key, val)
-
     return (
         <div className="welcome-screen">
             <div className="welcome-content">
@@ -25,7 +23,7 @@ function HelpSite({ page, modifyPage, openTab }: PageProps) {
                         type="text"
                         placeholder="Search the web..."
                         value={page.pageContent?.search ?? ""}
-                        onChange={(e) => modify("search", e.target.value)}
+                        onChange={(e) => modifyPage(page.id, { search: e.target.value })}
                         onKeyDown={(e) => {
                             if (e.key === "Enter") openTab(page.pageContent?.search ?? "");
                         }}
@@ -36,6 +34,7 @@ function HelpSite({ page, modifyPage, openTab }: PageProps) {
                 <div className="quick-links">
                     <button onClick={() => openTab("")}>Home</button>
                     <button onClick={() => openTab("/about")}>About</button>
+                    <button onClick={() => openTab("/projects")}>Projects</button>
                     <button onClick={() => openTab("/skills")}>Skills</button>
                 </div>
             </div>

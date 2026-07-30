@@ -1,0 +1,214 @@
+.expanded-project {
+    padding: 35px;
+    color: var(--text);
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+.expanded-project .project-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.expanded-project .project-header h1 {
+    margin:0;
+    font-size:34px;
+}
+
+.expanded-project .project-header p {
+    margin-top:8px;
+    color:var(--text-secondary);
+}
+
+.expanded-project .project-actions {
+    display:flex;
+    gap:12px;
+}
+
+.expanded-project .project-actions a {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 16px;
+    border-radius:14px;
+    text-decoration:none;
+    color:inherit;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(15px);
+    border:1px solid var(--soft-border);
+    transition:.2s;
+    cursor: pointer;
+}
+
+.expanded-project .project-actions a:hover {
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.25);
+}
+
+.expanded-project .project-images {
+    display:flex;
+    gap:20px;
+    margin-top:0;
+    overflow-x:auto;
+    padding-bottom:10px;
+}
+
+.expanded-project .project-images img {
+    width:auto;
+    height:260px;
+    object-fit:cover;
+    border-radius:18px;
+    border:1px solid var(--soft-border);
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.expanded-project .project-images img {
+    cursor:pointer;
+    transition:
+        transform .2s ease,
+        filter .2s ease;
+}
+
+.expanded-project .project-images img:hover {
+    transform:scale(1.03);
+    filter:brightness(.85);
+}
+
+.image-overlay {
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:  rgba(0,0,0,.55);
+    backdrop-filter: blur(12px);
+    padding:40px;
+}
+
+.image-overlay img {
+    max-width:80vw;
+    max-height:80vh;
+    width:auto;
+    height:auto;
+    object-fit:contain;
+    border-radius:18px;
+    box-shadow: 0 25px 80px rgba(0,0,0,.5);
+    animation:imageOpen .2s ease;
+}
+
+.close-image {
+    position:fixed;
+    top:25px;
+    right:35px;
+    width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:none;
+    border-radius:50%;
+    font-size:30px;
+    cursor:pointer;
+    color:white;
+    background: rgba(255,255,255,.2);
+    backdrop-filter: blur(10px);
+}
+
+.close-image {
+    position:absolute;
+    top:30px;
+    right:40px;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    font-size:30px;
+    line-height:1;
+    cursor:pointer;
+    background: rgba(255,255,255,.2);
+    color:white;
+}
+
+.expanded-project .project-info {
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    margin-top:0;
+}
+
+.expanded-project .project-panel {
+    padding:22px;
+    border-radius:20px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(20px);
+    border:1px solid var(--soft-border);
+}
+
+.dark-mode .expanded-project .project-panel {
+    background:rgba(255,255,255,.05);
+}
+
+.expanded-project .project-panel h2 {
+    margin-top:0;
+    font-size:20px;
+}
+
+.expanded-project .skills {
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top: 10px;
+}
+
+.expanded-project .skills span {
+    padding:7px 12px;
+    border-radius:999px;
+    background:rgba(0,122,255,.15);
+    color:#007aff;
+    font-size:13px;
+}
+
+.expanded-project .readme {
+    border-radius:20px;
+    overflow:hidden;
+    background:rgba(0,0,0,.05);
+    border:1px solid var(--soft-border);
+}
+
+.dark-mode .expanded-project .readme {
+    background:rgba(255,255,255,.05);
+}
+
+.expanded-project .readme-header {
+    padding:12px 20px;
+    background:rgba(255,255,255,.12);
+    font-weight:bold;
+}
+
+.expanded-project .markdown {
+    padding:20px;
+    max-height:500px;
+    overflow:auto;
+}
+
+.expanded-project .markdown pre {
+    white-space:pre-wrap;
+    line-height:1.6;
+    font-family:
+        "JetBrains Mono",
+        monospace;
+}
+
+@keyframes imageOpen {
+    from {
+        transform:scale(.9);
+        opacity:0;
+    } to {
+        transform:scale(1);
+        opacity:1;
+    }
+}

@@ -16,7 +16,7 @@ export const AboutPage: webPage = {
     content: Overview
 }
 
-export function Overview({ openTab, openExternalWindow }: PageProps) {
+function Overview({ openTab, openExternalWindow }: PageProps) {
     const [discordCopied, setDiscordCopied] = useState(false)
     const [gitStats] = useState<QuickStats>(quickstats)
 
