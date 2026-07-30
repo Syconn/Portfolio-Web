@@ -17,8 +17,12 @@ const windowRegistry = {
 
 export type registryKey = keyof typeof windowRegistry
 
-function WindowManager({ requestedWindows, clearCache, settings, changeSettings }:
-    { requestedWindows: { window: registryKey, data?: WindowData }[], clearCache: (data: { window: registryKey, data?: WindowData }[]) => void, settings: MacSettings, changeSettings: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void }) {
+function WindowManager({ requestedWindows, clearCache, settings, changeSettings }: {
+    requestedWindows: { window: registryKey, data?: WindowData }[],
+    clearCache: (data: { window: registryKey, data?: WindowData }[]) => void,
+    settings: MacSettings,
+    changeSettings: <K extends keyof MacSettings>(setting: K, value: MacSettings[K]) => void
+}) {
     const [windowInstances, setWindowInstances] = useState<Partial<Record<registryKey, WindowInstance>>>({})
 
     useEffect(() => {

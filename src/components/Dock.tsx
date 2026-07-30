@@ -37,10 +37,10 @@ function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: regist
                 {"contact" in openWindows && <hr className="point" />}
             </button>
             <button className={`icon hidden ${bouncingIcon === 2 ? "bounce" : ""}`} onClick={() => bounceIcon(2)}>
-                <img src={appStore} alt="App Store Logo" />
+                <img src={appStore} alt="App Store Logo" className="hidden" />
             </button>
             <button className={`icon hidden ${bouncingIcon === 3 ? "bounce" : ""}`} onClick={() => bounceIcon(3)}>
-                <img src={music} alt="Music Logo" />
+                <img src={music} alt="Music Logo" className="hidden" />
             </button>
             <button className={`icon ${bouncingIcon === 5 ? "bounce" : ""}`} onClick={() => bounceIcon(5)}>
                 <img src={photos} alt="Photos Logo" className="hidden" />
@@ -49,7 +49,7 @@ function Dock({ openOrShowWindow, openWindows }: { openOrShowWindow: (id: regist
                 <img src={terminal} alt="Terminal Logo" className="hidden" />
             </button>
             <button className={`icon ${bouncingIcon === 7 ? "bounce" : ""}`} onClick={() => bounceIcon(7, "settings")}>
-                <img src={settings} alt="Preferences Logo" className="hidden" />
+                <img src={settings} alt="Preferences Logo" />
                 {"settings" in openWindows && <hr className="point" />}
             </button>
             <hr className="column hidden" />

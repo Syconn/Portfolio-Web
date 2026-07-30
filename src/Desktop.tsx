@@ -121,11 +121,11 @@ function Desktop() {
                         <li className="leftLi hidden">View</li>
                         <li className="leftLi hidden">Go</li>
                         <li className="leftLi hidden">Window</li>
-                        <li className="leftLi">Help</li> {/* Have this load safari to the instuction page */}
+                        <li className="leftLi" onClick={() => setRequestedWindow(prev => [...prev, { window: "safari", data: { urls: [""] } }])}>Help</li>
                     </ul>
 
                     <ul className="navbar__right">
-                        <li className="battery hidden"> {/* TODO ADDIN HTML FUNCTIONALITY */}
+                        <li className="battery hidden">
                             <span className="battery__text hidden">{battery}%</span>
                             <div className="battery__container hidden">
                                 <div className="battery__progress hidden">

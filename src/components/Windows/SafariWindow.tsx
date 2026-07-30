@@ -41,6 +41,11 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
     const PageContent = pageData[tab]?.pageContent.content;
     const url = pageData[tab]?.url + pageData[tab]?.urlExtra
 
+    
+    useEffect(() => { // Updates for requested urls
+        if (instance.data?.urls) instance.data.urls.forEach(openTab)
+    }, [instance.data?.urls])
+
     useEffect(() => {
         if (pageData.length === 0) instance.closeWindow(instance.id);
     }, [pageData.length]);
@@ -108,7 +113,7 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
 
                     <div className="address-bar">
                         <FaLock />
-                        <input type="text" placeholder="Search or enter website name" value={url} onChange={(e) => modifyUrl(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") refresh(url); }} />
+                        <input type="text" placeholder="Search or enter website name" value={url ?? ""} onChange={(e) => modifyUrl(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") refresh(url); }} />
                     </div>
 
                     <button className="toolbar-button">☰</button>
