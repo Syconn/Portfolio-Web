@@ -1,8 +1,6 @@
 import type { MacSettings } from "./types"
 
-export const pages: string[] = ["Project Showcase", "Skills and Talents", "Work Experience", "Homelab Stats"]
-
-// export const 
+export const pages: string[] = ["Project Showcase", "Work Experience", "Homelab Stats"]
 
 export const defaultSettings: MacSettings = { timezone: Intl.DateTimeFormat().resolvedOptions().timeZone, darkMode: false, openInWebApp: true, wallpaper: 0 }
 
@@ -20,14 +18,4 @@ export const projectCategory = {
     game: "Game Development",
     tool: "Tools",
     product: "Applications"
-}
-
-export const projectData = {
-    java: "Java",
-    python: "Python",
-    typescript: "TypeScript",
-    C: "C",
-    Cpp: "C++",
-    css: "CSS",
-    html: "HTML"
 }

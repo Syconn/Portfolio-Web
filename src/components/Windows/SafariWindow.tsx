@@ -7,8 +7,9 @@ import Window, { type WindowInstance, type WindowManager } from "./Window";
 import { AboutPage } from "./websites/AboutSite";
 import type { registryKey } from "./WindowManager";
 import type { WindowData } from "../../util/types";
+import { SkillsPage } from "./websites/SkillsSite";
 
-const definedPages: string[] = ["/", "/about"]
+const definedPages: string[] = ["/", "/about", "/skills"]
 
 export type pageData = {
     id: number,
@@ -145,6 +146,12 @@ function loadWebpage(url: string, id: number): pageData {
             url: link,
             urlExtra: extra,
             pageContent: AboutPage
+        }
+        case "/skills": return {
+            id: id,
+            url: link,
+            urlExtra: extra,
+            pageContent: SkillsPage
         }
         default: return {
             id: id,

@@ -36,6 +36,7 @@ function HelpSite({ page, modifyPage, openTab }: PageProps) {
                 <div className="quick-links">
                     <button onClick={() => openTab("")}>Home</button>
                     <button onClick={() => openTab("/about")}>About</button>
+                    <button onClick={() => openTab("/skills")}>Skills</button>
                 </div>
             </div>
         </div>

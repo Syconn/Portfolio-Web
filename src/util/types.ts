@@ -1,6 +1,6 @@
 export type project = {
-    desc: string | null, // Null will pull from github
-    img: string[] | null,
+    desc: string,
+    img: string[],
     subline: string,
     title: string,
     repo: string,

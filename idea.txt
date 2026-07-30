@@ -19,3 +19,86 @@ https://www.macworld.com/wp-content/uploads/2023/01/safari-tips-how-to.jpg?quali
 
 
 Add some functionality back later lol - calc, cal, notepad
+
+Languages
+    TypeScript
+    JavaScript
+    Java
+    C#
+    C
+    C++
+    Python
+    HTML
+    CSS
+    Bash
+    Shell (I'd rename this to PowerShell)
+    Kotlin
+    
+Frameworks & Libraries
+    React
+    Node.js
+    Express.js
+    Django
+    Flask (currently spelled "Flash" in your code)
+    React Router
+    Motion
+    Zod
+    Lucide React
+    React Icons
+    Databases
+    SQLite
+    MySQL
+    MongoDB
+    Dexie.js
+    IndexedDB (currently named "IndexDB" in your code; the correct name is IndexedDB)
+
+Tools
+    Git
+    GitHub
+    JetBrains IDEs (I'd rename "Jetbrains" to "JetBrains IDEs")
+    VS Code
+    Microsoft Office (instead of "Microsoft Suite")
+    Discord Webhooks
+    Pandas
+    NumPy (instead of "Numpy")
+    ESLint (instead of "ES Lint")
+    Build Tools
+    npm
+    pnpm
+    Gradle
+    Maven
+    Vite
+
+APIs & Web
+    REST APIs
+    JSON
+    OpenAPI
+    Swagger
+    Postman
+    Axios
+    Fetch API
+    Socket.IO
+    WebSockets
+    Discord API
+    GitHub API
+    Google APIs
+
+Testing
+    JUnit
+    Vitest
+    Jest
+    React Testing Library
+    Cypress
+
+DevOps & Cloud
+    Docker
+    GitLab (capitalize the "L")
+    GitHub Actions
+    AWS
+    Oracle Cloud
+
+Operating Systems
+    Windows
+    macOS (instead of "MacOs")
+    Linux
+    Ubuntu
