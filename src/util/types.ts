@@ -5,8 +5,11 @@ export type Project = {
     imgs: string[],
     subline: string,
     repo: string,
-    startDate: string,
-    lastUpdated: string,
+    commitHistory: {
+        name: string,
+        date: string,
+        color?: string
+    }[],
     skills: string[]
 }
 

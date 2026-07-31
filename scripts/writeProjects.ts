@@ -7,8 +7,11 @@ type project = {
     imgs: string[],
     subline: string,
     repo: string,
-    startDate: Date,
-    lastUpdated: Date,
+    commitHistory: {
+        name: string,
+        date: string,
+        color?: string
+    }[]
     skills: string[]
 }
 
@@ -19,10 +22,29 @@ function writeJson(): project[] {
             readme: "https://raw.githubusercontent.com/Syconn/Drafter-Website-Builder/refs/heads/main/README.md",
             demoLink: "https://syconn.github.io/Drafter-Website-Builder/",
             subline: "A website building tool that allows students to build python based drafter websites",
-            imgs: ["src/assets/screenshots/drafter/drafter_home.png"],
+            imgs: [
+                "src/assets/screenshots/drafter/drafter_home.png", 
+                "src/assets/screenshots/drafter/docx_export.png", 
+                "src/assets/screenshots/drafter/hover_view.png",
+                "src/assets/screenshots/drafter/json_export.png",
+                "src/assets/screenshots/drafter/page_exporter.png",
+                "src/assets/screenshots/drafter/project_view.png",
+                "src/assets/screenshots/drafter/python_export.png",
+                 "src/assets/screenshots/drafter/webstate_designer.png"
+            ],
             repo: "https://github.com/Syconn/Drafter-Website-Builder",
-            startDate: new Date("April 7 2026"),
-            lastUpdated: new Date("May 29 2026"),
+            commitHistory: [{
+                name: "Created Project",
+                date: "April 7 2026"
+            }, {
+                name: "Project Completed",
+                date: "May 29 2026",
+                color: "#34c759"
+            }, {
+                name: "Forked Repo to Upgrade Deploy Script",
+                date: "July 21 2026",
+                color: "#c7c234"
+            }],
             skills: [
                 "TypeScript",
                 "JavaScript",
@@ -38,7 +60,7 @@ function writeJson(): project[] {
                 "JSON",
                 "Jest",
                 "Cypress",
-                "Github Actions"
+                "GitHub Actions"
             ]
         }
     ]

@@ -20,7 +20,7 @@ export const SkillsPage: webPage = {
 // TODO ON CARD HOVER SHOW PROJECTS THAT USE THEM
 type SkillLevel = "Expert" | "Advanced" | "Intermediate" | "Familiar";
 
-const categories: {
+export const categories: {
     title: string,
     skills: {
         icon: ReactNode,
@@ -176,7 +176,7 @@ export const iconColors: Record<string, string> = {
     "Discord Webhooks": "#5865F2",
     Pandas: "#150458",
     NumPy: "#013243",
-    ESLint: "#4B32C3",
+    ESLint: "#5a3ee6",
 
     // Build Tools
     npm: "#CB3837",
@@ -204,7 +204,7 @@ export const iconColors: Record<string, string> = {
     Vitest: "#6E9F18",
     Jest: "#C21325",
     "React Testing Library": "#E33332",
-    Cypress: "#17202C",
+    Cypress: "#637995",
 
     // DevOps
     Docker: "#2496ED",

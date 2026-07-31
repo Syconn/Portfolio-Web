@@ -18,14 +18,14 @@ type DesktopIcon = {
 const fileDefaults: DesktopIcon[] = [
     { id: 0, name: "Resume.pdf", type: "pdf", window: "pdf", x: 20, y: 20, data: { filePath: resumePDF } },
     { id: 1, name: "Contact Me", type: "mail", x: 20, y: 130, window: "contact" },
-    { id: 2, name: "Portfolio", type: "safari", x: 130, y: 20, window: "safari" }
+    { id: 2, name: "Portfolio", type: "safari", x: 130, y: 20, window: "safari", data: { urls: ["skills", "projects"] } }
 ]
 
 function DesktopFileManager({ openOrShowWindow }: { openOrShowWindow: (id: registryKey, data?: WindowData) => void }) {
     const [files, setFiles] = useState<DesktopIcon[]>(fileDefaults)
     const [dragging, setDragging] = useState<number | null>(null);
 
-    const dragInfo = useRef<{ id: number; offsetX: number; offsetY: number; } | null>(null);
+    const dragInfo = useRef<{ id: number, offsetX: number, offsetY: number, } | null>(null);
 
     const startDrag = (e: React.MouseEvent, file: DesktopIcon) => {
         setDragging(file.id);

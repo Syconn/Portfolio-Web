@@ -1,11 +1,12 @@
-import { AiFillProject } from "react-icons/ai";
-import type { PageProps, webPage } from "../SafariWindow";
-import projectJson from "../../../assets/projects.json"
-import type { Project } from "../../../util/types";
 import { useState } from "react";
-import { FaExternalLinkAlt, FaGithub, FaCalendar, FaCode, FaExpandAlt } from "react-icons/fa";
-import "../../../css/sites/Projects.css"
-import { iconColors } from "./SkillsSite";
+import { AiFillProject } from "react-icons/ai";
+import { FaArrowRight, FaCalendar, FaCode } from "react-icons/fa";
+import projectJson from "../../../assets/projects.json";
+import "../../../css/sites/Projects.css";
+import type { Project } from "../../../util/types";
+import { buildUrlWithData, type PageProps, type webPage } from "../SafariWindow";
+import { categories, iconColors } from "./SkillsSite";
+import { GlassDropdown } from "./ProjectView";
 
 export const ProjectPage: webPage = {
     icon: <AiFillProject />,
@@ -13,10 +14,9 @@ export const ProjectPage: webPage = {
     content: Projects
 }
 
-// TODO: IDEA MY GITHUB STUFF WILL LOAD IN IFRAMES SO OPEN THOSE IN BROWSER | ALSO EXPANDED VIEW AS A BROWSER + MINIMALIZE CURRENT VIEW A BIT - SQUARE IT
-
 function Projects({ page, openTab }: PageProps) {
     const [projects] = useState<Project[]>(projectJson)
+    const [category, setCategory] = useState("All Categories");
 
     return (
         <div className="projects-page">
@@ -24,74 +24,46 @@ function Projects({ page, openTab }: PageProps) {
                 <h1> Projects </h1>
             </div>
 
-            <div className="projects-list"> 
-                {projects.map(project => (
-                    <article className="project-card"  key={project.title}>
-                        <div className="project-top">
-                            <div>
+            <div className="projects-controls">
+                <GlassDropdown value={category} options={["All Categories", ...categories.map(c => c.title)]} onChange={setCategory} />
+
+                <span className="project-count">{projects.length} Projects</span>
+            </div>
+
+            <div className="projects-list">
+                {projects.map((project, ind) => (
+                    <article className="project-card" key={project.title} onClick={() => openTab(buildUrlWithData("projectView", { projectId: ind, returnId: page.id }))}>
+                        <div className="project-image">
+                            <img src={project.imgs[0]} alt={project.title} />
+
+                            <div className="project-image-overlay">
                                 <h2>{project.title}</h2>
-
-                                <p className="project-subline">{project.subline}</p>
-                            </div>
-
-                            <div className="project-buttons">
-                                {project.demoLink && (
-                                    <a href={project.demoLink} target="_blank">
-                                        <FaExternalLinkAlt />
-                                        Demo
-                                    </a>
-                                )}
-
-                                <a href={project.repo} target="_blank">
-                                    <FaGithub />
-                                    Source
-                                </a>
-
-                                <a onClick={() => openTab("/projectView", { project: project, returnTab: page.id })}>
-                                    <FaExpandAlt />
-                                    Expanded
-                                </a>
                             </div>
                         </div>
 
-                        {project.imgs.length > 0 && (
-                            <div className="project-images">
-                                {project.imgs.map(img => (
-                                    <img key={img} src={img} />
-                                ))}
+
+                        <div className="project-content">
+                            <p className="project-subline">{project.subline}</p>
+
+                            <div className="project-skills">
+                                {(category === "All Categories" ? project.skills : project.skills.filter(skill => (categories.find(c => c.title === category)?.skills.some(s => s.name === skill)))).slice(0, 4)
+                                    .map(skill => <span key={skill} style={{ color: iconColors[skill], "--skill-color": iconColors[skill] } as React.CSSProperties}><FaCode /> {skill}</span>)}
+                                {(() => {
+                                    const skills = category === "All Categories" ? project.skills : project.skills.filter(skill => categories.find(c => c.title === category)?.skills.some(s => s.name === skill));
+                                    return skills.length > 4 && <span className="more-skills">+{skills.length - 4}</span>;
+                                })()}
                             </div>
-                        )}
 
-                        <div className="project-info">
-                            <div className="date-box">
-                                <FaCalendar />
-
-                                <div>
-                                    <span>Started</span>
-                                    <strong>{new Date(project.startDate).toLocaleDateString()}</strong>
+                            <div className="project-footer">
+                                <div className="footer-date">
+                                    <FaCalendar />
+                                    <div>
+                                        <span>Updated</span>
+                                        <strong>{new Date(project.commitHistory[project.commitHistory.length - 1].date).toLocaleDateString()}</strong>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="date-box">
-                                <FaCalendar />
-
-                                <div>
-                                    <span>Updated</span>
-                                    <strong>{new Date(project.lastUpdated).toLocaleDateString()}</strong>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="project-skills">
-                            <h3>Built With</h3>
-
-                            <div>
-                                {project.skills.map(skill => (
-                                    <span key={skill} style={{ color: iconColors[skill]}}>
-                                        <FaCode />
-                                        {skill}
-                                    </span>
-                                ))}
+                                <FaArrowRight className="project-arrow" />
                             </div>
                         </div>
                     </article>
