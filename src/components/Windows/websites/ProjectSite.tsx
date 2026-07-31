@@ -21,7 +21,7 @@ function Projects({ page, openTab }: PageProps) {
     return (
         <div className="projects-page">
             <div className="projects-header">
-                <h1> Projects </h1>
+                <h1> Featured Projects </h1>
             </div>
 
             <div className="projects-controls">

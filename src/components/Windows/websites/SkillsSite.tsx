@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { BiLogoFlask } from "react-icons/bi";
 import { DiDjango } from "react-icons/di";
 import { FaExchangeAlt, FaGlobe } from "react-icons/fa";
@@ -9,7 +9,9 @@ import { SiApachemaven, SiAxios, SiC, SiCplusplus, SiCypress, SiDiscord, SiEslin
 import { TbBrandFramerMotion, TbBrandKotlin, TbBrandPowershell, TbBrandSocketIo } from "react-icons/tb";
 import { VscIndexZero, VscTerminalBash, VscVscode } from "react-icons/vsc";
 import "../../../css/sites/Skills.css";
-import type { PageProps, webPage } from "../SafariWindow";
+import { buildUrlWithData, type PageProps, type webPage } from "../SafariWindow";
+import type { Project } from "../../../util/types";
+import projectJson from "../../../assets/projects.json"
 
 export const SkillsPage: webPage = {
     icon: <FaCodeFork />,
@@ -39,9 +41,9 @@ export const categories: {
         { icon: <FaPython />, name: "Python", confidence: "Expert" },
         { icon: <FaHtml5 />, name: "HTML", confidence: "Advanced" },
         { icon: <FaCss3Alt />, name: "CSS", confidence: "Advanced" },
-        { icon: <VscTerminalBash />, name: "Bash", confidence: "Intermediate"},
+        { icon: <VscTerminalBash />, name: "Bash", confidence: "Intermediate" },
         { icon: <TbBrandPowershell />, name: "PowerShell", confidence: "Intermediate" },
-        { icon: <TbBrandKotlin />, name: "Kotlin", confidence: "Advanced"}
+        { icon: <TbBrandKotlin />, name: "Kotlin", confidence: "Advanced" }
     ]
 }, {
     title: "Frameworks & Libraries",
@@ -60,11 +62,11 @@ export const categories: {
 }, {
     title: "Databases",
     skills: [
-        { icon: <SiSqlite />, name: "SQLite", confidence: "Expert"  },
+        { icon: <SiSqlite />, name: "SQLite", confidence: "Expert" },
         { icon: <SiMysql />, name: "MySQL", confidence: "Familiar" },
         { icon: <SiMongodb />, name: "MongoDB", confidence: "Familiar" },
-        { icon: <FaDatabase />, name: "Dexie.js", confidence: "Expert"},
-        { icon: <VscIndexZero />, name: "IndexedDB", confidence: "Expert"}
+        { icon: <FaDatabase />, name: "Dexie.js", confidence: "Expert" },
+        { icon: <VscIndexZero />, name: "IndexedDB", confidence: "Expert" }
     ]
 }, {
     title: "Tools",
@@ -220,7 +222,12 @@ export const iconColors: Record<string, string> = {
     Ubuntu: "#E95420"
 };
 
-function SkillsSite({ }: PageProps) {
+function SkillsSite({ page, openTab }: PageProps) {
+    const [projects] = useState<Project[]>(projectJson)
+    const [flipped, setFlipped] = useState<string | null>(null);
+
+    const relatedProjects = (skill: { name: string }) => projects.filter(project => project.skills.includes(skill.name));
+
     return (
         <div className="skills-page">
             <div className="skills-header">
@@ -235,20 +242,38 @@ function SkillsSite({ }: PageProps) {
 
                     <div className="skill-grid">
                         {category.skills.map(skill => (
-                            <div key={skill.name} className="skill-card">
-                                <div className="skill-icon" style={{ color: iconColors[skill.name] ?? "var(--accent)" }}>{skill.icon}</div>
+                            <div className={`skill-card ${flipped === skill.name ? "flipped" : ""}`} onClick={() => setFlipped(flipped === skill.name ? null : skill.name)}>
+                                <div className="skill-card-inner">
+                                    <div className="skill-front">
+                                        <div className="skill-icon" style={{ color: iconColors[skill.name] ?? "var(--accent)" }}>{skill.icon}</div>
 
-                                <div className="skill-info">
-                                    <span className="skill-name">{skill.name}</span>
+                                        <div className="skill-info">
+                                            <span className="skill-name">{skill.name}</span>
 
-                                    <div className={`skill-level ${skill.confidence.toLowerCase()}`}>{skill.confidence}</div>
+                                            <div className={`skill-level ${skill.confidence.toLowerCase()}`}>{skill.confidence}</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div className="skill-back">
+                                        <h3>Used In</h3>
+
+                                        {relatedProjects(skill).length > 0 ? (
+                                            relatedProjects(skill).map(project => (
+                                                <button key={project.title}
+                                                    onClick={(e) => { e.stopPropagation(); openTab(buildUrlWithData("projectView", { projectId: projects.indexOf(project), returnId: page.id })); }}>
+                                                    {project.title}
+                                                </button>
+                                            ))
+                                        ) : <p>No featured projects yet.</p>}
+                                    </div>
                                 </div>
                             </div>
                         ))}
                     </div>
-                </section>
+                </section >
             ))}
-        </div>
+        </div >
     )
 }
 
