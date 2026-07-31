@@ -39,7 +39,6 @@ function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
 
     const projectSkillData = project?.skills.map(skill => {
         const category = categories.find(cat => cat.skills.some(s => s.name === skill));
-
         return {
             name: skill,
             category: category?.title ?? "Other",
