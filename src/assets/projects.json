@@ -5,14 +5,14 @@
         "demoLink": "https://syconn.github.io/Drafter-Website-Builder/",
         "subline": "A website building tool that allows students to build python based drafter websites",
         "imgs": [
-            "src/assets/screenshots/drafter/drafter_home.png",
-            "src/assets/screenshots/drafter/docx_export.png",
-            "src/assets/screenshots/drafter/hover_view.png",
-            "src/assets/screenshots/drafter/json_export.png",
-            "src/assets/screenshots/drafter/page_exporter.png",
-            "src/assets/screenshots/drafter/project_view.png",
-            "src/assets/screenshots/drafter/python_export.png",
-            "src/assets/screenshots/drafter/webstate_designer.png"
+            "screenshots/drafter/drafter_home.png",
+            "screenshots/drafter/docx_export.png",
+            "screenshots/drafter/hover_view.png",
+            "screenshots/drafter/json_export.png",
+            "screenshots/drafter/page_exporter.png",
+            "screenshots/drafter/project_view.png",
+            "screenshots/drafter/python_export.png",
+            "screenshots/drafter/webstate_designer.png"
         ],
         "repo": "https://github.com/Syconn/Drafter-Website-Builder",
         "commitHistory": [
