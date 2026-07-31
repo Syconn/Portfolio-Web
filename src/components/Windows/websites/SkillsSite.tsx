@@ -20,7 +20,7 @@ export const SkillsPage: webPage = {
 // TODO ON CARD HOVER SHOW PROJECTS THAT USE THEM
 type SkillLevel = "Expert" | "Advanced" | "Intermediate" | "Familiar";
 
-const categories: {
+export const categories: {
     title: string,
     skills: {
         icon: ReactNode,

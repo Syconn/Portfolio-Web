@@ -319,68 +319,145 @@
 }
 
 .expanded-project .markdown {
-    padding:25px;
-    line-height:1.6;
-    overflow:auto;
+    padding: 25px;
+    line-height: 1.6;
+    overflow: auto;
 }
 
 .expanded-project .markdown h1,
 .expanded-project .markdown h2,
 .expanded-project .markdown h3 {
-    margin-top:24px;
-    margin-bottom:12px;
+    margin-top: 24px;
+    margin-bottom: 12px;
 }
 
 .expanded-project .markdown p {
-    margin:12px 0;
+    margin: 12px 0;
 }
 
 .expanded-project .markdown code {
-    padding:3px 6px;
-    border-radius:6px;
-    background: rgba(0,0,0,.1);
+    padding: 3px 6px;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, .1);
     font-family:
         "JetBrains Mono",
         monospace;
 }
 
 .dark-mode .expanded-project .markdown code {
-    background: rgba(255,255,255,.1);
+    background: rgba(255, 255, 255, .1);
 }
 
 .expanded-project .markdown pre {
-    padding:16px;
-    border-radius:12px;
-    overflow-x:auto;
-    background: rgba(0,0,0,.12);
+    padding: 16px;
+    border-radius: 12px;
+    overflow-x: auto;
+    background: rgba(0, 0, 0, .12);
 }
 
 .expanded-project .markdown img {
-    max-width:100%;
-    border-radius:12px;
+    max-width: 100%;
+    border-radius: 12px;
 }
 
 .expanded-project .markdown table {
-    width:100%;
-    border-collapse:collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .expanded-project .markdown th,
 .expanded-project .markdown td {
-    padding:8px;
-    border:1px solid var(--soft-border);
+    padding: 8px;
+    border: 1px solid var(--soft-border);
 }
 
 .expanded-project .markdown blockquote {
-    border-left:4px solid #007aff;
-    padding-left:15px;
-    opacity:.8;
+    border-left: 4px solid #007aff;
+    padding-left: 15px;
+    opacity: .8;
 }
 
 .expanded-project .markdown {
-    padding:25px;
-    line-height:1.6;
+    padding: 25px;
+    line-height: 1.6;
     color: var(--text);
+}
+
+.skill-filter select {
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--soft-border);
+    background: rgba(255, 255, 255, .15);
+    color: inherit;
+    backdrop-filter: blur(10px);
+    margin-bottom: 15px;
+}
+
+.skills span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.glass-dropdown {
+    position:relative;
+    width:max-content;
+    z-index:10;
+}
+
+.glass-dropdown-button {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 15px;
+    border-radius:14px;
+    border:1px solid var(--soft-border);
+    background: rgba(255,255,255,.18);
+    backdrop-filter: blur(20px);
+    color:var(--text);
+    cursor:pointer;
+}
+
+.glass-dropdown-button svg {
+    transition:.2s;
+}
+
+
+.glass-dropdown-button .rotate {
+    transform:rotate(180deg);
+}
+
+.glass-dropdown-menu {
+    position:absolute;
+    top:calc(100% + 8px);
+    left:0;
+    min-width:220px;
+    padding:8px;
+    border-radius:16px;
+    background: rgba(255,255,255,.35);
+    backdrop-filter: blur(25px);
+    border: 1px solid var(--soft-border);
+    box-shadow: 0 15px 40px rgba(0,0,0,.15);
+}
+
+.dark-mode .glass-dropdown-menu {
+    background: rgba(30,30,30,.65);
+}
+
+.glass-dropdown-menu button {
+    width:100%;
+    padding:10px 12px;
+    border:none;
+    border-radius:10px;
+    background:transparent;
+    color:var(--text);
+    text-align:left;
+    cursor:pointer;
+}
+
+.glass-dropdown-menu button:hover,
+.glass-dropdown-menu button.selected {
+    background: rgba(0,122,255,.18);
 }
 
 @keyframes imageOpen {

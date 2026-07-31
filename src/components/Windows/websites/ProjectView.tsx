@@ -1,11 +1,11 @@
-import { FaAngleDoubleLeft, FaAngleDoubleRight, FaChevronLeft, FaChevronRight, FaExternalLinkAlt, FaGithub, FaGlobe } from "react-icons/fa"
+import { FaAngleDoubleLeft, FaAngleDoubleRight, FaChevronDown, FaChevronLeft, FaChevronRight, FaExternalLinkAlt, FaGithub, FaGlobe } from "react-icons/fa"
 import { buildUrlWithData, getUrlData, type PageProps, type webPage } from "../SafariWindow"
 import type { Project } from "../../../util/types";
 import "../../../css/sites/ProjectView.css"
 import projectJson from "../../../assets/projects.json"
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsArrowsAngleContract } from "react-icons/bs";
-import { iconColors } from "./SkillsSite";
+import { categories, iconColors } from "./SkillsSite";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -20,6 +20,7 @@ function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
     const [projects] = useState<Project[]>(projectJson)
     const [expandedImage, setExpandedImage] = useState<string | null>(null);
     const [imageIndex, setImageIndex] = useState(0);
+    const [skillCategory, setSkillCategory] = useState("All");
     const [readmeContent, setReadmeContent] = useState("");
 
     const projectId: number | undefined = getUrlData(page.urlExtra).projectId;
@@ -35,6 +36,18 @@ function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
     }, [project?.readme]);
 
     const getImageName = (path: string) => path.split("/").pop() ?? "Image";
+
+    const projectSkillData = project?.skills.map(skill => {
+        const category = categories.find(cat => cat.skills.some(s => s.name === skill));
+
+        return {
+            name: skill,
+            category: category?.title ?? "Other",
+            icon: category?.skills.find(s => s.name === skill)?.icon
+        };
+    });
+
+    const filteredSkills = projectSkillData?.filter(skill => skillCategory === "All" || skill.category === skillCategory);
 
     if (!project) return (<span> No Project Loaded </span>)
     return (
@@ -115,8 +128,12 @@ function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
                 <div className="project-panel">
                     <h2>Skills</h2>
 
+                    <div className="skill-filter">
+                        <GlassDropdown value={skillCategory} options={["All", ...categories.map(c => c.title)]} onChange={setSkillCategory} />
+                    </div>
+
                     <div className="skills">
-                        {project.skills.map(skill => <span key={skill} style={{ color: iconColors[skill], "--skill-color": iconColors[skill] } as React.CSSProperties}>{skill}</span>)}
+                        {filteredSkills?.map(skill => <span key={skill.name} style={{ color: iconColors[skill.name], "--skill-color": iconColors[skill.name] } as React.CSSProperties}>{skill.icon} {skill.name}</span> )}
                     </div>
                 </div>
 
@@ -147,6 +164,48 @@ function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
                     {readmeContent ? <ReactMarkdown remarkPlugins={[remarkGfm]}>{readmeContent}</ReactMarkdown> : <p> No README available. </p>}
                 </div>
             </section>
+        </div>
+    );
+}
+
+export function GlassDropdown({ value, options, onChange }: { value: string, options: string[], onChange: (value: string) => void }) {
+    const [open, setOpen] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const close = (e: MouseEvent) => {
+            if (!ref.current?.contains(e.target as Node)) setOpen(false);
+        };
+
+        document.addEventListener("mousedown", close);
+        return () => document.removeEventListener("mousedown", close);
+    }, []);
+
+
+    return (
+        <div className="glass-dropdown" ref={ref}>
+            <button className="glass-dropdown-button" onClick={() => setOpen(!open)}>
+                {value}
+
+                <FaChevronDown className={open ? "rotate" : ""} />
+            </button>
+
+            {open && (
+                <div className="glass-dropdown-menu">
+                    {options.map(option => (
+                        <button
+                            key={option}
+                            className={option === value ? "selected" : ""}
+                            onClick={() => {
+                                onChange(option);
+                                setOpen(false);
+                            }}
+                        >
+                            {option}
+                        </button>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }
