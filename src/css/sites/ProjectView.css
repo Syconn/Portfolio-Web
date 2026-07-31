@@ -82,7 +82,7 @@
 .expanded-project .image-name {
     font-size: 16px;
     color: var(--text-secondary);
-    opacity: 1;
+    opacity: .8;
     margin-bottom: 15px;
     font-family:
         "JetBrains Mono",
@@ -315,20 +315,72 @@
     padding: 12px 20px;
     background: rgba(255, 255, 255, .12);
     font-weight: bold;
+    text-align: center;
 }
 
 .expanded-project .markdown {
-    padding: 20px;
-    max-height: 500px;
-    overflow: auto;
+    padding:25px;
+    line-height:1.6;
+    overflow:auto;
 }
 
-.expanded-project .markdown pre {
-    white-space: pre-wrap;
-    line-height: 1.6;
+.expanded-project .markdown h1,
+.expanded-project .markdown h2,
+.expanded-project .markdown h3 {
+    margin-top:24px;
+    margin-bottom:12px;
+}
+
+.expanded-project .markdown p {
+    margin:12px 0;
+}
+
+.expanded-project .markdown code {
+    padding:3px 6px;
+    border-radius:6px;
+    background: rgba(0,0,0,.1);
     font-family:
         "JetBrains Mono",
         monospace;
+}
+
+.dark-mode .expanded-project .markdown code {
+    background: rgba(255,255,255,.1);
+}
+
+.expanded-project .markdown pre {
+    padding:16px;
+    border-radius:12px;
+    overflow-x:auto;
+    background: rgba(0,0,0,.12);
+}
+
+.expanded-project .markdown img {
+    max-width:100%;
+    border-radius:12px;
+}
+
+.expanded-project .markdown table {
+    width:100%;
+    border-collapse:collapse;
+}
+
+.expanded-project .markdown th,
+.expanded-project .markdown td {
+    padding:8px;
+    border:1px solid var(--soft-border);
+}
+
+.expanded-project .markdown blockquote {
+    border-left:4px solid #007aff;
+    padding-left:15px;
+    opacity:.8;
+}
+
+.expanded-project .markdown {
+    padding:25px;
+    line-height:1.6;
+    color: var(--text);
 }
 
 @keyframes imageOpen {

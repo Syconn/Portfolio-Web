@@ -10,8 +10,9 @@ import type { WindowData } from "../../util/types";
 import { SkillsPage } from "./websites/SkillsSite";
 import { ProjectPage } from "./websites/ProjectSite";
 import { ProjectViewPage } from "./websites/ProjectView";
+import { DemoWebPage } from "./websites/DemoSite";
 
-const definedPages: string[] = ["", "about", "skills", "projects", "projectView"]
+const definedPages: string[] = ["", "about", "skills", "projects", "projectView", "syconn.github.io"]
 
 export type pageData = {
     id: number,
@@ -24,8 +25,6 @@ export type webPage = {
     icon: ReactNode,
     pageTitle: string,
     content: ({ page, modifyPage }: PageProps) => React.JSX.Element
-
-    // Page Specific
     search?: string,
 }
 
@@ -80,6 +79,8 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
 
     const openTab = (url: string = "") => {
         const [link, extra] = splitUrl(url)
+
+        console.log(link)
 
         if ((link === "" && extra === "") || definedPages.includes(link)) {
             const id = nextId.current++;
@@ -179,7 +180,8 @@ function loadWebpage(url: string, id: number): pageData {
         case "skills": return page(id, url, SkillsPage)
         case "projects": return page(id, url, ProjectPage)
         case "projectView": return page(id, url, ProjectViewPage)
-        default: return page(id, url, HelpPage)
+        case "": return page(id, url, HelpPage)
+        default: return page(id, url, DemoWebPage)
     }
 }
 

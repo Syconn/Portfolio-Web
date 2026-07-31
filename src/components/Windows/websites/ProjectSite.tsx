@@ -35,13 +35,13 @@ function Projects({ page, openTab }: PageProps) {
 
                             <div className="project-buttons">
                                 {project.demoLink && (
-                                    <a href={project.demoLink} target="_blank">
+                                    <a onClick={() => { if (project.demoLink) openTab(buildUrlWithData("project.demoLink", { projectId: page.id })) }}>
                                         <FaExternalLinkAlt />
                                         Demo
                                     </a>
                                 )}
 
-                                <a href={project.repo} target="_blank">
+                                <a onClick={() => openTab(project.repo)}>
                                     <FaGithub />
                                     Source
                                 </a>
@@ -66,8 +66,8 @@ function Projects({ page, openTab }: PageProps) {
                                 <FaCalendar />
 
                                 <div>
-                                    <span>Started</span>
-                                    <strong>{new Date(project.startDate).toLocaleDateString()}</strong>
+                                    <span>Created</span>
+                                    <strong>{new Date(project.commitHistory[0].date).toLocaleDateString()}</strong>
                                 </div>
                             </div>
 
@@ -75,8 +75,8 @@ function Projects({ page, openTab }: PageProps) {
                                 <FaCalendar />
 
                                 <div>
-                                    <span>Updated</span>
-                                    <strong>{new Date(project.lastUpdated).toLocaleDateString()}</strong>
+                                    <span>Last Update</span>
+                                    <strong>{new Date(project.commitHistory[project.commitHistory.length - 1].date).toLocaleDateString()}</strong>
                                 </div>
                             </div>
                         </div>

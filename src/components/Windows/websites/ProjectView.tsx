@@ -1,11 +1,13 @@
-import { FaChevronLeft, FaChevronRight, FaExternalLinkAlt, FaGithub, FaGlobe } from "react-icons/fa"
-import { getUrlData, type PageProps, type webPage } from "../SafariWindow"
+import { FaAngleDoubleLeft, FaAngleDoubleRight, FaChevronLeft, FaChevronRight, FaExternalLinkAlt, FaGithub, FaGlobe } from "react-icons/fa"
+import { buildUrlWithData, getUrlData, type PageProps, type webPage } from "../SafariWindow"
 import type { Project } from "../../../util/types";
 import "../../../css/sites/ProjectView.css"
 import projectJson from "../../../assets/projects.json"
 import { useEffect, useState } from "react";
 import { BsArrowsAngleContract } from "react-icons/bs";
 import { iconColors } from "./SkillsSite";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export const ProjectViewPage: webPage = {
     icon: <FaGlobe />,
@@ -13,20 +15,24 @@ export const ProjectViewPage: webPage = {
     content: ProjectView
 }
 
-// TOGGLE BUTTONS, SKILLS BREAK DOWN BY CATEGORY, ACTUALLY SHOW README, DEMO ON SITE
-function ProjectView({ page, modifyPage, closeTab }: PageProps) {
+// SKILLS BREAK DOWN BY CATEGORY, DEMO ON SITE
+function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
     const [projects] = useState<Project[]>(projectJson)
     const [expandedImage, setExpandedImage] = useState<string | null>(null);
     const [imageIndex, setImageIndex] = useState(0);
+    const [readmeContent, setReadmeContent] = useState("");
 
     const projectId: number | undefined = getUrlData(page.urlExtra).projectId;
     const project: Project | undefined = projectId !== undefined && projectId < projects.length && projectId >= 0 ? projects[projectId] : undefined
 
-    console.log(getUrlData(page.urlExtra))
+    useEffect(() => {
+        if (project !== undefined) modifyPage(page.id, { pageTitle: project.title })
+    }, [projectId])
 
     useEffect(() => {
-        if (project) modifyPage(page.id, { pageTitle: project.title })
-    }, [projectId])
+        if (project === undefined || project.readme === undefined) return;
+        fetch(project.readme).then(res => res.text()).then(text => setReadmeContent(text)).catch(() => setReadmeContent("Failed to load README."));
+    }, [project?.readme]);
 
     const getImageName = (path: string) => path.split("/").pop() ?? "Image";
 
@@ -41,22 +47,36 @@ function ProjectView({ page, modifyPage, closeTab }: PageProps) {
                 </div>
 
                 <div className="project-actions">
+                    {projectId !== undefined && (
+                        <a onClick={() => (projectId + 1 + projects.length) % projects.length}>
+                            <FaAngleDoubleLeft />
+                            Previous
+                        </a>
+                    )}
+
                     {project.demoLink && (
-                        <a href={project.demoLink} target="_blank">
+                        <a onClick={() => { if (project.demoLink) openTab(buildUrlWithData(project.demoLink, { returnId: page.id })) }}>
                             <FaExternalLinkAlt />
                             Demo
                         </a>
                     )}
 
-                    <a href={project.repo} target="_blank">
+                    <a onClick={() => openTab(project.repo)}>
                         <FaGithub />
                         GitHub
                     </a>
 
                     <a onClick={() => closeTab(page.id)}>
                         <BsArrowsAngleContract />
-                        Contract
+                        Shrink
                     </a>
+
+                    {projectId !== undefined && (
+                        <a onClick={() => (projectId + 1 + projects.length) % projects.length}>
+                            <FaAngleDoubleRight />
+                            Next
+                        </a>
+                    )}
                 </div>
             </section>
 
@@ -110,7 +130,7 @@ function ProjectView({ page, modifyPage, closeTab }: PageProps) {
 
                                 <div className="timeline-content">
                                     <span>{event.name}</span>
-                                    <strong>{new Date(event.date).toLocaleDateString(undefined, { month: "short", year: "numeric" } )}</strong>
+                                    <strong>{new Date(event.date).toLocaleDateString(undefined, { month: "short", day: "2-digit", year: "numeric" })}</strong>
                                 </div>
                             </div>
                         ))}
@@ -118,20 +138,13 @@ function ProjectView({ page, modifyPage, closeTab }: PageProps) {
                 </div>
             </section>
 
-
             <section className="readme">
                 <div className="readme-header">
                     <span>README.md</span>
                 </div>
 
                 <div className="markdown">
-                    {project.readme ? (
-                        <pre>
-                            {project.readme}
-                        </pre>
-                    ) : (
-                        <p> No README available. </p>
-                    )}
+                    {readmeContent ? <ReactMarkdown remarkPlugins={[remarkGfm]}>{readmeContent}</ReactMarkdown> : <p> No README available. </p>}
                 </div>
             </section>
         </div>
