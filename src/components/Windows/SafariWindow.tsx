@@ -39,7 +39,6 @@ export type PageProps = {
 type UrlData = {
     projectId?: number;
     returnId?: number;
-
     [key: string]: string | number | undefined; // Parser Safe
 };
 
@@ -47,16 +46,18 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
     const nextId = useRef(0)
     const initialPages = preloadWebsites(instance.data?.urls, nextId);
 
-    const [pageData, setPageData] = useState(initialPages);
+    const [pageData, setPageData] = useState<pageData[]>(initialPages);
     const [tab, setTab] = useState(initialPages.at(-1)?.id ?? -1);
 
     const selectedData = pageData.find(v => v.id === tab)
     const PageContent = selectedData?.pageContent.content;
     const safeUrl = selectedData ? selectedData.url + selectedData.urlExtra : ""
+    const didPreload = useRef(!!instance.data?.urls?.length);
 
     useEffect(() => {
-        if (instance.data?.urls) instance.data.urls.forEach(val => openTab(val))
-    }, [instance.data?.urls])
+        if (didPreload.current) return;
+        if (instance.data?.urls) instance.data.urls.forEach(openTab);
+    }, [instance.data?.urls]);
 
     useEffect(() => {
         if (pageData.length === 0) instance.closeWindow(instance.id);

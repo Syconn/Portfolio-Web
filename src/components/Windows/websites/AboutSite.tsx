@@ -46,7 +46,6 @@ function Overview({ openTab, openExternalWindow }: PageProps) {
         return value;
     };
 
-    // TODO: ADD A RANDOM PROJECT TO SHOW OFF, Lines of Code instead of completed projects
     return (
         <div className="overview-page">
             <section className="hero">
