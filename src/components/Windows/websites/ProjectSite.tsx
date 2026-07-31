@@ -1,10 +1,10 @@
-import { AiFillProject } from "react-icons/ai";
-import { buildUrlWithData, type PageProps, type webPage } from "../SafariWindow";
-import projectJson from "../../../assets/projects.json"
-import type { Project } from "../../../util/types";
 import { useState } from "react";
-import { FaExternalLinkAlt, FaGithub, FaCalendar, FaCode, FaExpandAlt } from "react-icons/fa";
-import "../../../css/sites/Projects.css"
+import { AiFillProject } from "react-icons/ai";
+import { FaArrowRight, FaCalendar, FaCode } from "react-icons/fa";
+import projectJson from "../../../assets/projects.json";
+import "../../../css/sites/Projects.css";
+import type { Project } from "../../../util/types";
+import { buildUrlWithData, type PageProps, type webPage } from "../SafariWindow";
 import { iconColors } from "./SkillsSite";
 
 export const ProjectPage: webPage = {
@@ -13,86 +13,112 @@ export const ProjectPage: webPage = {
     content: Projects
 }
 
-// TODO: IDEA MY GITHUB STUFF WILL LOAD IN IFRAMES SO OPEN THOSE IN BROWSER | ALSO EXPANDED VIEW AS A BROWSER + MINIMALIZE CURRENT VIEW A BIT - SQUARE IT, TO MANY IMAGES, CATEGORIZE SKILLS, FIX DATES FROM COMMIT HISTORY
 function Projects({ page, openTab }: PageProps) {
     const [projects] = useState<Project[]>(projectJson)
-    
+
     return (
         <div className="projects-page">
             <div className="projects-header">
                 <h1> Projects </h1>
             </div>
 
-            <div className="projects-list"> 
+            <span className="project-count">
+                {projects.length} Projects
+            </span>
+
+            <div className="projects-list">
                 {projects.map((project, ind) => (
-                    <article className="project-card"  key={project.title}>
-                        <div className="project-top">
-                            <div>
+                    <article
+                        className="project-card"
+                        key={project.title}
+                        onClick={() =>
+                            openTab(
+                                buildUrlWithData("projectView", {
+                                    projectId: ind,
+                                    returnId: page.id
+                                })
+                            )
+                        }
+                    >
+
+                        <div className="project-image">
+
+                            <img
+                                src={project.imgs[0]}
+                                alt={project.title}
+                            />
+
+                            <div className="project-image-overlay">
+
                                 <h2>{project.title}</h2>
 
-                                <p className="project-subline">{project.subline}</p>
                             </div>
 
-                            <div className="project-buttons">
-                                {project.demoLink && (
-                                    <a onClick={() => { if (project.demoLink) openTab(buildUrlWithData("project.demoLink", { projectId: page.id })) }}>
-                                        <FaExternalLinkAlt />
-                                        Demo
-                                    </a>
-                                )}
-
-                                <a onClick={() => openTab(project.repo)}>
-                                    <FaGithub />
-                                    Source
-                                </a>
-
-                                <a onClick={() => openTab(buildUrlWithData("projectView", { projectId: ind, returnId: page.id }))}>
-                                    <FaExpandAlt />
-                                    Expanded
-                                </a>
-                            </div>
                         </div>
 
-                        {project.imgs.length > 0 && (
-                            <div className="project-images">
-                                {project.imgs.map(img => (
-                                    <img key={img} src={img} />
-                                ))}
-                            </div>
-                        )}
 
-                        <div className="project-info">
-                            <div className="date-box">
-                                <FaCalendar />
+                        <div className="project-content">
 
-                                <div>
-                                    <span>Created</span>
-                                    <strong>{new Date(project.commitHistory[0].date).toLocaleDateString()}</strong>
-                                </div>
-                            </div>
+                            <p className="project-subline">
+                                {project.subline}
+                            </p>
 
-                            <div className="date-box">
-                                <FaCalendar />
 
-                                <div>
-                                    <span>Last Update</span>
-                                    <strong>{new Date(project.commitHistory[project.commitHistory.length - 1].date).toLocaleDateString()}</strong>
-                                </div>
-                            </div>
-                        </div>
+                            <div className="project-skills">
 
-                        <div className="project-skills">
-                            <h3>Built With</h3>
+                                {project.skills.slice(0, 4).map(skill => (
 
-                            <div>
-                                {project.skills.map(skill => (
-                                    <span key={skill} style={{ color: iconColors[skill], "--skill-color": iconColors[skill] } as React.CSSProperties}>
+                                    <span
+                                        key={skill}
+                                        style={{
+                                            color: iconColors[skill],
+                                            "--skill-color": iconColors[skill]
+                                        } as React.CSSProperties}
+                                    >
                                         <FaCode />
                                         {skill}
                                     </span>
+
                                 ))}
+
+                                {project.skills.length > 4 && (
+
+                                    <span className="more-skills">
+
+                                        +{project.skills.length - 4}
+
+                                    </span>
+
+                                )}
+
                             </div>
+
+
+                            <div className="project-footer">
+
+                                <div className="footer-date">
+
+                                    <FaCalendar />
+
+                                    <div>
+
+                                        <span>Updated</span>
+
+                                        <strong>
+                                            {new Date(project.commitHistory[project.commitHistory.length - 1].date).toLocaleDateString()}
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+
+                                <FaArrowRight className="project-arrow" />
+
+                            </div>
+
                         </div>
+
                     </article>
                 ))}
             </div>
