@@ -6,12 +6,12 @@ import { HelpPage } from "./websites/HelpSite";
 import Window, { type WindowInstance, type WindowManager } from "./Window";
 import { AboutPage } from "./websites/AboutSite";
 import type { registryKey } from "./WindowManager";
-import type { Project, WindowData } from "../../util/types";
+import type { WindowData } from "../../util/types";
 import { SkillsPage } from "./websites/SkillsSite";
 import { ProjectPage } from "./websites/ProjectSite";
 import { ProjectViewPage } from "./websites/ProjectView";
 
-const definedPages: string[] = ["/", "/about", "/skills", "/projects", "/projectView"]
+const definedPages: string[] = ["", "about", "skills", "projects", "projectView"]
 
 export type pageData = {
     id: number,
@@ -27,17 +27,22 @@ export type webPage = {
 
     // Page Specific
     search?: string,
-    project?: Project
-    returnTab?: number
 }
 
 export type PageProps = {
     page: pageData,
     modifyPage: (id: number, changes: Partial<webPage>) => void,
-    openTab: (url: string, changes?: Partial<webPage>) => void,
+    openTab: (url: string) => void,
     closeTab: (id: number) => void,
     openExternalWindow: (id: registryKey, data?: WindowData) => void
 }
+
+type UrlData = {
+    projectId?: number;
+    returnId?: number;
+
+    [key: string]: string | number | undefined; // Parser Safe
+};
 
 function SafariWindow(instance: WindowInstance & WindowManager) {
     const nextId = useRef(0)
@@ -59,12 +64,12 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
     }, [pageData.length]);
 
     const closeTab = (i: number) => {
-        const optionalTab = pageData.find(v => v.id === i)?.pageContent.returnTab
+        const optionalTab = getUrlData(pageData.find(v => v.id === i)?.urlExtra ?? "")?.returnId
         setPageData(prev => {
             const newPages = prev.filter(page => page.id !== i)
 
             setTab(prev => {
-                if (optionalTab !== undefined && newPages.some(page => page.id === optionalTab)) return optionalTab;
+                if (prev === i && optionalTab !== undefined && newPages.some(page => page.id === optionalTab)) return optionalTab;
                 if (prev !== i) return prev;
                 return newPages.at(-1)?.id ?? -1
             });
@@ -73,36 +78,23 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
         })
     }
 
-    const openTab = (url: string = "", changes?: Partial<webPage>) => {
+    const openTab = (url: string = "") => {
         const [link, extra] = splitUrl(url)
 
-        console.log("Clicked ", url)
-
-        if ((link === "" && extra === "") || definedPages.includes(extra)) {
+        if ((link === "" && extra === "") || definedPages.includes(link)) {
             const id = nextId.current++;
-            const page = loadWebpage(url, id);
-            if (changes) page.pageContent = { ...page.pageContent, ...changes }
-
             setTab(id);
-            setPageData(prev => [...prev, page]);
+            setPageData(prev => [...prev, loadWebpage(url, id)]);
         } else {
             if (url.startsWith("http://") || url.startsWith("https://")) window.open(url, "_blank");
             else window.open(`https://www.google.com/search?q=${encodeURIComponent(url)}`, "_blank");
         }
     }
 
-    useEffect(() => {
-        console.log({
-            tab,
-            pageIds: pageData.map(p => p.id),
-            selectedData: pageData.find(v => v.id === tab)
-        });
-    }, [tab, pageData]);
-
     const refresh = (url: string | undefined = safeUrl) => {
         const [link, extra] = splitUrl(url)
 
-        if ((link === "" && extra === "") || definedPages.includes(extra)) setPageData(prev => prev.map(page => page.id === tab ? loadWebpage(url, page.id) : page));
+        if ((link === "" && extra === "") || definedPages.includes(link)) setPageData(prev => prev.map(page => page.id === tab ? loadWebpage(url, page.id) : page));
         else {
             if (url.startsWith("http://") || url.startsWith("https://")) window.open(url, "_blank");
             else window.open(`https://www.google.com/search?q=${encodeURIComponent(url)}`, "_blank");
@@ -162,7 +154,7 @@ function preloadWebsites(urls: string[] | undefined, ref: RefObject<number>): pa
 function splitUrl(url: string): [string, string] {
     if (url.includes(" ")) return [url, ""]
     const withoutProtocol = url.replace(/^https?:\/\//, "")
-    const index = withoutProtocol.search(/[\/#]/)
+    const index = withoutProtocol.search(/[\/#?]/)
     return index === -1 ? [withoutProtocol, ""] : [withoutProtocol.slice(0, index), withoutProtocol.slice(index)]
 }
 
@@ -182,13 +174,35 @@ function page(id: number, url: string, page: webPage): pageData {
 }
 
 function loadWebpage(url: string, id: number): pageData {
-    switch (splitUrl(url)[1]) {
-        case "/about": return page(id, url, AboutPage)
-        case "/skills": return page(id, url, SkillsPage)
-        case "/projects": return page(id, url, ProjectPage)
-        case "/projectView": return page(id, url, ProjectViewPage)
+    switch (splitUrl(url)[0]) {
+        case "about": return page(id, url, AboutPage)
+        case "skills": return page(id, url, SkillsPage)
+        case "projects": return page(id, url, ProjectPage)
+        case "projectView": return page(id, url, ProjectViewPage)
         default: return page(id, url, HelpPage)
     }
+}
+
+export function getUrlData(url: string): UrlData {
+    const data: UrlData = {};
+    const query = url.split("?")[1];
+    if (!query) return data;
+
+    query.split(",").forEach(pair => {
+        const [key, value] = pair.split("=");
+
+        if (key && value !== undefined) {
+            const num = Number(value);
+            data[key] = isNaN(num) ? value : num;
+        }
+    });
+
+    return data;
+}
+
+export function buildUrlWithData(url: string, data: UrlData): string {
+    const params = Object.entries(data).filter(([_, value]) => value !== undefined).map(([key, value]) => `${key}=${value}`).join(",");
+    return params ? `${url}?${params}` : url;
 }
 
 export default SafariWindow

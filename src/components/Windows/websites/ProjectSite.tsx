@@ -1,5 +1,5 @@
 import { AiFillProject } from "react-icons/ai";
-import type { PageProps, webPage } from "../SafariWindow";
+import { buildUrlWithData, type PageProps, type webPage } from "../SafariWindow";
 import projectJson from "../../../assets/projects.json"
 import type { Project } from "../../../util/types";
 import { useState } from "react";
@@ -13,11 +13,10 @@ export const ProjectPage: webPage = {
     content: Projects
 }
 
-// TODO: IDEA MY GITHUB STUFF WILL LOAD IN IFRAMES SO OPEN THOSE IN BROWSER | ALSO EXPANDED VIEW AS A BROWSER + MINIMALIZE CURRENT VIEW A BIT - SQUARE IT
-
+// TODO: IDEA MY GITHUB STUFF WILL LOAD IN IFRAMES SO OPEN THOSE IN BROWSER | ALSO EXPANDED VIEW AS A BROWSER + MINIMALIZE CURRENT VIEW A BIT - SQUARE IT, TO MANY IMAGES, CATEGORIZE SKILLS, FIX DATES FROM COMMIT HISTORY
 function Projects({ page, openTab }: PageProps) {
     const [projects] = useState<Project[]>(projectJson)
-
+    
     return (
         <div className="projects-page">
             <div className="projects-header">
@@ -25,7 +24,7 @@ function Projects({ page, openTab }: PageProps) {
             </div>
 
             <div className="projects-list"> 
-                {projects.map(project => (
+                {projects.map((project, ind) => (
                     <article className="project-card"  key={project.title}>
                         <div className="project-top">
                             <div>
@@ -47,7 +46,7 @@ function Projects({ page, openTab }: PageProps) {
                                     Source
                                 </a>
 
-                                <a onClick={() => openTab("/projectView", { project: project, returnTab: page.id })}>
+                                <a onClick={() => openTab(buildUrlWithData("projectView", { projectId: ind, returnId: page.id }))}>
                                     <FaExpandAlt />
                                     Expanded
                                 </a>
@@ -87,7 +86,7 @@ function Projects({ page, openTab }: PageProps) {
 
                             <div>
                                 {project.skills.map(skill => (
-                                    <span key={skill} style={{ color: iconColors[skill]}}>
+                                    <span key={skill} style={{ color: iconColors[skill], "--skill-color": iconColors[skill] } as React.CSSProperties}>
                                         <FaCode />
                                         {skill}
                                     </span>
