@@ -4,23 +4,23 @@
     "languages": [
         "Java",
         "GLSL",
-        "mcfunction",
-        "C++",
-        "CMake",
         "Python",
         "TypeScript",
         "CSS",
         "JavaScript",
         "HTML",
+        "mcfunction",
         "C",
         "Makefile",
-        "Mathematica",
-        "C#",
-        "Lua",
-        "Kotlin",
-        "Shell",
+        "C++",
+        "CMake",
         "Batchfile",
         "MoonScript",
+        "Shell",
+        "C#",
+        "Mathematica",
+        "Lua",
+        "Kotlin",
         "Objective-C++",
         "GAP",
         "ShaderLab",
@@ -1941,7 +1941,7 @@
     "recent_repositories": [
         {
             "name": "Portfolio-Web",
-            "commits": 97
+            "commits": 98
         },
         {
             "name": "StatsRepo",
