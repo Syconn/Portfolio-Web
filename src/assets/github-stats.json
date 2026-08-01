@@ -4,23 +4,23 @@
     "languages": [
         "Java",
         "GLSL",
+        "mcfunction",
+        "C++",
+        "CMake",
+        "Python",
         "TypeScript",
+        "CSS",
         "JavaScript",
         "HTML",
-        "Python",
-        "MoonScript",
         "C",
-        "CSS",
-        "Shell",
         "Makefile",
-        "CMake",
-        "C++",
-        "Batchfile",
-        "mcfunction",
-        "C#",
         "Mathematica",
+        "C#",
         "Lua",
         "Kotlin",
+        "Shell",
+        "Batchfile",
+        "MoonScript",
         "Objective-C++",
         "GAP",
         "ShaderLab",
@@ -1931,12 +1931,17 @@
             "date": "2026-07-31",
             "count": 13,
             "level": 4
+        },
+        {
+            "date": "2026-08-01",
+            "count": 0,
+            "level": 0
         }
     ],
     "recent_repositories": [
         {
             "name": "Portfolio-Web",
-            "commits": 96
+            "commits": 97
         },
         {
             "name": "StatsRepo",
