@@ -4,22 +4,22 @@
     "languages": [
         "Java",
         "GLSL",
-        "Python",
         "TypeScript",
+        "CSS",
         "JavaScript",
         "HTML",
-        "Mathematica",
+        "C++",
+        "CMake",
+        "C",
+        "Batchfile",
+        "Python",
+        "Makefile",
+        "mcfunction",
         "C#",
+        "Mathematica",
         "Lua",
         "Kotlin",
         "Shell",
-        "mcfunction",
-        "C++",
-        "C",
-        "Makefile",
-        "CSS",
-        "CMake",
-        "Batchfile",
         "MoonScript",
         "Objective-C++",
         "GAP",
@@ -1910,12 +1910,12 @@
     ],
     "recent_repositories": [
         {
-            "name": "StatsRepo",
-            "commits": 7
+            "name": "Portfolio-Web",
+            "commits": 100
         },
         {
-            "name": "Portfolio-Web",
-            "commits": 99
+            "name": "StatsRepo",
+            "commits": 7
         },
         {
             "name": "Syconn.github.io",
