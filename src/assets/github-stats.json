@@ -6,63 +6,63 @@
         "GLSL",
         "Python",
         "TypeScript",
-        "CSS",
         "JavaScript",
         "HTML",
+        "Mathematica",
+        "C#",
+        "Lua",
+        "Kotlin",
+        "Shell",
         "mcfunction",
+        "C++",
         "C",
         "Makefile",
-        "C++",
+        "CSS",
         "CMake",
         "Batchfile",
         "MoonScript",
-        "Shell",
-        "C#",
-        "Mathematica",
-        "Lua",
-        "Kotlin",
         "Objective-C++",
         "GAP",
         "ShaderLab",
         "HLSL"
     ],
     "total_languages": 23,
-    "lines_of_code": "1495421+",
+    "lines_of_code": "1499669+",
     "top_languages": [
         {
             "name": "JavaScript",
             "lines": 766695,
-            "percent": 51.27
+            "percent": 51.12
         },
         {
             "name": "C#",
             "lines": 395289,
-            "percent": 26.43
+            "percent": 26.36
         },
         {
             "name": "TypeScript",
-            "lines": 121870,
-            "percent": 8.15
+            "lines": 123448,
+            "percent": 8.23
         },
         {
             "name": "Java",
             "lines": 66574,
-            "percent": 4.45
+            "percent": 4.44
         },
         {
             "name": "Python",
-            "lines": 25134,
-            "percent": 1.68
+            "lines": 25721,
+            "percent": 1.72
         },
         {
             "name": "C/C++ Header",
             "lines": 16981,
-            "percent": 1.14
+            "percent": 1.13
         },
         {
             "name": "CSS",
-            "lines": 5703,
-            "percent": 0.38
+            "lines": 7783,
+            "percent": 0.52
         },
         {
             "name": "C++",
@@ -82,41 +82,6 @@
     ],
     "total_contributions": 423,
     "contributions": [
-        {
-            "date": "2025-07-27",
-            "count": 0,
-            "level": 0
-        },
-        {
-            "date": "2025-07-28",
-            "count": 2,
-            "level": 1
-        },
-        {
-            "date": "2025-07-29",
-            "count": 0,
-            "level": 0
-        },
-        {
-            "date": "2025-07-30",
-            "count": 1,
-            "level": 1
-        },
-        {
-            "date": "2025-07-31",
-            "count": 0,
-            "level": 0
-        },
-        {
-            "date": "2025-08-01",
-            "count": 2,
-            "level": 1
-        },
-        {
-            "date": "2025-08-02",
-            "count": 1,
-            "level": 1
-        },
         {
             "date": "2025-08-03",
             "count": 2,
@@ -1936,16 +1901,21 @@
             "date": "2026-08-01",
             "count": 0,
             "level": 0
+        },
+        {
+            "date": "2026-08-02",
+            "count": 0,
+            "level": 0
         }
     ],
     "recent_repositories": [
         {
-            "name": "Portfolio-Web",
-            "commits": 98
+            "name": "StatsRepo",
+            "commits": 7
         },
         {
-            "name": "StatsRepo",
-            "commits": 6
+            "name": "Portfolio-Web",
+            "commits": 99
         },
         {
             "name": "Syconn.github.io",
