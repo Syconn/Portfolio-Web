@@ -4,27 +4,27 @@
     "languages": [
         "Java",
         "GLSL",
-        "Python",
-        "TypeScript",
+        "C++",
+        "CMake",
         "mcfunction",
+        "C",
+        "TypeScript",
         "CSS",
         "JavaScript",
         "HTML",
-        "C++",
-        "CMake",
+        "Python",
         "C#",
+        "Makefile",
+        "Mathematica",
+        "Lua",
+        "Kotlin",
+        "Shell",
+        "Batchfile",
+        "MoonScript",
         "Objective-C++",
         "GAP",
         "ShaderLab",
-        "HLSL",
-        "Shell",
-        "C",
-        "Makefile",
-        "Batchfile",
-        "MoonScript",
-        "Mathematica",
-        "Lua",
-        "Kotlin"
+        "HLSL"
     ],
     "total_languages": 23,
     "lines_of_code": "1499669+",
@@ -1909,6 +1909,11 @@
         },
         {
             "date": "2026-08-03",
+            "count": 0,
+            "level": 0
+        },
+        {
+            "date": "2026-08-04",
             "count": 0,
             "level": 0
         }
