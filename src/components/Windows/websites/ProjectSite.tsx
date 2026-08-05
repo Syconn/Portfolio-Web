@@ -41,7 +41,6 @@ function Projects({ page, openTab }: PageProps) {
                             </div>
                         </div>
 
-
                         <div className="project-content">
                             <p className="project-subline">{project.subline}</p>
 

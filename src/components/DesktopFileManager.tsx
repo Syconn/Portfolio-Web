@@ -15,10 +15,14 @@ type DesktopIcon = {
     data?: WindowData
 }
 
+// TODO: Spotify Music, Youtube, Netflix - Shows, Steam | Add more icons to home, Skills, About, Change Browser
 const fileDefaults: DesktopIcon[] = [
     { id: 0, name: "Resume.pdf", type: "pdf", window: "pdf", x: 20, y: 20, data: { filePath: resumePDF } },
     { id: 1, name: "Contact Me", type: "mail", x: 20, y: 130, window: "contact" },
-    { id: 2, name: "Portfolio", type: "safari", x: 130, y: 20, window: "safari", data: { urls: ["skills", "projects"] } }
+    { id: 2, name: "Portfolio", type: "safari", x: 130, y: 20, window: "safari", data: { urls: ["about", "skills", "projects"] } },
+    { id: 3, name: "Skills.txt", type: "txt", x: 20, y: 240, window: "safari", data: { urls: ["skills"] } },
+    { id: 4, name: "Projects.pdf", type: "pdf", x: 130, y: 130, window: "safari", data: { urls: ["projects"] } },
+    { id: 5, name: "About Me.zip", type: "zip", x: 240, y: 20, window: "safari", data: { urls: ["about"] } },
 ]
 
 function DesktopFileManager({ openOrShowWindow }: { openOrShowWindow: (id: registryKey, data?: WindowData) => void }) {
