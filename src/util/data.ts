@@ -7,15 +7,7 @@ export const defaultSettings: MacSettings = { timezone: Intl.DateTimeFormat().re
 export const links = {
     github: "https://github.com/Syconn",
     codeberg: "https://codeberg.org/Syconn",
-    linkedin: "https://www.linkedin.com/in/aidan-haack/",
+    linkedin: "https://www.linkedin.com/in/aidan-haack",
     email: "Aidanh@udel.edu",
     discord: "syconn"
-}
-
-export const projectCategory = {
-    mod: "Minecraft Modding",
-    webdev: "Web Development",
-    game: "Game Development",
-    tool: "Tools",
-    product: "Applications"
 }
