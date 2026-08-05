@@ -81,8 +81,6 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
     const openTab = (url: string = "") => {
         const [link, extra] = splitUrl(url)
 
-        console.log(link)
-
         if ((link === "" && extra === "") || definedPages.includes(link)) {
             const id = nextId.current++;
             setTab(id);
@@ -150,7 +148,16 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
 
 function preloadWebsites(urls: string[] | undefined, ref: RefObject<number>): pageData[] {
     if (!urls) return [loadWebpage("", ref.current++)];
-    return urls.map(v => loadWebpage(v, ref.current++));
+    return urls.map(v => {
+        const [link, extra] = splitUrl(v)
+
+        if ((link === "" && extra === "") || definedPages.includes(link)) return loadWebpage(v, ref.current++);
+        else {
+            if (v.startsWith("http://") || v.startsWith("https://")) window.open(v, "_blank");
+            else window.open(`https://www.google.com/search?q=${encodeURIComponent(v)}`, "_blank");
+            return undefined
+        }
+    }).filter(v => v !== undefined);
 }
 
 function splitUrl(url: string): [string, string] {
