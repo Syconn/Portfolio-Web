@@ -57,7 +57,9 @@ export const categories: {
         { icon: <TbBrandFramerMotion />, name: "Motion", confidence: "Expert" },
         { icon: <SiZod />, name: "Zod", confidence: "Expert" },
         { icon: <SiLucide />, name: "Lucide React", confidence: "Expert" },
-        { icon: <GrReactjs />, name: "React Icons", confidence: "Expert" }
+        { icon: <GrReactjs />, name: "React Icons", confidence: "Expert" },
+        { icon: <SiPandas />, name: "Pandas", confidence: "Advanced" },
+        { icon: <SiNumpy />, name: "NumPy", confidence: "Advanced" },
     ]
 }, {
     title: "Databases",
@@ -77,8 +79,6 @@ export const categories: {
         { icon: <VscVscode />, name: "VS Code", confidence: "Expert" },
         { icon: <FaMicrosoft />, name: "Microsoft Office", confidence: "Expert" },
         { icon: <PiWebhooksLogo />, name: "Discord Webhooks", confidence: "Advanced" },
-        { icon: <SiPandas />, name: "Pandas", confidence: "Advanced" },
-        { icon: <SiNumpy />, name: "NumPy", confidence: "Advanced" },
         { icon: <SiEslint />, name: "ESLint", confidence: "Advanced" }
     ]
 }, {

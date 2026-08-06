@@ -15,7 +15,6 @@ export const ProjectViewPage: webPage = {
     content: ProjectView
 }
 
-// SKILLS BREAK DOWN BY CATEGORY, DEMO ON SITE
 function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
     const [projects] = useState<Project[]>(projectJson)
     const [expandedImage, setExpandedImage] = useState<string | null>(null);
@@ -124,6 +123,14 @@ function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
             )}
 
             <section className="project-info">
+                <div className="project-panel key-facts-panel">
+                    <h2>Key Facts</h2>
+
+                    <div className="key-facts">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{project.keyFacts}</ReactMarkdown>
+                    </div>
+                </div>
+
                 <div className="project-panel">
                     <h2>Skills</h2>
 
@@ -132,7 +139,14 @@ function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
                     </div>
 
                     <div className="skills">
-                        {filteredSkills?.map(skill => <span key={skill.name} style={{ color: iconColors[skill.name], "--skill-color": iconColors[skill.name] } as React.CSSProperties}>{skill.icon} {skill.name}</span> )}
+                        {filteredSkills?.map(skill => {
+                            const skillStyle = {
+                                color: iconColors[skill.name],
+                                "--skill-color": iconColors[skill.name]
+                            } as React.CSSProperties;
+
+                            return <span key={skill.name} style={skillStyle}>{skill.icon} {skill.name}</span>;
+                        })}
                     </div>
                 </div>
 

@@ -2,6 +2,7 @@ export type Project = {
     title: string,
     readme?: string,
     demoLink?: string,
+    keyFacts: string,
     imgs: string[],
     subline: string,
     repo: string,

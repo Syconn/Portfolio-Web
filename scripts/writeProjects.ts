@@ -6,6 +6,7 @@ type project = {
     demoLink?: string,
     imgs: string[],
     subline: string,
+    keyFacts: string,
     repo: string,
     commitHistory: {
         name: string,
@@ -32,6 +33,12 @@ function writeJson(): project[] {
                 "screenshots/drafter/python_export.png",
                 "screenshots/drafter/webstate_designer.png"
             ],
+            keyFacts: `
+- Built a browser-based IDE that allows users to visually design, generate, and export Python applications for the Drafter educational framework through an interactive graph-based interface.
+- Engineered features including visual page routing, state management, live code generation, project import/export through Dexie.js, and data persistence using React, TypeScript, and React Flow.
+- Collaborated in a 3-member Scrum team over 3 Agile sprints, using GitHub for version control, participating in sprint planning and code reviews, and integrating feedback to deliver project milestones on schedule.
+- Presented project demonstrations to an audience of 30+ classmates and instructors every two weeks, effectively communicating technical progress, design decisions, sprint outcomes, and incorporating stakeholder feedback.
+            `,
             repo: "https://github.com/Syconn/Drafter-Website-Builder",
             commitHistory: [{
                 name: "Created Project",
