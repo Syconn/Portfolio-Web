@@ -1,4 +1,4 @@
-# Portfolio Web
+# Portfolio Website
 
 Portfolio Web is a polished, desktop-inspired portfolio website built with React, TypeScript, and Vite. It presents my work, experience, and technical interests through an interactive macOS-style interface with draggable windows, a dock, browser-style content pages, and configurable desktop settings.
 

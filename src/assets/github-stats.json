@@ -2,29 +2,29 @@
     "public_repos": 55,
     "years_of_experience": "7+",
     "languages": [
+        "Python",
         "Java",
         "GLSL",
-        "TypeScript",
-        "CSS",
-        "JavaScript",
-        "HTML",
-        "Shell",
         "mcfunction",
+        "C++",
         "C",
-        "Python",
+        "Makefile",
+        "TypeScript",
         "Mathematica",
         "C#",
         "Lua",
         "Kotlin",
-        "C++",
+        "Shell",
+        "CSS",
+        "JavaScript",
         "CMake",
-        "Makefile",
+        "Batchfile",
+        "HTML",
+        "MoonScript",
         "Objective-C++",
         "GAP",
         "ShaderLab",
-        "HLSL",
-        "MoonScript",
-        "Batchfile"
+        "HLSL"
     ],
     "total_languages": 23,
     "lines_of_code": "1499669+",
@@ -80,7 +80,7 @@
             "percent": 0.11
         }
     ],
-    "total_contributions": 417,
+    "total_contributions": 427,
     "contributions": [
         {
             "date": "2025-08-03",
@@ -1919,6 +1919,11 @@
         },
         {
             "date": "2026-08-05",
+            "count": 10,
+            "level": 3
+        },
+        {
+            "date": "2026-08-06",
             "count": 0,
             "level": 0
         }
@@ -1927,6 +1932,10 @@
         {
             "name": "Portfolio-Web",
             "commits": 100
+        },
+        {
+            "name": "Syconn",
+            "commits": 4
         },
         {
             "name": "StatsRepo",
@@ -1939,10 +1948,6 @@
         {
             "name": "Drafter-Website-Builder",
             "commits": 3
-        },
-        {
-            "name": "Color-Accurate-Maps",
-            "commits": 6
         }
     ]
 }
