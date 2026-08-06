@@ -1,77 +1,81 @@
-# React + TypeScript + Vite
+# Portfolio Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfolio Web is a polished, desktop-inspired portfolio website built with React, TypeScript, and Vite. It presents my work, experience, and technical interests through an interactive macOS-style interface with draggable windows, a dock, browser-style content pages, and configurable desktop settings.
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project combines a unique visual experience with practical portfolio functionality. Visitors can explore projects, learn about my background, review skills, and access contact information through an app-like environment rather than a traditional static website.
 
-## React Compiler
+## Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Desktop-style navigation with a custom navbar, dock, and window manager
+- Interactive windows for projects, experience, skills, help, contact, and settings
+- Responsive and polished UI with multiple wallpaper options
+- Data-driven content for projects and site information
+- Built with modern React tooling and TypeScript for maintainability
 
-Note: This will impact Vite dev & build performances.
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React 19
+- TypeScript
+- Vite
+- CSS
+- React Icons
+- React Rnd
+- tsx
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Getting Started
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Prerequisites
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js 18+
+- npm
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
 
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Development
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run dev
 ```
+
+The app will be available locally in your browser at the Vite development URL.
+
+### Production Build
+
+```bash
+npm run build
+```
+
+## Available Scripts
+
+- `npm run dev` — start the local development server
+- `npm run build` — create a production build
+- `npm run preview` — preview the production build locally
+- `npm run lint` — run ESLint across the project
+- `npm run generate-stats` — generate GitHub-related stats data
+- `npm run projects` — generate project data used by the portfolio
+
+## Project Structure
+
+- `src/` — main application source code
+- `src/components/` — desktop, dock, and window components
+- `src/css/` — styling for the portfolio experience
+- `src/util/` — shared data and TypeScript types
+- `scripts/` — utility scripts for generating portfolio data
+- `public/` — static assets and screenshots
+
+## Contact
+
+Aidan Haack
+- Email: Aidanh@udel.edu
+- GitHub: https://github.com/Syconn
+- LinkedIn: https://www.linkedin.com/in/aidan-haack
+
+## Notes
+
+This repository is designed as a personal portfolio experience and is intended to be updated over time as new projects and accomplishments are added.
