@@ -194,7 +194,7 @@ function Overview({ openTab, openExternalWindow }: PageProps) {
 
             <section className="awards-card">
                 <div className="awards-header">
-                    <h2>Awards &amp; Accomplishments</h2>
+                    <h2>Awards & Accomplishments</h2>
                     <p>Selected highlights from my work in software development, cybersecurity, and technical experimentation.</p>
                 </div>
 

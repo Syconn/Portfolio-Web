@@ -200,12 +200,6 @@
 }
 
 .awards-header h2 {
-    margin: 0;
-    font-size: 28px;
-}
-
-.awards-header p {
-    margin: 0;
     color: var(--text-secondary);
     line-height: 1.7;
 }
@@ -250,8 +244,20 @@
     font-size: 15px;
 }
 
+.dark-mode .awards-card {
+    background: rgba(255,255,255,.07);
+    border-color: rgba(255,255,255,.12);
+    box-shadow: 0 10px 30px rgba(0,0,0,.2);
+}
+
 .dark-mode .award-item {
     background: rgba(255,255,255,.06);
+    border-color: rgba(255,255,255,.12);
+}
+
+.dark-mode .award-badge {
+    background: rgba(10, 132, 255, 0.18);
+    color: #8ec5ff;
 }
 
 .lines-card{
@@ -596,6 +602,7 @@
 /* DARK MODE */
 .dark-mode .hero,
 .dark-mode .about-card,
+.dark-mode .awards-card,
 .dark-mode .stat-card {
     background: rgba(40,40,45,.55);
 }
