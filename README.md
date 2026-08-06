@@ -1,4 +1,4 @@
-# Portfolio Web
+# Portfolio Website
 
 Portfolio Web is a polished, desktop-inspired portfolio website built with React, TypeScript, and Vite. It presents my work, experience, and technical interests through an interactive macOS-style interface with draggable windows, a dock, browser-style content pages, and configurable desktop settings.
 
@@ -53,21 +53,21 @@ npm run build
 
 ## Available Scripts
 
-- `npm run dev` — start the local development server
-- `npm run build` — create a production build
-- `npm run preview` — preview the production build locally
-- `npm run lint` — run ESLint across the project
-- `npm run generate-stats` — generate GitHub-related stats data
-- `npm run projects` — generate project data used by the portfolio
+- `npm run dev` â€” start the local development server
+- `npm run build` â€” create a production build
+- `npm run preview` â€” preview the production build locally
+- `npm run lint` â€” run ESLint across the project
+- `npm run generate-stats` â€” generate GitHub-related stats data
+- `npm run projects` â€” generate project data used by the portfolio
 
 ## Project Structure
 
-- `src/` — main application source code
-- `src/components/` — desktop, dock, and window components
-- `src/css/` — styling for the portfolio experience
-- `src/util/` — shared data and TypeScript types
-- `scripts/` — utility scripts for generating portfolio data
-- `public/` — static assets and screenshots
+- `src/` â€” main application source code
+- `src/components/` â€” desktop, dock, and window components
+- `src/css/` â€” styling for the portfolio experience
+- `src/util/` â€” shared data and TypeScript types
+- `scripts/` â€” utility scripts for generating portfolio data
+- `public/` â€” static assets and screenshots
 
 ## Contact
 
