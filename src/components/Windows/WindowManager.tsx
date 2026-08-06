@@ -59,7 +59,7 @@ function WindowManager({ requestedWindows, clearCache, settings, changeSettings 
                 ...next[id]!,
                 minimized: false,
                 zIndex: highestZ,
-                data: data ?? next[id]!.data,
+                data: data ?? next[id]!.data
             };
         }
 

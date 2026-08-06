@@ -52,11 +52,18 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
     const selectedData = pageData.find(v => v.id === tab)
     const PageContent = selectedData?.pageContent.content;
     const safeUrl = selectedData ? selectedData.url + selectedData.urlExtra : ""
-    const didPreload = useRef(!!instance.data?.urls?.length);
+    const didMount = useRef(false);
+    const previousUrls = useRef<WindowData["urls"]>(instance.data?.urls);
 
     useEffect(() => {
-        if (didPreload.current) return;
-        if (instance.data?.urls) instance.data.urls.forEach(openTab);
+        if (!didMount.current) {
+            didMount.current = true;
+            return;
+        }
+
+        if (previousUrls.current === instance.data?.urls) return;
+        previousUrls.current = instance.data?.urls;
+        instance.data?.urls?.forEach(openTab);
     }, [instance.data?.urls]);
 
     useEffect(() => {

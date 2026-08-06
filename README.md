@@ -4,11 +4,13 @@ Portfolio Web is a polished, desktop-inspired portfolio website built with React
 
 ## Overview
 
-This project combines a unique visual experience with practical portfolio functionality. Visitors can explore projects, learn about my background, review skills, and access contact information through an app-like environment rather than a traditional static website.
+This project combines a unique visual experience with practical portfolio functionality. Visitors can explore projects, learn about my background, review skills, and access contact information through an app-like environment rather than a traditional static website. Its a data driven website, with json files serving as ways to load stats and projects allowing these values to update and change in realtime with help from Github Actions.  
 
 ## Features
 
 - Desktop-style navigation with a custom navbar, dock, and window manager
+- Window Manager allows for new Application with easy data driven process
+- Search Engine supports iframe render but defaults to loaded browser to avoid iframe blocking
 - Interactive windows for projects, experience, skills, help, contact, and settings
 - Responsive and polished UI with multiple wallpaper options
 - Data-driven content for projects and site information
@@ -20,8 +22,11 @@ This project combines a unique visual experience with practical portfolio functi
 - TypeScript
 - Vite
 - CSS
+- React Dom
+- React Markdown
 - React Icons
 - React Rnd
+- Remark GFM Plugin
 - tsx
 
 ## Getting Started
@@ -53,26 +58,27 @@ npm run build
 
 ## Available Scripts
 
-- `npm run dev` — start the local development server
-- `npm run build` — create a production build
-- `npm run preview` — preview the production build locally
-- `npm run lint` — run ESLint across the project
-- `npm run generate-stats` — generate GitHub-related stats data
-- `npm run projects` — generate project data used by the portfolio
+- `npm run dev` ï¿½ start the local development server
+- `npm run build` ï¿½ create a production build
+- `npm run preview` ï¿½ preview the production build locally
+- `npm run lint` ï¿½ run ESLint across the project
+- `npm run generate-stats` ï¿½ generate GitHub-related stats data
+- `npm run projects` ï¿½ generate project data used by the portfolio
 
 ## Project Structure
 
-- `src/` — main application source code
-- `src/components/` — desktop, dock, and window components
-- `src/css/` — styling for the portfolio experience
-- `src/util/` — shared data and TypeScript types
-- `scripts/` — utility scripts for generating portfolio data
-- `public/` — static assets and screenshots
+- `src/` ï¿½ main application source code
+- `src/assets` ï¿½ generated data and changing assets
+- `src/components/` ï¿½ desktop, dock, and window components
+- `src/css/` ï¿½ styling for the portfolio experience
+- `src/util/` ï¿½ shared data and TypeScript types
+- `scripts/` ï¿½ utility scripts for generating portfolio data
+- `public/` ï¿½ static assets and screenshots
 
 ## Contact
 
 Aidan Haack
-- Email: Aidanh@udel.edu
+- Email: Aidanh@udel.edu | Aidanhaack05@verizon.net
 - GitHub: https://github.com/Syconn
 - LinkedIn: https://www.linkedin.com/in/aidan-haack
 

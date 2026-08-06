@@ -13,6 +13,7 @@ import type { MacSettings, WindowData } from "./util/types";
 
 export const wallpapers = [wallpaper0, wallpaper1, wallpaper2, wallpaper3, wallpaper4];
 
+// TODO IOS SUPPORT
 function Desktop() {
     const [requestedWindow, setRequestedWindow] = useState<{window: registryKey, data?: WindowData}[]>([])
     const [shutdown, setShutdown] = useState(false);
