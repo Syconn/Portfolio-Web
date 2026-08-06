@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { FaCss3Alt, FaDiscord, FaFileDownload, FaGithub, FaJava, FaLinkedin, FaRegUserCircle } from 'react-icons/fa';
-import { MdOutlineMailOutline } from 'react-icons/md';
+import { FaCss3Alt, FaDiscord, FaFileDownload, FaGithub, FaJava, FaLinkedin, FaRegUserCircle, FaTrophy } from 'react-icons/fa';
+import { MdAutoGraph, MdOutlineMailOutline, MdSchool } from 'react-icons/md';
 import { SiC, SiCodeberg, SiCplusplus, SiHtml5, SiJavascript, SiKotlin, SiPython, SiTypescript } from 'react-icons/si';
 import quickstats from "../../../assets/github-stats.json";
 import me from "../../../assets/me.png";
@@ -190,6 +190,39 @@ function Overview({ openTab, openExternalWindow }: PageProps) {
                     software engineering. In my free time I play game, and love to learn new techniques and frameworks.
                     I enjoy designing software that feels reliable, intuitive, performant, and visually polished.
                 </p>
+            </section>
+
+            <section className="awards-card">
+                <div className="awards-header">
+                    <h2>Awards &amp; Accomplishments</h2>
+                    <p>Selected highlights from my work in software development, cybersecurity, and technical experimentation.</p>
+                </div>
+
+                <div className="awards-list">
+                    <article className="award-item">
+                        <div className="award-badge"><FaTrophy /></div>
+                        <div>
+                            <h3>UD Presidential Scholarship</h3>
+                            <p>Awarded for academic excellence and distinction as part of the University of Delaware community.</p>
+                        </div>
+                    </article>
+
+                    <article className="award-item">
+                        <div className="award-badge"><MdSchool /></div>
+                        <div>
+                            <h3>Dean’s List (2024–2026)</h3>
+                            <p>Recognized for sustained academic achievement across multiple semesters.</p>
+                        </div>
+                    </article>
+
+                    <article className="award-item">
+                        <div className="award-badge"><MdAutoGraph /></div>
+                        <div>
+                            <h3>UD DataQuest Winner in Best Insight and Model</h3>
+                            <p>Received recognition for delivering a standout insight and model in the UD DataQuest competition.</p>
+                        </div>
+                    </article>
+                </div>
             </section>
 
         </div>

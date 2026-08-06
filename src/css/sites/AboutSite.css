@@ -185,6 +185,75 @@
     color: var(--text-secondary);
 }
 
+.awards-card {
+    padding: 34px;
+    border-radius: 28px;
+    background: rgba(255,255,255,.38);
+    backdrop-filter: blur(25px);
+    border: 1px solid var(--soft-border);
+}
+
+.awards-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.awards-header h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.awards-header p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.awards-list {
+    display: grid;
+    gap: 16px;
+    margin-top: 22px;
+}
+
+.award-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 18px 20px;
+    border-radius: 18px;
+    background: rgba(255,255,255,.45);
+    border: 1px solid var(--soft-border);
+}
+
+.award-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: rgba(10, 132, 255, 0.12);
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.award-item h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+}
+
+.award-item p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.dark-mode .award-item {
+    background: rgba(255,255,255,.06);
+}
+
 .lines-card{
     position:relative;
     z-index: 1000;
