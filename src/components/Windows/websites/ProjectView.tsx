@@ -15,7 +15,7 @@ export const ProjectViewPage: webPage = {
     content: ProjectView
 }
 
-function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
+function ProjectView({ page, modifyPage, modifyUrl, closeTab, openTab }: PageProps) {
     const [projects] = useState<Project[]>(projectJson)
     const [expandedImage, setExpandedImage] = useState<string | null>(null);
     const [imageIndex, setImageIndex] = useState(0);
@@ -59,7 +59,7 @@ function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
 
                 <div className="project-actions">
                     {projectId !== undefined && (
-                        <a onClick={() => (projectId + 1 + projects.length) % projects.length}>
+                        <a onClick={() => modifyUrl(buildUrlWithData("projectView", { projectId: (projectId + 1 + projects.length) % projects.length, returnId: getUrlData(page.urlExtra).returnId }))}>
                             <FaAngleDoubleLeft />
                             Previous
                         </a>
@@ -83,7 +83,7 @@ function ProjectView({ page, modifyPage, closeTab, openTab }: PageProps) {
                     </a>
 
                     {projectId !== undefined && (
-                        <a onClick={() => (projectId + 1 + projects.length) % projects.length}>
+                        <a onClick={() => modifyUrl(buildUrlWithData("projectView", { projectId: (projectId - 1 + projects.length) % projects.length, returnId: getUrlData(page.urlExtra).returnId }))}>
                             <FaAngleDoubleRight />
                             Next
                         </a>

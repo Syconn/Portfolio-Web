@@ -31,6 +31,7 @@ export type webPage = {
 export type PageProps = {
     page: pageData,
     modifyPage: (id: number, changes: Partial<webPage>) => void,
+    modifyUrl: (url: string) => void,
     openTab: (url: string) => void,
     closeTab: (id: number) => void,
     openExternalWindow: (id: registryKey, data?: WindowData) => void
@@ -107,6 +108,7 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
             else window.open(`https://www.google.com/search?q=${encodeURIComponent(url)}`, "_blank");
         }
     }
+
     const modifyUrl = (url: string) => setPageData(prev => prev.map(page => page.id === tab ? { ...page, ...urlObject(url) } : page));
     const modifyPage = (id: number, changes: Partial<webPage>) => setPageData(prev => prev.map(page => page.id === id ? { ...page, pageContent: { ...page.pageContent, ...changes } } : page));
 
@@ -146,7 +148,7 @@ function SafariWindow(instance: WindowInstance & WindowManager) {
                 </div>
 
                 <div className="safari-page">
-                    {PageContent && <PageContent page={selectedData} modifyPage={modifyPage} openTab={openTab} closeTab={closeTab} openExternalWindow={instance.openExternalWindow} />}
+                    {PageContent && <PageContent page={selectedData} modifyUrl={modifyUrl} modifyPage={modifyPage} openTab={openTab} closeTab={closeTab} openExternalWindow={instance.openExternalWindow} />}
                 </div>
             </div>
         </Window>
