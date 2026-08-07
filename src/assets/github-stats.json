@@ -6,21 +6,21 @@
         "Java",
         "GLSL",
         "mcfunction",
-        "C++",
-        "C",
-        "Makefile",
-        "TypeScript",
         "Mathematica",
         "C#",
         "Lua",
         "Kotlin",
         "Shell",
+        "TypeScript",
         "CSS",
         "JavaScript",
-        "CMake",
-        "Batchfile",
         "HTML",
+        "C++",
+        "CMake",
+        "C",
+        "Batchfile",
         "MoonScript",
+        "Makefile",
         "Objective-C++",
         "GAP",
         "ShaderLab",
@@ -80,7 +80,7 @@
             "percent": 0.11
         }
     ],
-    "total_contributions": 427,
+    "total_contributions": 434,
     "contributions": [
         {
             "date": "2025-08-03",
@@ -1924,14 +1924,23 @@
         },
         {
             "date": "2026-08-06",
+            "count": 7,
+            "level": 2
+        },
+        {
+            "date": "2026-08-07",
             "count": 0,
             "level": 0
         }
     ],
     "recent_repositories": [
         {
-            "name": "Portfolio-Web",
+            "name": "Portfolio-Website",
             "commits": 100
+        },
+        {
+            "name": "CodeSort",
+            "commits": 49
         },
         {
             "name": "Syconn",
@@ -1943,10 +1952,6 @@
         },
         {
             "name": "Syconn.github.io",
-            "commits": 3
-        },
-        {
-            "name": "Drafter-Website-Builder",
             "commits": 3
         }
     ]
