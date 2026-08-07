@@ -125,6 +125,37 @@ function writeJson(): project[] {
                 "GitHub API",
                 "GitHub Actions"
             ]
+        }, {
+            title: "UD Dataquest Winner",
+            readme: "https://raw.githubusercontent.com/gkrismelam/EducatorTurnoverAnalysis/refs/heads/main/README.md",
+            repo: "https://github.com/gkrismelam/EducatorTurnoverAnalysis",
+            imgs: [
+                "screenshots/dataquest/solution.png",
+                "screenshots/dataquest/turnover_rate.png",
+                "screenshots/dataquest/yearly_turnover.png"
+            ],
+            subline: "Analysed Delaware’s Department of Education dataset to identify factors contributing to above-average  teacher turnover across school districts.",
+            keyFacts: `
+- Analysed Delaware’s Department of Education dataset to identify factors contributing to above-average  teacher 
+turnover across school districts.  
+- Developed a predictive machine learning model (R² = 0.919) that identified average salary (50%), district transfer 
+rate (30%), and teacher experience (18%) as the primary drivers of turnover.  
+- Built  a  data-driven  salary  investment  model  estimating  that  a  $1,515  per -teacher  investment  could  reduce 
+statewide turnover by approximately 1 percentage point, supporting evidence -based policy recommendations. 
+            `,
+            commitHistory: [{
+                name: "Started Dataquest",
+                date: "May 8 2026"
+            }, {
+                name: "Completed Dataquest",
+                date: "May 10 2026",
+                color: "#34c759"
+            }],
+            skills: [
+                "Python",
+                "Pandas",
+                "NumPy"
+            ]
         }
     ]
 }
