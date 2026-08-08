@@ -3,21 +3,21 @@
     "years_of_experience": "7+",
     "languages": [
         "Python",
-        "Java",
-        "GLSL",
-        "mcfunction",
-        "C#",
-        "C++",
-        "CMake",
         "TypeScript",
-        "CSS",
         "JavaScript",
         "HTML",
+        "CSS",
+        "mcfunction",
         "C",
+        "Java",
+        "GLSL",
         "Makefile",
+        "C++",
+        "CMake",
         "Batchfile",
         "Shell",
         "Mathematica",
+        "C#",
         "Lua",
         "Kotlin",
         "MoonScript",
@@ -80,7 +80,7 @@
             "percent": 0.11
         }
     ],
-    "total_contributions": 434,
+    "total_contributions": 436,
     "contributions": [
         {
             "date": "2025-08-03",
@@ -1929,6 +1929,11 @@
         },
         {
             "date": "2026-08-07",
+            "count": 2,
+            "level": 1
+        },
+        {
+            "date": "2026-08-08",
             "count": 0,
             "level": 0
         }
